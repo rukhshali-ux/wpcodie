@@ -13,6 +13,9 @@ else:
 - Never "tidy" the markup: the `{" "}` whitespace nodes, wrapper elements, `sc-interp`
   spans, `scpN` classes and the `#dc-root > .sc-host` wrapper are all load-bearing. Removing
   one can move text by a pixel.
+- Two deliberate departures from the export, both for small screens: below 960px the header
+  collapses into a menu button (`.hdr*` classes, rules at the end of `page.css`), and the
+  intro's laptop screen stays hidden until the lid opens (`screenVis`, for iPhone Safari).
 - Never add a CSS framework (Tailwind etc.), a UI library or a web font.
 - Copy changes are fine and expected. So are new pages and sections, when asked for, built
   from the same styles.

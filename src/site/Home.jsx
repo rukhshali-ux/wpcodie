@@ -321,7 +321,7 @@ export function template(v) {
                   {" "}
                   <div style={css(`position:absolute;left:0;right:0;top:0;height:${v.lidT ?? ""};transform-origin:top center;transform:rotateX(-90deg);background:linear-gradient(180deg,#E6E4DF 0%,#CFCCC6 60%,#B9B6AF 100%);border-radius:3px 3px 10px 10px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.8)`)} />
                   {" "}
-                  <div style={css(`position:absolute;inset:0;backface-visibility:hidden;background:#0B0C0F;border-radius:14px 14px 3px 3px;padding:${v.bezel ?? ""} ${v.bezel ?? ""} ${v.chin ?? ""};box-shadow:0 0 0 1.5px #9E9A92,0 0 0 3px #CFCCC6`)}>
+                  <div style={css(`visibility:${v.screenVis ?? ""};position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#0B0C0F;border-radius:14px 14px 3px 3px;padding:${v.bezel ?? ""} ${v.bezel ?? ""} ${v.chin ?? ""};box-shadow:0 0 0 1.5px #9E9A92,0 0 0 3px #CFCCC6`)}>
                     {" "}
                     <span style={css(`position:absolute;left:50%;top:calc(${v.bezel ?? ""} / 2);width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#232833;box-shadow:0 0 0 1px #15181F`)} />
                     {" "}
@@ -335,7 +335,7 @@ export function template(v) {
                     {" "}
                   </div>
                   {" "}
-                  <div style={css(`position:absolute;inset:0;backface-visibility:hidden;transform:translateZ(-${v.lidT ?? ""}) rotateX(180deg);background:radial-gradient(120% 90% at 50% 30%,#E4E2DD 0%,#D3D0CA 55%,#C4C1BA 100%);border-radius:14px 14px 3px 3px;box-shadow:inset 0 0 0 1px #B9B6AF,inset 0 2px 0 rgba(255,255,255,0.5);display:grid;place-items:center`)}>
+                  <div style={css(`position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(-${v.lidT ?? ""}) rotateX(180deg);background:radial-gradient(120% 90% at 50% 30%,#E4E2DD 0%,#D3D0CA 55%,#C4C1BA 100%);border-radius:14px 14px 3px 3px;box-shadow:inset 0 0 0 1px #B9B6AF,inset 0 2px 0 rgba(255,255,255,0.5);display:grid;place-items:center`)}>
                     {" "}
                     <span style={css("font:700 clamp(28px,5vw,56px) 'Space Grotesk',sans-serif;color:#C4C1BA;text-shadow:0 1px 0 rgba(255,255,255,0.7),0 -1px 0 rgba(0,0,0,0.12);letter-spacing:-0.04em")}>W</span>
                     {" "}
@@ -355,7 +355,7 @@ export function template(v) {
       ) : null}
       <header style={css("position:sticky;top:0;z-index:30;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #E2DFD7")}>
         {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap")}>
+        <div class="hdr" style={css("max-width:1280px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap")}>
           {" "}
           <a href="#top" style={css("display:flex;align-items:center;gap:10px;color:#15181F")}>
             {" "}
@@ -365,7 +365,7 @@ export function template(v) {
             {" "}
           </a>
           {" "}
-          <nav style={css("display:flex;gap:4px;flex-wrap:wrap")}>
+          <nav class="hdr-nav" style={css("display:flex;gap:4px;flex-wrap:wrap")}>
             {" "}
             {each(v.nav).map((n, $index) => (
               <Fragment key={$index}>
@@ -377,11 +377,27 @@ export function template(v) {
             {" "}
           </nav>
           {" "}
-          <a href="#contact" style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
+          <a class="hdr-cta" href="#contact" style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
             <Button>Start a project →</Button>
           </a>
           {" "}
+          {/* Small screens: a menu button replaces the nav and the call to action (styles in page.css). */}
+          <button type="button" class="hdr-toggle" aria-label={v.menuOpen ? "Close menu" : "Open menu"} aria-expanded={v.menuOpen ? "true" : "false"} aria-controls="mobile-menu" onClick={v.toggleMenu}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              {v.menuOpen ? <path d="M5 5 L15 15 M15 5 L5 15" /> : <path d="M3 6 H17 M3 10 H17 M3 14 H17" />}
+            </svg>
+          </button>
         </div>
+        {v.menuOpen ? (
+          <div id="mobile-menu" class="hdr-panel">
+            {each(v.nav).map((n, $index) => (
+              <a key={$index} href={n.href} onClick={v.closeMenu} style={css(`color:${n.color ?? ""}`)}>{n.label}</a>
+            ))}
+            <a href="#contact" onClick={v.closeMenu} class="hdr-panel-cta" style={css("display:flex;--color-midnight:#F5F4F0")}>
+              <Button size="lg">Start a project →</Button>
+            </a>
+          </div>
+        ) : null}
       </header>
       <section style={css("position:relative;overflow:hidden;background-image:radial-gradient(#DAD7CF 1px,transparent 1px);background-size:24px 24px")}>
         {" "}

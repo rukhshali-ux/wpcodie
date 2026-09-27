@@ -22,3 +22,17 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
 @keyframes wpArrow{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
 @keyframes wpWave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes wpType{0%,20%{width:0}60%,100%{width:70%}}
+
+/* Header on small screens (added for the live site). Below 960px the design's single header
+   row wraps into three, so the nav and call to action move into a drop-down menu. The
+   design's inline styles win otherwise, hence !important. */
+.hdr-toggle,.hdr-panel{display:none}
+@media (max-width:959px){
+  .hdr{flex-wrap:nowrap!important}
+  .hdr-nav,.hdr-cta{display:none!important}
+  .hdr-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;border:1px solid #D6D3CB;border-radius:8px;background:transparent;color:#15181F;cursor:pointer}
+  .hdr-panel{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;padding:8px 32px 24px;background:#F5F4F0;border-bottom:1px solid #E2DFD7;box-shadow:0 12px 24px rgba(21,24,31,0.08);max-height:calc(100vh - 70px);overflow-y:auto}
+  .hdr-panel>a:not(.hdr-panel-cta){padding:14px 0;font-size:17px;font-weight:500;border-bottom:1px solid #E2DFD7}
+  .hdr-panel-cta{margin-top:20px}
+  .hdr-panel-cta>button{width:100%}
+}

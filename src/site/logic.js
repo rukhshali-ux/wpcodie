@@ -131,6 +131,9 @@ class Component extends DCLogic {
       tilt: ph === 'closed' ? 'translateY(-70%) rotateX(-30deg) rotateY(0deg)' : (ph === 'opening' ? 'translateY(0) rotateX(-10deg)' : 'translateY(0) rotateX(0deg)'),
       zoom: ph === 'zoom' ? 'translateY(' + this.state.center + 'px) scale(' + (vw / inner * 1.02).toFixed(3) + ')' : (ph === 'opening' ? 'translateY(' + this.state.lift + 'px)' : 'none'),
       lapDur: ph === 'zoom' ? '1100ms' : '2400ms', lapRef: this.lapRef,
+      // The screen only shows once the lid starts opening. Safari ignores backface-visibility on
+      // the iframe, so without this the closed lid shows the page mirrored on iPhone.
+      screenVis: ph === 'closed' ? 'hidden' : 'visible',
       copyOpacity: ph === 'closed' ? 1 : 0, copyShift: ph === 'closed' ? 'none' : 'translateY(-16px)',
       introOpacity: ph === 'zoom' ? 0 : 1, introPointer: ph === 'zoom' ? 'none' : 'auto',
       openLaptop: () => { if (this.state.intro !== 'closed') return;
@@ -205,6 +208,8 @@ class Component extends DCLogic {
     const fi = this.state.flow;
     return {
       ringRef: this.ringRef, aiRef: this.aiRef, w1Ref: this.w1Ref, w2Ref: this.w2Ref, ...this.workVals(), ...this.introVals(), capRef: this.capRef, trackRef: this.trackRef, capBarRef: this.capBarRef, flowRef: this.flowRef, flowBarRef: this.flowBarRef,
+      // Small-screen menu (added for the live site).
+      menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
       footNav: links.map(([href,,label]) => ({ href, label })),
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
