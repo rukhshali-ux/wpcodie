@@ -1697,6 +1697,10 @@ export function template(v) {
           {" "}
         </div>
       </footer>
+      {/* Back to top (added for the live site): shown once the first screen is scrolled past. */}
+      <a href="#top" class={v.showTop ? "to-top is-visible" : "to-top"} aria-hidden={v.showTop ? undefined : "true"} tabindex={v.showTop ? undefined : "-1"}>
+        Back to top <span aria-hidden="true">↑</span>
+      </a>
     </div>
     </Fragment>
   );
