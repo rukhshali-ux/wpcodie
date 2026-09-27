@@ -135,9 +135,11 @@ class Component extends DCLogic {
       tilt: ph === 'closed' ? 'translateY(-70%) rotateX(-30deg) rotateY(0deg)' : (ph === 'opening' ? 'translateY(0) rotateX(-10deg)' : 'translateY(0) rotateX(0deg)'),
       zoom: ph === 'zoom' ? 'translateY(' + this.state.center + 'px) scale(' + (vw / inner * 1.02).toFixed(3) + ')' : (ph === 'opening' ? 'translateY(' + this.state.lift + 'px)' : 'none'),
       lapDur: ph === 'zoom' ? '1100ms' : '2400ms', lapRef: this.lapRef,
-      // The screen only shows once the lid starts opening. Safari ignores backface-visibility on
-      // the iframe, so without this the closed lid shows the page mirrored on iPhone.
-      screenVis: ph === 'closed' ? 'hidden' : 'visible',
+      // The screen only shows once the opening lid has turned to face the viewer: it passes
+      // edge-on 1.05s after "Open it" (measured from the lid and tilt transitions below).
+      // Safari ignores backface-visibility on the iframe, so without this the lid shows the
+      // page mirrored on iPhone, both closed and during the first half of the opening.
+      screenVis: ph === 'closed' ? 'hidden' : 'visible', screenDelay: ph === 'closed' ? '0s' : '1100ms',
       copyOpacity: ph === 'closed' ? 1 : 0, copyShift: ph === 'closed' ? 'none' : 'translateY(-16px)',
       introOpacity: ph === 'zoom' ? 0 : 1, introPointer: ph === 'zoom' ? 'none' : 'auto',
       openLaptop: () => { if (this.state.intro !== 'closed') return;

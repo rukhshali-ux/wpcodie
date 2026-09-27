@@ -321,7 +321,7 @@ export function template(v) {
                   {" "}
                   <div style={css(`position:absolute;left:0;right:0;top:0;height:${v.lidT ?? ""};transform-origin:top center;transform:rotateX(-90deg);background:linear-gradient(180deg,#E6E4DF 0%,#CFCCC6 60%,#B9B6AF 100%);border-radius:3px 3px 10px 10px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.8)`)} />
                   {" "}
-                  <div style={css(`visibility:${v.screenVis ?? ""};position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#0B0C0F;border-radius:14px 14px 3px 3px;padding:${v.bezel ?? ""} ${v.bezel ?? ""} ${v.chin ?? ""};box-shadow:0 0 0 1.5px #9E9A92,0 0 0 3px #CFCCC6`)}>
+                  <div style={css(`visibility:${v.screenVis ?? ""};transition:visibility 0s linear ${v.screenDelay ?? ""};position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#0B0C0F;border-radius:14px 14px 3px 3px;padding:${v.bezel ?? ""} ${v.bezel ?? ""} ${v.chin ?? ""};box-shadow:0 0 0 1.5px #9E9A92,0 0 0 3px #CFCCC6`)}>
                     {" "}
                     <span style={css(`position:absolute;left:50%;top:calc(${v.bezel ?? ""} / 2);width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#232833;box-shadow:0 0 0 1px #15181F`)} />
                     {" "}
