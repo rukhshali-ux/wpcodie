@@ -17,6 +17,10 @@ jobs:
             curl -sS -I -L --max-time 20 "$u" | grep -iE '^(HTTP|location|server|x-|cache|cf-|age|last-modified|platform|content-type)' || true
             curl -sSL --max-time 20 "$u" | grep -o '<title>[^<]*</title>' | head -1 || true
           done
+          echo "== live homepage: all response headers, and which build it is"
+          curl -sS -D - -o /tmp/home.html --max-time 20 -H 'Accept-Encoding: gzip' --compressed https://wpcodie.com/ || true
+          echo "build script: $(grep -o '/_astro/Page[^"]*\.js' /tmp/home.html | head -1)"
+          echo "has floating CTA (m-cta): $(grep -c 'm-cta' /tmp/home.html)"
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
