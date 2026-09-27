@@ -36,3 +36,20 @@ jobs:
           for d in "../" "../../" "../public_html/" "../../public_html/" "../domains/" "../../domains/"; do
             echo "-- $d"; curl -sS --path-as-is --max-time 30 --list-only --user "$U:$P" "ftp://$S/$d" 2>&1 | head -40 || true
           done
+      - name: The wpcodie.com web root, and a backup of its .htaccess
+        env:
+          S: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          mkdir -p backup
+          echo "== /domains/wpcodie.com/public_html/"
+          curl -sS --max-time 30 --user "$U:$P" "ftp://$S/%2Fdomains/wpcodie.com/public_html/" || true
+          curl -sS --max-time 30 --user "$U:$P" "ftp://$S/%2Fdomains/wpcodie.com/public_html/.htaccess" -o backup/htaccess.txt || true
+          echo "== current .htaccess"; cat backup/htaccess.txt || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webroot-htaccess-backup
+          path: backup/
+          include-hidden-files: true
+          retention-days: 90
