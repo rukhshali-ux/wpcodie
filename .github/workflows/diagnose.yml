@@ -1,0 +1,34 @@
+# Manual troubleshooting: shows what wpcodie.com serves and how the FTP account's folders
+# are laid out. Run it from the Actions tab (Diagnose hosting -> Run workflow).
+name: Diagnose hosting
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: What the live site serves
+        run: |
+          echo "== DNS"; dig +short wpcodie.com A; dig +short www.wpcodie.com
+          for u in https://wpcodie.com/ https://www.wpcodie.com/ http://wpcodie.com/; do
+            echo "== $u"
+            curl -sS -I -L --max-time 20 "$u" | grep -iE '^(HTTP|location|server|x-|cache|cf-|age|last-modified|platform|content-type)' || true
+            curl -sSL --max-time 20 "$u" | grep -o '<title>[^<]*</title>' | head -1 || true
+          done
+          echo "== llms.txt (exists only in the new build)"
+          curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
+          curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
+      - name: FTP folder layout
+        env:
+          S: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          for d in "" "public_html/" "domains/"; do
+            echo "== /$d"; curl -sS --max-time 30 --user "$U:$P" "ftp://$S/$d" || true
+          done
+          for dom in $(curl -sS --max-time 30 --list-only --user "$U:$P" "ftp://$S/domains/" 2>/dev/null); do
+            echo "== /domains/$dom/public_html/"; curl -sS --max-time 30 --user "$U:$P" "ftp://$S/domains/$dom/public_html/" || true
+          done
