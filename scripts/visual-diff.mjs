@@ -5,7 +5,7 @@
 //   npm run visual-diff -- main~3    # working tree vs any revision
 //
 // Both versions are built, served locally and captured at desktop (1440), tablet (820)
-// and mobile (390) widths, top to bottom, with animations and timers frozen so the
+// and mobile (390) widths, top to bottom plus the intro screen, with animations and timers frozen so the
 // screenshots are repeatable. Screens that differ are written to .visual-diff/ as
 // before / after / diff images. Needs Chromium: `npx playwright install chromium` once.
 import { execSync } from 'node:child_process';
@@ -66,6 +66,16 @@ try {
         shots[`${name}-${String(i++).padStart(2, '0')}`] = await page.screenshot();
       }
       await page.close();
+      // The intro screen, as a first-time visitor sees it (laptop closed).
+      const intro = await browser.newPage({ viewport: { width: w, height: h } });
+      await intro.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
+      await intro.clock.pauseAt(new Date('2026-01-01T00:00:01Z'));
+      await intro.goto(`http://localhost:${port}/`, { waitUntil: 'networkidle' });
+      await intro.addStyleTag({ content: FREEZE + ' iframe{visibility:hidden!important}' });
+      await intro.evaluate(() => document.fonts.ready);
+      await intro.waitForTimeout(500);
+      shots[`${name}-intro`] = await intro.screenshot();
+      await intro.close();
     }
     return shots;
   }
