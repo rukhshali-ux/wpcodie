@@ -1,0 +1,30 @@
+:root {
+  /* Primary brand colors */
+  --color-midnight: #15181F;
+  --color-slate-panel: #2B2F3A;
+  --color-amber: #F2A33D;
+  --color-amber-muted: #BA7517;
+  --color-off-white: #F6F5F1;
+
+  /* Semantic color aliases */
+  --color-text-primary: var(--color-midnight);
+  --color-text-secondary: var(--color-slate-panel);
+  --color-text-muted: var(--color-amber-muted);
+  --color-text-inverse: var(--color-off-white);
+
+  --color-bg-primary: var(--color-midnight);
+  --color-bg-secondary: var(--color-slate-panel);
+  --color-bg-light: var(--color-off-white);
+
+  --color-accent: var(--color-amber);
+  --color-accent-hover: var(--color-amber-muted);
+
+  --color-border: var(--color-slate-panel);
+  --color-border-light: rgba(242, 163, 61, 0.2);
+
+  /* Status colors (built from brand palette) */
+  --color-success: #4CAF50;
+  --color-warning: var(--color-amber);
+  --color-error: #EF5350;
+  --color-info: #2196F3;
+}
