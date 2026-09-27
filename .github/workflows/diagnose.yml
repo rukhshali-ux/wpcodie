@@ -26,9 +26,13 @@ jobs:
           U: ${{ secrets.FTP_USERNAME }}
           P: ${{ secrets.FTP_PASSWORD }}
         run: |
-          for d in "" "public_html/" "domains/"; do
-            echo "== /$d"; curl -sS --max-time 30 --user "$U:$P" "ftp://$S/$d" || true
+          for d in "" "public_html/" "domains/" "../" "../../" "../../../"; do
+            echo "== /$d"; curl -sS --path-as-is --max-time 30 --user "$U:$P" "ftp://$S/$d" || true
           done
           for dom in $(curl -sS --max-time 30 --list-only --user "$U:$P" "ftp://$S/domains/" 2>/dev/null); do
             echo "== /domains/$dom/public_html/"; curl -sS --max-time 30 --user "$U:$P" "ftp://$S/domains/$dom/public_html/" || true
+          done
+          echo "== where is WordPress (wp-config.php)?"
+          for d in "../" "../../" "../public_html/" "../../public_html/" "../domains/" "../../domains/"; do
+            echo "-- $d"; curl -sS --path-as-is --max-time 30 --list-only --user "$U:$P" "ftp://$S/$d" 2>&1 | head -40 || true
           done
