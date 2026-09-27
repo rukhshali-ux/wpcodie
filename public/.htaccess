@@ -1,6 +1,10 @@
 # Hostinger (LiteSpeed/Apache) settings for the static site.
 
 Options -Indexes
+
+# The static site's index.html is the homepage. This folder also still contains an older
+# WordPress install (index.php); listing index.html first is what keeps it out of the way.
+DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
 
 # Always HTTPS, and one hostname: www redirects to the bare domain.

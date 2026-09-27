@@ -7,8 +7,9 @@
 #   FTP_USERNAME   the FTP account's username
 #   FTP_PASSWORD   the FTP account's password
 # Repository variable (same page, Variables tab), optional:
-#   FTP_SERVER_DIR the folder the site is served from, relative to where the FTP account
-#                  lands. Defaults to public_html/ . Must end with a slash.
+#   FTP_SERVER_DIR the folder wpcodie.com is served from. Defaults to
+#                  /domains/wpcodie.com/public_html/ (Hostinger's layout: the FTP account's
+#                  own public_html/ is NOT the site). Must end with a slash.
 name: Build and deploy
 
 on:
@@ -67,4 +68,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
+          server-dir: ${{ vars.FTP_SERVER_DIR || '/domains/wpcodie.com/public_html/' }}

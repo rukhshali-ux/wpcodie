@@ -66,7 +66,11 @@ in Claude Code on the web).
 ## Deploying
 
 A push to `main` builds the site and uploads `dist/` to Hostinger over FTP
-(`.github/workflows/deploy.yml`). It is live about a minute later. Undo a bad deploy with
+(`.github/workflows/deploy.yml`), into `/domains/wpcodie.com/public_html/`. That folder
+also holds an old WordPress install that is no longer served (`DirectoryIndex` in
+`.htaccess` puts `index.html` first); the deploy never deletes files it did not upload.
+The **Diagnose hosting** workflow (run it by hand) shows what the live site serves and
+what is in that folder. It is live about a minute later. Undo a bad deploy with
 `git revert <commit>` and push. The FTP credentials are GitHub repository secrets; never
 put them in the repository.
 
