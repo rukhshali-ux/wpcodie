@@ -41,5 +41,13 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
 .to-top{position:fixed;right:24px;bottom:calc(24px + env(safe-area-inset-bottom));z-index:25;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:#2451B8;color:#F5F4F0;font:500 14px/1 'Inter',sans-serif;box-shadow:0 8px 20px rgba(21,24,31,0.18);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity 250ms cubic-bezier(0.4,0,0.2,1),transform 250ms cubic-bezier(0.4,0,0.2,1),background 200ms}
 .to-top.is-visible{opacity:1;transform:none;pointer-events:auto}
 .to-top:hover{background:#1B3F92;color:#F5F4F0}
-@media (max-width:959px){.to-top{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));padding:11px 16px;font-size:13px}}
-@media (prefers-reduced-motion:reduce){.to-top{transition:none}}
+/* Floating "Start a project" on phones: slides up into view (added for the live site). */
+.m-cta{display:none}
+@media (max-width:959px){
+  .to-top{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px;padding:0;justify-content:center;font-size:20px}
+  .to-top-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .m-cta{display:flex;align-items:center;justify-content:center;gap:8px;position:fixed;left:16px;right:80px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:25;height:52px;border-radius:999px;background:#2451B8;color:#F5F4F0;font:500 16px/1 'Inter',sans-serif;box-shadow:0 8px 20px rgba(21,24,31,0.22);opacity:0;transform:translateY(calc(100% + 24px));pointer-events:none;transition:opacity 300ms cubic-bezier(0.4,0,0.2,1),transform 400ms cubic-bezier(0.34,1.4,0.64,1),background 200ms}
+  .m-cta.is-visible{opacity:1;transform:none;pointer-events:auto}
+  .m-cta:hover,.m-cta:active{background:#1B3F92;color:#F5F4F0}
+}
+@media (prefers-reduced-motion:reduce){.to-top,.m-cta{transition:none}}

@@ -1697,9 +1697,13 @@ export function template(v) {
           {" "}
         </div>
       </footer>
-      {/* Back to top (added for the live site): shown once the first screen is scrolled past. */}
-      <a href="#top" class={v.showTop ? "to-top is-visible" : "to-top"} aria-hidden={v.showTop ? undefined : "true"} tabindex={v.showTop ? undefined : "-1"}>
-        Back to top <span aria-hidden="true">↑</span>
+      {/* Added for the live site. Phones: a floating "Start a project" (after the hero, hidden at the
+          contact form). All sizes: "Back to top" after the first screen; an icon beside it on phones. */}
+      <a href="#contact" class={v.showCta ? "m-cta is-visible" : "m-cta"} aria-hidden={v.showCta ? undefined : "true"} tabindex={v.showCta ? undefined : "-1"}>
+        Start a project <span aria-hidden="true">→</span>
+      </a>
+      <a href="#top" class={v.showTop ? "to-top is-visible" : "to-top"} aria-label="Back to top" aria-hidden={v.showTop ? undefined : "true"} tabindex={v.showTop ? undefined : "-1"}>
+        <span class="to-top-label">Back to top</span> <span aria-hidden="true">↑</span>
       </a>
     </div>
     </Fragment>

@@ -33,6 +33,10 @@ class Component extends DCLogic {
       const vh = window.innerHeight;
       // Back-to-top button (added for the live site).
       const showTop = window.scrollY > vh; if (showTop !== !!this.state.showTop) this.setState({ showTop });
+      // Floating call to action on phones: past the hero, until the contact section comes on screen.
+      const contact = document.getElementById('contact');
+      const showCta = window.scrollY > vh * 0.8 && !(contact && contact.getBoundingClientRect().top < vh);
+      if (showCta !== !!this.state.showCta) this.setState({ showCta });
       const prog = (el) => { if (!el) return 0; const r = el.getBoundingClientRect(); const tot = el.offsetHeight - vh; return tot > 0 ? Math.min(1, Math.max(0, -r.top / tot)) : 0; };
       const cp = prog(this.capRef.current), tr = this.trackRef.current;
       if (tr) { const max = tr.scrollWidth - tr.parentElement.clientWidth; tr.style.transform = `translate3d(${-cp * Math.max(0, max)}px,0,0)`; }
@@ -215,7 +219,7 @@ class Component extends DCLogic {
     return {
       ringRef: this.ringRef, aiRef: this.aiRef, w1Ref: this.w1Ref, w2Ref: this.w2Ref, ...this.workVals(), ...this.introVals(), capRef: this.capRef, trackRef: this.trackRef, capBarRef: this.capBarRef, flowRef: this.flowRef, flowBarRef: this.flowBarRef,
       // Small-screen menu (added for the live site).
-      showTop: !!this.state.showTop && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
+      showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
       footNav: links.map(([href,,label]) => ({ href, label })),
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
