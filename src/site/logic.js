@@ -93,10 +93,12 @@ class Component extends DCLogic {
     const mobile = vw < 820;
     return {
       showDoodle: true,
-      doodleSide: mobile ? 'left:-4%' : 'right:calc(100% - 9%)',
+      // Narrow screens: the design showed only his head peeking over the lid (clipped at 52%).
+      // For the live site he stands in full on the lid's top edge instead.
+      doodleSide: mobile ? 'left:-10%' : 'right:calc(100% - 9%)',
       doodleW: Math.round(mobile ? W * 0.36 : Math.min(W * 0.82, (vw - W) / 2 + W * 0.09 + 30)) + 'px',
-      doodleB: Math.round(mobile ? W * 0.30 : -W * 0.06) + 'px',
-      doodleClip: mobile ? 'inset(0 0 52% 0)' : 'none',
+      doodleB: Math.round(mobile ? W * 0.498 : -W * 0.06) + 'px',
+      doodleClip: 'none',
       doodleO: ph === 'zoom' ? 0 : 1,
       lU: P.lU + 'deg', lF: P.lF + 'deg', rU: P.rU + 'deg', rF: P.rF + 'deg', headTilt: P.head + 'deg',
       pupil: P.pupil, eyeR: P.eyeR, browL: P.bL, browR: P.bR,
