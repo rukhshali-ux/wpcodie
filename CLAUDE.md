@@ -18,7 +18,7 @@ else:
   intro's laptop screen stays hidden until the lid opens (`screenVis`, for iPhone Safari).
   Also added: the doodle stands in full on the lid on narrow screens (`doodleVals`), and a
   floating "Back to top" button (`.to-top`, shown after the first screen via `showTop`;
-  an ↑ icon on phones), and on phones a floating "Start a project" (`.m-cta`, `showCta`:
+  an ↑ icon on phones), and on phones a floating, gently bobbing "Start a project" (`.m-cta`, `showCta`:
   shown past the hero, hidden once the contact section is on screen).
 - Never add a CSS framework (Tailwind etc.), a UI library or a web font.
 - Copy changes are fine and expected. So are new pages and sections, when asked for, built
