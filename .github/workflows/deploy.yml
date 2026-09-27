@@ -1,0 +1,57 @@
+# Builds the site on every push and pull request; on a push to main, uploads the build to
+# Hostinger over FTP. Only changed files are uploaded, and files removed from the build are
+# removed from the server.
+#
+# Repository secrets (Settings -> Secrets and variables -> Actions -> Secrets):
+#   FTP_SERVER     e.g. ftp.wpcodie.com, or the IP shown in hPanel -> Files -> FTP Accounts
+#   FTP_USERNAME   the FTP account's username
+#   FTP_PASSWORD   the FTP account's password
+# Repository variable (same page, Variables tab), optional:
+#   FTP_SERVER_DIR the folder the site is served from, relative to where the FTP account
+#                  lands. Defaults to public_html/ . Must end with a slash.
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist/
+      - name: Upload to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}

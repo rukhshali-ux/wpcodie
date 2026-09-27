@@ -1,0 +1,5 @@
+/* Page-level rules the design tool's runtime injected: full-height root and :hover styles. */
+html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}
+.scp0:hover{color:#F5F4F0 !important}
+.scp1:hover{box-shadow:0 8px 16px rgba(21,24,31,0.08) !important}
+.scp2:hover{color:#8FAAE8 !important}

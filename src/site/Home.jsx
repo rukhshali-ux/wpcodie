@@ -16,10 +16,10 @@ export function template(v) {
             {" "}
             <div style={css("display:flex;align-items:center;gap:10px;color:#F5F4F0")}>
               <span style={css("width:28px;height:28px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font:700 14px 'Space Grotesk',sans-serif")}>W</span>
-              <span style={css("font:600 17px 'Space Grotesk',sans-serif")}>Webporium</span>
+              <span style={css("font:600 17px 'Space Grotesk',sans-serif")}>WPCodie</span>
             </div>
             {" "}
-            <h1 style={css("margin:0;color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.25rem,5.6vw,4.5rem);line-height:1.02;letter-spacing:-0.035em;text-wrap:balance")}>Got a technology problem?</h1>
+            <p style={css("margin:0;color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.25rem,5.6vw,4.5rem);line-height:1.02;letter-spacing:-0.035em;text-wrap:balance")}>Got a technology problem?</p>
             {" "}
           </div>
           {" "}
@@ -37,7 +37,7 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <div ref={v.lapRef} style={css(`position:relative;z-index:1;pointer-events:none;perspective:1800px;perspective-origin:50% 20%;width:${v.lapW ?? ""};height:${v.lapH ?? ""};margin-bottom:${v.lapBase ?? ""};transform:${v.zoom ?? ""};transition:transform ${v.lapDur ?? ""} cubic-bezier(0.65,0,0.35,1)`)}>
+          <div ref={v.lapRef} style={css(`visibility:${v.lapVis ?? ""};position:relative;z-index:1;pointer-events:none;perspective:1800px;perspective-origin:50% 20%;width:${v.lapW ?? ""};height:${v.lapH ?? ""};margin-bottom:${v.lapBase ?? ""};transform:${v.zoom ?? ""};transition:transform ${v.lapDur ?? ""} cubic-bezier(0.65,0,0.35,1)`)}>
             {" "}
             <div style={css(`position:absolute;z-index:4;${v.doodleSide ?? ""};bottom:${v.doodleB ?? ""};width:${v.doodleW ?? ""};opacity:${v.doodleO ?? ""};transition:opacity 500ms cubic-bezier(0.4,0,0.2,1);clip-path:${v.doodleClip ?? ""}`)}>
               {" "}
@@ -327,7 +327,7 @@ export function template(v) {
                     {" "}
                     <div style={css("position:relative;width:100%;height:100%;overflow:hidden;border-radius:4px;background:#F5F4F0")}>
                       {" "}
-                      <iframe src={v.frameSrc} title="Webporium preview" tabindex="-1" style={css(`position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:top left;transform:${v.frameScale ?? ""};pointer-events:none`)} />
+                      <iframe src={v.frameSrc} title="WPCodie preview" tabindex="-1" style={css(`position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:top left;transform:${v.frameScale ?? ""};pointer-events:none`)} />
                       {" "}
                       <div style={css("position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,0.10) 0%,rgba(255,255,255,0.03) 38%,transparent 38.5%);pointer-events:none")} />
                       {" "}
@@ -361,7 +361,7 @@ export function template(v) {
             {" "}
             <span style={css("width:30px;height:30px;border-radius:8px;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px")}>W</span>
             {" "}
-            <span style={css("font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em")}>Webporium</span>
+            <span style={css("font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em")}>WPCodie</span>
             {" "}
           </a>
           {" "}
@@ -407,7 +407,7 @@ export function template(v) {
               {" next."}
             </h1>
             {" "}
-            <p data-reveal="1" style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;max-width:560px;text-wrap:pretty")}>Webporium is a technology advisory and engineering studio. We help teams choose the right path for their technology, then design and ship the AI products and custom software that make it real.</p>
+            <p data-reveal="1" style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;max-width:560px;text-wrap:pretty")}>WPCodie is a technology advisory and engineering studio. We help teams choose the right path for their technology, then design and ship the AI products and custom software that make it real.</p>
             {" "}
             <div data-reveal="1" style={css("display:flex;gap:12px;flex-wrap:wrap")}>
               {" "}
@@ -1522,7 +1522,7 @@ export function template(v) {
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Email</span>
-                <a href="mailto:hello@webporium.com" style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>hello@webporium.com</a>
+                <a href="mailto:hello@wpcodie.com" style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>hello@wpcodie.com</a>
               </div>
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
@@ -1597,18 +1597,21 @@ export function template(v) {
                   {" "}
                 </div>
                 {" "}
+                {/* Spam trap: invisible to people, filled in by bots. Taken out of layout, so the design is unchanged. */}
+                <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style={css("position:absolute;left:-9999px;width:1px;height:1px;opacity:0")} />
                 <div style={css("display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap")}>
                   {" "}
                   <span onClick={v.submit} style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
-                    <Button size="lg">Send message →</Button>
+                    <Button size="lg">{v.sending ? "Sending…" : "Send message →"}</Button>
                   </span>
                   {" "}
                   <span style={css("font-size:13px;color:#6B675F")}>
                     {"Or email "}
-                    <a href="mailto:hello@webporium.com">hello@webporium.com</a>
+                    <a href="mailto:hello@wpcodie.com">hello@wpcodie.com</a>
                   </span>
                   {" "}
                 </div>
+                {v.sendError ? <span role="alert" style={css("font-size:var(--font-size-ui-sm);color:var(--color-error)")}>{v.sendError}</span> : null}
                 {" "}
               </div>
                 {" "}
@@ -1649,7 +1652,7 @@ export function template(v) {
               {" "}
               <a href="#top" style={css("display:flex;align-items:center;gap:10px;color:#F5F4F0")}>
                 <span style={css("width:30px;height:30px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px")}>W</span>
-                <span style={css("font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px")}>Webporium</span>
+                <span style={css("font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px")}>WPCodie</span>
               </a>
               {" "}
               <span style={css("font-size:14px;color:#B5B1A8")}>AI · Software · Technology consulting</span>
@@ -1670,9 +1673,9 @@ export function template(v) {
           {" "}
           <div style={css("display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid #2B2F3A;font-size:13px;color:#B5B1A8")}>
             {" "}
-            <span>© 2026 Webporium. All rights reserved.</span>
+            <span>© 2026 WPCodie. All rights reserved.</span>
             <span class="scp0" onClick={v.replayIntro} style={css("cursor:pointer;color:#8FAAE8")}>Replay intro ↺</span>
-            <a href="mailto:hello@webporium.com" style={css("color:#8FAAE8")}>hello@webporium.com</a>
+            <a href="mailto:hello@wpcodie.com" style={css("color:#8FAAE8")}>hello@wpcodie.com</a>
             {" "}
           </div>
           {" "}

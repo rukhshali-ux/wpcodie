@@ -1,0 +1,6 @@
+# Every crawler is welcome, including AI assistants (GPTBot, ClaudeBot, PerplexityBot,
+# Google-Extended): being readable by them is how the site gets cited in AI answers.
+User-agent: *
+Allow: /
+
+Sitemap: https://wpcodie.com/sitemap-index.xml

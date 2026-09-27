@@ -1,5 +1,10 @@
-// Page behaviour, carried over verbatim from the design export.
+// Page behaviour and the copy for every repeated block (capabilities, services, steps,
+// principles, form options...). Carried over from the design export; the few changes made
+// for the live site are marked with comments.
 import { DCLogic, React } from './dc.js';
+
+// The intro laptop's width, W in introVals(), as CSS: min(740, 84% of width, 42% of height / 0.625).
+const CSS_W = 'min(740px, 84vw, 67.2dvh)';
 
 class Component extends DCLogic {
   lapRef = React.createRef();
@@ -11,9 +16,12 @@ class Component extends DCLogic {
   componentDidMount() {
     this.skip = new URLSearchParams(location.search).get('intro') === '0' || window.self !== window.top && /intro=0/.test(location.href) || this.props.intro === false;
     const measure = () => this.setState({ vw: window.innerWidth, vh: window.innerHeight });
-    measure(); this.onResizeIntro = measure; window.addEventListener('resize', measure);
+    measure(); this.setState({ measured: true }); this.onResizeIntro = measure; window.addEventListener('resize', measure);
     this.tickPose();
     if (this.skip) this.setState({ intro: 'done' }); else document.documentElement.style.overflow = 'hidden';
+    // The laptop screen is a live copy of the page (an iframe). Load it once the page itself
+    // has finished loading, and never when the intro is skipped.
+    if (!this.skip) { const loadFrame = () => this.setState({ frame: true }); if (document.readyState === 'complete') loadFrame(); else window.addEventListener('load', loadFrame, { once: true }); }
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || this.props.motion === false;
     let a = 0, last = performance.now();
     const spin = (t) => { const r = this.ringRef.current; if (r && !reduce) { a = (a + (t - last) * 0.006) % 360; r.style.transform = `rotate(${a}deg)`; r.style.setProperty('--r', `${-a}deg`); } last = t; this.raf = requestAnimationFrame(spin); };
@@ -115,6 +123,9 @@ class Component extends DCLogic {
       shadowB: ph === 'closed' ? '-8%' : '-38%', shadowO: ph === 'zoom' ? 0 : 1,
       keys: [...Array(13).fill(1), 1, ...Array(12).fill(1), 2, 2, ...Array(11).fill(1), 1, 2, ...Array(10).fill(1), 2, 2, ...Array(10).fill(1), 2, 1, 1, 1, 7, 1, 1, 1, 1].slice(0, 84).map(s => ({ span: s })),
       lapW: W + 'px', lapH: H + 'px', lapBase: Math.round(W * 0.12) + 'px', baseD: H + 'px', bezel: bez + 'px',
+      // Before the page script has measured the window (the pre-built HTML), size the laptop
+      // with the same formula in CSS and keep it hidden, so nothing jumps when it takes over.
+      ...(this.state.measured ? { lapVis: 'visible' } : { lapVis: 'hidden', lapW: CSS_W, lapH: `calc(${CSS_W} * 0.625)`, lapBase: `calc(${CSS_W} * 0.12)` }),
       frameScale: 'scale(' + (inner / 1440) + ')',
       lid: ph === 'closed' ? 'rotateX(-90deg)' : 'rotateX(0deg)',
       tilt: ph === 'closed' ? 'translateY(-70%) rotateX(-30deg) rotateY(0deg)' : (ph === 'opening' ? 'translateY(0) rotateX(-10deg)' : 'translateY(0) rotateX(0deg)'),
@@ -130,8 +141,8 @@ class Component extends DCLogic {
       bobAnim: 'wpBob 2.6s ease-in-out infinite ' + (ph === 'closed' ? 'running' : 'paused'), arrowAnim: 'wpArrow 1.1s ease-in-out infinite',
       skipIntro: done, replayIntro: this.replayIntro,
       ...this.doodleVals(W, vw, ph),
-      btnTop: Math.round(W * 0.066) + 'px',
-      frameSrc: (typeof location !== 'undefined' ? location.href.split('#')[0].split('?')[0] : '') + '?intro=0',
+      btnTop: this.state.measured ? Math.round(W * 0.066) + 'px' : `calc(${CSS_W} * 0.066)`,
+      frameSrc: this.state.frame ? location.href.split('#')[0].split('?')[0] + '?intro=0' : undefined,
     };
   }
   workVals() {
@@ -240,8 +251,16 @@ class Component extends DCLogic {
       form: this.state.form, setName: this.field('name'), setEmail: this.field('email'), setCompany: this.field('company'), setMsg: this.field('msg'),
       emailError: this.state.emailError || undefined, nameError: this.state.nameError || undefined,
       needs: ['AI application','Custom software','Web app','Mobile app','Automation','Consulting'].map(n => { const on = (this.state.needs || []).includes(n); return { label: n, bg: on ? '#2451B8' : '#FFFFFF', fg: on ? '#F5F4F0' : '#15181F', border: on ? '#2451B8' : '#D6D3CB', toggle: () => this.setState(s => { const cur = s.needs || []; return { needs: cur.includes(n) ? cur.filter(x => x !== n) : [...cur, n] }; }) }; }),
-      submit: () => { const f = this.state.form; const ne = f.name.trim() ? '' : 'Please add your name'; const ee = /^\S+@\S+\.\S+$/.test(f.email) ? '' : 'Enter a valid email address'; if (ne || ee) return this.setState({ nameError: ne, emailError: ee }); this.setState({ sent: true }); },
-      reset: () => this.setState({ sent: false, needs: [], form: { name: '', email: '', company: '', msg: '' } }),
+      submit: () => { const f = this.state.form; const ne = f.name.trim() ? '' : 'Please add your name'; const ee = /^\S+@\S+\.\S+$/.test(f.email) ? '' : 'Enter a valid email address'; if (ne || ee) return this.setState({ nameError: ne, emailError: ee });
+        // Sent by public/contact.php on the web host. `website` is the spam trap.
+        if (this.state.sending) return;
+        this.setState({ sending: true, sendError: '' });
+        const trap = document.querySelector('input[name="website"]');
+        fetch('/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...f, needs: this.state.needs || [], website: trap ? trap.value : '' }) })
+          .then((r) => { if (!r.ok) throw new Error(String(r.status)); this.setState({ sent: true, sending: false }); })
+          .catch(() => this.setState({ sending: false, sendError: 'Your message could not be sent. Please email hello@wpcodie.com instead.' })); },
+      sending: this.state.sending, sendError: this.state.sendError,
+      reset: () => this.setState({ sent: false, sendError: '', needs: [], form: { name: '', email: '', company: '', msg: '' } }),
       sent: this.state.sent, notSent: !this.state.sent, firstName: this.state.form.name.trim().split(' ')[0] || 'there',
       helpful: ['The problem or opportunity you want to tackle','Systems, data, or platforms already involved','Timeline, constraints, and who is involved on your side'],
     };
