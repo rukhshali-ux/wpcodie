@@ -20,6 +20,8 @@ else:
   floating "Back to top" button (`.to-top`, shown after the first screen via `showTop`;
   an ↑ icon on phones), and on phones a floating, gently bobbing "Start a project" (`.m-cta`, `showCta`:
   shown past the hero, hidden once the contact section is on screen).
+  On phones "01 What we do" uses an Advise | Engineer switch (`.what-tabs`, `whatTab`) and a
+  swipeable row of steps (`.what-*` rules in `page.css`).
   The hero's "Scroll" hint moved to the Capabilities counter (`.scroll-hint`, `.cap-meta`).
   Below 960px the pinned "05 Ideas into systems" section sits under the header with compact
   step cards (`.flow-*` rules in `page.css`); the floating buttons hide while it is pinned.
@@ -105,6 +107,5 @@ own `<title>`, meta description and canonical URL.
 `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Currently previewed: the phone layout of "01 What we do" (`.what-*` classes).
-`?preview=mobile2` adds `pv-mobile2` on top: Advise | Engineer tabs (`.what-tabs`, `whatTab`
-in `logic.js`) and the five steps as a swipe row.
+Nothing is being previewed right now. (The "01 What we do" phone layout went live from
+`?preview=mobile` / `?preview=mobile2`.)

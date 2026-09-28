@@ -756,7 +756,7 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          {/* Preview only (?preview=mobile2): Advise | Engineer tabs on phones; hidden otherwise. */}
+          {/* Phones: Advise | Engineer switch (styles in page.css); hidden on desktop. */}
           <div class="what-tabs-row">
             <div class="what-tabs" role="tablist" aria-label="What we do">
               {each(v.disciplines).map((d, $index) => (
