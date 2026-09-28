@@ -1,17 +1,24 @@
 # Client logos
 
-For the planned "Clients who worked with us" auto-sliding ticker. More logos are coming; the
-ticker is not built or deployed yet.
+The "Clients who worked with us" ticker under the hero. These are the originals as supplied.
+The site uses the trimmed, resized WebP copies in `public/clients/`. The list, the links, each
+logo's display height and its card colour are in `clients` in `src/site/logic.js`.
 
-| File | Client | Size | Background |
-|---|---|---|---|
-| `findhealthcare-usa.png` | Find Healthcare USA | 366 × 112 | white |
-| `sme-blue-pages.png` | SME Blue Pages | 300 × 77 | light grey |
-| `shield-funding.png` | Shield Funding (an Ascendancy Corp. / Ascendancy Corp. West company) | 592 × 100 | white |
-| `silver-streak-senior-services.png` | Silver Streak Senior Services | 283 × 100 | dark navy |
-| `wagit.png` | WagIt | 178 × 91 | white |
+| File | Client | Link |
+|---|---|---|
+| `findhealthcare-usa.png` | Find Healthcare USA | https://findhealthcare.com |
+| `silver-streak-senior-services.png` | Silver Streak Senior Services | https://silverstreakhelp.com/ |
+| `wellapy.png` | Wellapy | https://wellapy.gr |
+| `shield-funding.png` | Shield Funding | https://shieldfunding.com |
+| `resource-roadmap.png` | re:source Roadmap | none yet |
+| `wagit.png` | WagIt | https://wagit.uk |
+| `sme-blue-pages.png` | SME Blue Pages | https://smebluepages.com |
+| `seattle-pro-contractors.png` | Seattle Pro Contractors (the logo reads "Seatle") | https://seattleprocontractors.com |
+| `premier-fl-magazine.png` | Premier FL Magazine | none yet |
 
-All are RGB PNGs without transparency, as supplied. For the ticker: on the light page the white
-and light grey backgrounds can disappear with `mix-blend-mode: multiply`. Silver Streak is on dark
-navy, so it needs its own tile or a transparent or light version. Transparent PNG or SVG
-versions from the clients would look sharper.
+All were supplied as small RGB PNGs without transparency, so each sits on a card of its own
+background colour. The Seattle Pro file is a screenshot of a site header over a photo; it is
+cropped to the logo, and its card uses a matching grey gradient.
+
+To add a logo: put the original here, make a WebP copy in `public/clients/` (trimmed, at most
+96px tall), and add a row to `clients` in `logic.js`.

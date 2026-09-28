@@ -489,6 +489,20 @@ export function template(v) {
           {" "}
         </div>
       </section>
+      {/* Clients ticker (added for the live site): the logos loop sideways, each links to the client's site. */}
+      <section id="clients" class="clients" aria-label="Clients who worked with us">
+        <div class="clients-head">Clients who worked with us</div>
+        <div class="clients-viewport">
+          <div class="clients-track">
+            {[0, 1].map((copy) => each(v.clients).map((c, $index) => {
+              const logo = <img src={c.logo} alt={copy ? "" : c.name} width={c.w} height={c.h} loading="lazy" decoding="async" style={css(`--h:${c.size}px`)} />;
+              return c.url
+                ? <a key={copy + "-" + $index} class="client" href={c.url} target="_blank" rel="noopener" title={c.name} aria-hidden={copy ? "true" : undefined} tabIndex={copy ? -1 : undefined} style={css(`background:${c.bg}`)}>{logo}</a>
+                : <span key={copy + "-" + $index} class="client" title={c.name} aria-hidden={copy ? "true" : undefined} style={css(`background:${c.bg}`)}>{logo}</span>;
+            }))}
+          </div>
+        </div>
+      </section>
       <section id="capabilities" class="cap-section" ref={v.capRef} style={css(`position:relative;height:${v.capHeight ?? ""};background:#15181F;color:#F5F4F0`)}>
         {" "}
         <div class="cap-pin" style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,3vh,40px);padding:64px 0 clamp(8px,3vh,48px)")}>
@@ -751,7 +765,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b>01</b>
+              <b data-pv="01">01</b>
               {" What we do"}
             </span>
             {" "}
@@ -833,7 +847,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b>02</b>
+              <b data-pv="03">02</b>
               {" AI & intelligent applications"}
             </span>
             {" "}
@@ -945,7 +959,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b>03</b>
+              <b data-pv="04">03</b>
               {" Application development"}
             </span>
             {" "}
@@ -1024,7 +1038,7 @@ export function template(v) {
             <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px")}>
               {" "}
               <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-                <b>04</b>
+                <b data-pv="05">04</b>
                 {" Technology consulting"}
               </span>
               {" "}
@@ -1087,7 +1101,7 @@ export function template(v) {
           <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:14px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8FAAE8")}>
-              <b>05</b>
+              <b data-pv="06">05</b>
               {" Ideas into systems"}
             </span>
             {" "}
@@ -1147,7 +1161,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b>06</b>
+              <b data-pv="07">06</b>
               {" How we operate"}
             </span>
             {" "}
@@ -1198,7 +1212,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b>07</b>
+              <b data-pv="02">07</b>
               {" Selected work"}
             </span>
             {" "}

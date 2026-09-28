@@ -53,8 +53,10 @@ class Component extends DCLogic {
       if (this.flowBarRef.current) this.flowBarRef.current.style.width = (fp * 100) + '%';
       const fr = this.flowRef.current ? this.flowRef.current.getBoundingClientRect() : null;
       const fi = fr && fr.top <= 1 ? Math.min(5, Math.floor(fp * 6.2)) : -1;
-      let active = '';
-      ['capabilities','ai','applications','consulting','work','contact'].forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < vh * 0.4) active = id; });
+      // The nav highlight goes to the section whose top most recently passed 40% of the screen,
+      // so it does not depend on the order the sections are in.
+      let active = '', last = -Infinity;
+      ['capabilities','ai','applications','consulting','work','contact'].forEach(id => { const el = document.getElementById(id), t = el ? el.getBoundingClientRect().top : Infinity; if (t < vh * 0.4 && t > last) { active = id; last = t; } });
       if (ci !== this.state.cap || fi !== this.state.flow || active !== this.state.active) this.setState({ cap: ci, flow: fi, active });
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
@@ -310,6 +312,19 @@ class Component extends DCLogic {
       flow: flowData.map(([num,title,items], i) => { const on = i <= fi, cur = i === fi; return { num, title, items,
         opacity: on ? 1 : 0.35, transform: on ? 'none' : 'translateY(16px)',
         bg: cur ? B : (on ? '#1F2430' : '#181B23'), border: cur ? B : (on ? '#8FAAE8' : '#2B2F3A'), numColor: cur ? OFF : '#8FAAE8' }; }),
+      // Clients ticker (added for the live site). logo: public/clients/, w x h its pixel size, size the
+      // displayed height in px (set per logo so they look the same weight), bg the card behind it.
+      clients: [
+        ['Find Healthcare USA', 'https://findhealthcare.com', 'findhealthcare-usa', 312, 74, 36, '#FFFFFF'],
+        ['Silver Streak Senior Services', 'https://silverstreakhelp.com/', 'silver-streak-senior-services', 217, 55, 40, '#06152B'],
+        ['Wellapy', 'https://wellapy.gr', 'wellapy', 264, 60, 34, '#FFFFFF'],
+        ['Shield Funding', 'https://shieldfunding.com', 'shield-funding', 400, 64, 34, '#FFFFFF'],
+        ['re:source Roadmap', '', 'resource-roadmap', 388, 21, 14, '#4B1901'],
+        ['WagIt', 'https://wagit.uk', 'wagit', 135, 59, 34, '#FFFFFF'],
+        ['SME Blue Pages', 'https://smebluepages.com', 'sme-blue-pages', 198, 43, 32, '#F0F8FF'],
+        ['Seattle Pro Contractors', 'https://seattleprocontractors.com', 'seattle-pro-contractors', 307, 76, 44, 'linear-gradient(90deg,#878B8E,#787B83)'],
+        ['Premier FL Magazine', '', 'premier-fl-magazine', 166, 40, 34, '#FFFFFF'],
+      ].map(([name, url, file, w, h, size, bg]) => ({ name, url, logo: `/clients/${file}.webp`, w, h, size, bg })),
       principles: [['01','Outcomes over output','We\'re paid to fix a business problem, not to bill hours or write code for its own sake.'],['02','Room to grow','What we build grows with you, so you never pay to rebuild it twice.'],['03','Proof before hype','No AI you don\'t need. We prove it works with a prototype and real numbers first.'],['04','No handoff gap','The people who plan your project are the people who build it, so nothing gets lost.']].map(([num,title,body]) => ({num,title,body})),
       stackLeft: [{ title:'AI & data', items:['AI models','Data platforms','Intelligent automation'] },{ title:'Applications', items:['Web','Mobile','SaaS','Custom platforms'] }],
       stackRight: [{ title:'Infrastructure', items:['Cloud','APIs','Databases','Security'] },{ title:'Integrations', items:['Business systems','Payments','CRM','Third-party platforms'] }],

@@ -173,3 +173,51 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
   .app-points>span{font-size:13px!important;padding:7px 0!important;gap:6px!important}
 }
 @media (prefers-reduced-motion:reduce){.sw-hint{animation:none!important}}
+
+/* PREVIEW (?preview=mobile), all screen sizes: a "Clients who worked with us" ticker under the
+   hero, and the sections in a new order: proof first, then services, then how we work.
+   Hero, Clients, Capabilities, 01 What we do, 02 Selected work, 03 AI, 04 Applications,
+   05 Consulting, 06 Ideas into systems, 07 How we operate, Contact. The order is done with CSS
+   `order` and the new numbers come from data-pv; to make it live, move the <section>s in
+   Home.jsx, renumber them, reorder `links` in logic.js, and drop the html.pv-mobile rules. */
+.clients{display:none}
+html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+html.pv-mobile .clients{display:block;background:#F5F4F0;border-top:1px solid #E2DFD7;padding:36px 0 40px;overflow:hidden}
+.clients-head{max-width:1280px;margin:0 auto 20px;padding:0 32px;font:600 13px/1.2 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8}
+.clients-viewport{max-width:1440px;margin:0 auto;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.clients-track{display:flex;gap:16px;width:max-content;animation:clientsLoop 48s linear infinite}
+.clients-viewport:hover .clients-track,.clients-track:focus-within{animation-play-state:paused}
+@keyframes clientsLoop{to{transform:translateX(calc(-50% - 8px))}}
+.client{flex:0 0 auto;height:76px;padding:0 26px;display:flex;align-items:center;justify-content:center;border:1px solid #E2DFD7;border-radius:12px;transition:transform 200ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms cubic-bezier(0.4,0,0.2,1)}
+.client img{display:block;height:var(--h);width:auto}
+a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8px 16px rgba(21,24,31,0.08)}
+@media (max-width:959px){
+  html.pv-mobile .clients{padding:28px 0 32px}
+  .clients-head{margin-bottom:16px}
+  .clients-track{gap:12px;animation-duration:40s;animation-name:clientsLoopSm}
+  .client{height:62px;padding:0 18px}
+  .client img{height:calc(var(--h) * 0.8)}
+}
+@keyframes clientsLoopSm{to{transform:translateX(calc(-50% - 6px))}}
+@media (prefers-reduced-motion:reduce){
+  .clients-track{animation:none}
+  .clients-viewport{overflow-x:auto;-webkit-mask-image:none;mask-image:none;padding:0 32px}
+}
+html.pv-mobile #top{display:flex;flex-direction:column}
+html.pv-mobile #top>section:first-of-type{order:1}
+html.pv-mobile #clients{order:2}
+html.pv-mobile #capabilities{order:3}
+html.pv-mobile #what{order:4}
+html.pv-mobile #work{order:5}
+html.pv-mobile #ai{order:6}
+html.pv-mobile #applications{order:7}
+html.pv-mobile #consulting{order:8}
+html.pv-mobile #systems{order:9}
+html.pv-mobile #principles{order:10}
+html.pv-mobile #contact{order:11}
+html.pv-mobile #top>footer{order:12}
+html.pv-mobile #top>footer~*{order:13}
+html.pv-mobile b[data-pv]{font-size:0}
+html.pv-mobile b[data-pv]::before{content:attr(data-pv);font-size:13px}
+html.pv-mobile .hdr-nav a[href="#work"],html.pv-mobile .hdr-panel a[href="#work"]{order:-1}
+html.pv-mobile .hdr-nav a[href="#capabilities"],html.pv-mobile .hdr-panel a[href="#capabilities"]{order:-2}

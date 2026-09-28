@@ -117,6 +117,9 @@ own `<title>`, meta description and canonical URL.
 `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Nothing is being previewed right now. (The "01 What we do" layout, the Capabilities carousel
-and the swipe rows in sections 02 and 03 went live from earlier previews.) A new preview
-also needs the "Preview" badge rule: `html.pv-mobile body::after` in `page.css`.
+Previewing now, on every screen size: a "Clients who worked with us" logo ticker under the
+hero (`#clients`, `.client*` rules; logos in `public/clients/`, the list in `clients` in
+`logic.js`), and a new section order (Selected work moves up to 02, after What we do) done with
+CSS `order` and `data-pv` numbers. The last block of `page.css` says how to make it live.
+(The "01 What we do" layout, the Capabilities carousel and the swipe rows in sections 02, 03
+and 06 went live from earlier previews.)
