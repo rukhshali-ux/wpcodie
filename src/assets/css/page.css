@@ -139,15 +139,16 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
   .scroll-hint-arrows{transform:rotate(90deg)}
 }
 
-/* "02 AI & intelligent applications" and "03 Application development" on phones and tablets
-   (added for the live site; approved from the ?preview=mobile preview). Same content, less
-   scrolling: tighter spacing, the four AI pipeline steps are a swipe row that follows the
-   active step (aiFollow), and the AI examples and the applications are swipe rows with a
-   counter and previous / next buttons (.sw-*; swipeTo, swipeMove in logic.js). Phones cannot
-   hover, so each application shows its details list. */
+/* "02 AI & intelligent applications", "03 Application development" and "06 How we operate"
+   on phones and tablets (added for the live site; 02 and 03 approved from the ?preview=mobile
+   preview, 06 asked for directly). Same content, less scrolling: tighter spacing, the four AI
+   pipeline steps are a swipe row that follows the active step (aiFollow), and the AI
+   examples, the applications and the principles are swipe rows with a counter and previous /
+   next buttons (.sw-*; swipeTo, swipeMove in logic.js). Phones cannot hover, so each
+   application shows its details list. */
 .sw-meta{display:none}
 @media (max-width:959px){
-  .ai-wrap,.app-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:28px!important}
+  .ai-wrap,.app-wrap,.ops-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:28px!important}
   .ai-flow{padding:20px!important;gap:14px!important}
   .ai-steps{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px!important;margin:0 -20px;padding:10px 20px 2px;scroll-padding:0 20px;scrollbar-width:none;overscroll-behavior-x:contain}
   .ai-steps::-webkit-scrollbar{display:none}
@@ -165,6 +166,7 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
   .sw-row::after{content:'';flex:0 0 20px}
   .sw-row>*{flex:0 0 min(84%,400px);scroll-snap-align:start;padding:22px!important;gap:10px!important}
   .sw-row h3{font-size:1.25rem!important}
+  .ops-cards>*{min-height:0!important}
   .app-hover{display:none!important}
   .app-more{grid-template-rows:1fr!important}
   .app-points{opacity:1!important;transform:none!important;grid-template-columns:1fr 1fr!important;gap:0 12px!important;padding-top:2px!important}

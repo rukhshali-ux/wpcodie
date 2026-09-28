@@ -24,9 +24,10 @@ else:
   `page.css`; `capCarousel`, `capSwipe`, `capMove` in `logic.js`), and "01 What we do" uses an Advise | Engineer switch (`.what-tabs`, `whatTab`) and a
   swipeable row of steps (`.what-*` rules in `page.css`).
   The hero's "Scroll" hint moved to the Capabilities counter (`.scroll-hint`, `.cap-meta`).
-  On phones "02 AI & intelligent applications" and "03 Application development" use swipe
-  rows: the AI pipeline steps follow the active step (`aiFollow`), and the AI examples and
-  the applications have a counter and previous / next buttons (`.ai-*`, `.app-*`, `.sw-*`
+  On phones "02 AI & intelligent applications", "03 Application development" and "06 How
+  we operate" use swipe rows: the AI pipeline steps follow the active step (`aiFollow`), and
+  the AI examples, the applications and the principles have a counter and previous / next
+  buttons (`.ai-*`, `.app-*`, `.ops-*`, `.sw-*`
   rules in `page.css`; `swipeTo`, `swipeMove` in `logic.js`). Each application shows its
   details list there, since phones cannot hover.
   Below 960px the pinned "05 Ideas into systems" section sits under the header with compact

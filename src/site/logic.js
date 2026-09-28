@@ -114,6 +114,7 @@ class Component extends DCLogic {
   swipeMove = (sel, dir) => { const sc = document.querySelector(sel); if (sc) sc.scrollBy({ left: dir * this.swipeCard(sc), behavior: 'smooth' }); };
   aiSwipe = this.swipeTo('aiCard', 6);
   appSwipe = this.swipeTo('appCard', 4);
+  opsSwipe = this.swipeTo('opsCard', 4);
   loops = 0;
   tickPose = () => { clearTimeout(this.poseT); const dur = [2000, 1500, 1300, 1700, 1800][this.state.pose] || 1500;
     this.poseT = setTimeout(() => { if (this.state.intro !== 'closed') return this.tickPose();
@@ -265,6 +266,8 @@ class Component extends DCLogic {
       aiCardCounter: String((this.state.aiCard || 0) + 1).padStart(2, '0') + ' / 06',
       appSwipe: this.appSwipe, appPrev: () => this.swipeMove('#applications .app-cards', -1), appNext: () => this.swipeMove('#applications .app-cards', 1),
       appCardCounter: String((this.state.appCard || 0) + 1).padStart(2, '0') + ' / 04',
+      opsSwipe: this.opsSwipe, opsPrev: () => this.swipeMove('#principles .ops-cards', -1), opsNext: () => this.swipeMove('#principles .ops-cards', 1),
+      opsCardCounter: String((this.state.opsCard || 0) + 1).padStart(2, '0') + ' / 04',
       whatTab: this.state.whatTab || 0, setWhatTab: (i) => this.setState({ whatTab: i }),
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),

@@ -1142,7 +1142,7 @@ export function template(v) {
       </section>
       <section id="principles">
         {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
+        <div class="ops-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
           {" "}
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
@@ -1157,7 +1157,19 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px")}>
+          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
+          <div class="sw-meta">
+            <span class="sw-hint" aria-hidden="true">
+              Swipe
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
+            </span>
+            <span class="sw-count">{txt(v.opsCardCounter)}</span>
+            <span class="sw-arrows">
+              <button type="button" aria-label="Previous principle" onClick={v.opsPrev}>‹</button>
+              <button type="button" aria-label="Next principle" onClick={v.opsNext}>›</button>
+            </span>
+          </div>
+          <div class="ops-cards sw-row" onScroll={v.opsSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px")}>
             {" "}
             {each(v.principles).map((p, $index) => (
               <Fragment key={$index}>
