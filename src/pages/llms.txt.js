@@ -1,6 +1,7 @@
 // /llms.txt — a plain-language summary for AI assistants (llmstxt.org), generated from the
 // page's own content.
 import { DESCRIPTION, EMAIL, NAME, SITE, TAGLINE, pageContent } from '../site/seo.js';
+import { PROJECTS } from '../site/portfolio.js';
 
 export function GET() {
   const v = pageContent();
@@ -22,6 +23,12 @@ export function GET() {
     '## Principles',
     '',
     ...v.principles.map((p) => `- **${p.title}**: ${p.body}`),
+    '',
+    '## Portfolio',
+    '',
+    `Selected case studies: ${SITE}/portfolio/`,
+    '',
+    ...PROJECTS.map((p) => `- **${p.name}**${p.url ? ` (${p.url})` : ''}: ${p.subtitle}. ${p.summary}`),
     '',
     '## Contact',
     '',

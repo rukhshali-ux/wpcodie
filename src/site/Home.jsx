@@ -1221,6 +1221,8 @@ export function template(v) {
             </div>
             {" "}
           </div>
+          {/* Link to the full portfolio page (added for the live site). */}
+          <a class="work-all" href="/portfolio/">See all case studies →</a>
           {" "}
         </div>
       </section>

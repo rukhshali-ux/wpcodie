@@ -29,6 +29,8 @@ else:
   the logos are in `public/clients/`, originals and notes in `src/assets/clients/`). The
   sections were reordered so proof comes early: 01 What we do, 02 Selected work, 03 AI,
   04 Applications, 05 Consulting, 06 Ideas into systems, 07 How we operate, 08 Contact.
+  "Work" in the nav and footer goes to the portfolio page (`/portfolio/`), and Selected work
+  ends with a "See all case studies" button (`.work-all`) linking there.
   On phones "02 AI & intelligent applications", "03 Application development" and "06 How
   we operate" use swipe rows: the AI pipeline steps follow the active step (`aiFollow`), and
   the AI examples, the applications and the principles have a counter and previous / next

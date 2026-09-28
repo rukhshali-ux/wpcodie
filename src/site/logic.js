@@ -247,7 +247,7 @@ class Component extends DCLogic {
       ]; }
   renderVals() {
     const B = '#2451B8', INK = '#15181F', OFF = '#F5F4F0';
-    const links = [['#capabilities','capabilities','Capabilities'],['#work','work','Work'],['#ai','ai','AI'],['#applications','applications','Applications'],['#consulting','consulting','Consulting'],['#contact','contact','Contact']];
+    const links = [['#capabilities','capabilities','Capabilities'],['/portfolio/','work','Work'],['#ai','ai','AI'],['#applications','applications','Applications'],['#consulting','consulting','Consulting'],['#contact','contact','Contact']];
     const orbitData = [['Direction','Roadmap · Priorities'],['Data','Models · Pipelines'],['APIs','Services · Integrations'],['Outcome','Shipped · Measured'],['Product','Web · Mobile · Custom']];
     const capData = [
       ['AI applications','Products built around models from day one: retrieval, reasoning, and automation shaped by your data and your policies.',['Assistants','Search','Decision support','Evaluation']],

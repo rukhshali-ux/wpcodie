@@ -1,7 +1,7 @@
 ---
 // wpcodie.com/portfolio/: the project portfolio, in the homepage's look (same header, colours,
 // type and footer). Content is in src/site/portfolio.js, styles in src/assets/css/portfolio.css.
-// Until the owner approves it: noindex, and left out of the sitemap (astro.config.mjs).
+// Linked from the homepage nav and its Selected work section; listed in the sitemap and llms.txt.
 import SiteHeader, { LINKS } from '../site/SiteHeader.jsx';
 import { FILTERS, PROJECTS, STACK, STATS } from '../site/portfolio.js';
 import { NAME, SITE } from '../site/seo.js';
@@ -39,7 +39,6 @@ const ld = {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
 <meta name="description" content={DESCRIPTION}>
-<meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href={URL}>
 <meta name="theme-color" content="#F5F4F0">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
