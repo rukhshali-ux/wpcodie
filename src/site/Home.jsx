@@ -757,10 +757,13 @@ export function template(v) {
           </div>
           {" "}
           {/* Preview only (?preview=mobile2): Advise | Engineer tabs on phones; hidden otherwise. */}
-          <div class="what-tabs" role="tablist" aria-label="What we do">
-            {each(v.disciplines).map((d, $index) => (
-              <button key={$index} type="button" role="tab" aria-selected={$index === v.whatTab ? "true" : "false"} class={$index === v.whatTab ? "is-active" : ""} onClick={() => v.setWhatTab($index)}>{d.title}</button>
-            ))}
+          <div class="what-tabs-row">
+            <div class="what-tabs" role="tablist" aria-label="What we do">
+              {each(v.disciplines).map((d, $index) => (
+                <button key={$index} type="button" role="tab" aria-selected={$index === v.whatTab ? "true" : "false"} class={$index === v.whatTab ? "is-active" : ""} onClick={() => v.setWhatTab($index)}>{d.title}</button>
+              ))}
+            </div>
+            <span class={v.whatTapped ? "what-tabs-hint is-done" : "what-tabs-hint"}>Tap to change slide</span>
           </div>
           <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px")}>
             {" "}
