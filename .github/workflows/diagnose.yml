@@ -21,6 +21,8 @@ jobs:
           curl -sS -D - -o /tmp/home.html --max-time 20 -H 'Accept-Encoding: gzip' --compressed https://wpcodie.com/ || true
           echo "build script: $(grep -o '/_astro/Page[^"]*\.js' /tmp/home.html | head -1)"
           echo "has floating CTA (m-cta): $(grep -c 'm-cta' /tmp/home.html)"
+          echo "phone swipe rows (sw-row, expect 3): $(grep -o 'sw-row' /tmp/home.html | wc -l)"
+          echo "How we operate swipe row (ops-cards): $(grep -o 'ops-cards' /tmp/home.html | wc -l)"
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
