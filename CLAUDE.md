@@ -24,6 +24,11 @@ else:
   `page.css`; `capCarousel`, `capSwipe`, `capMove` in `logic.js`), and "01 What we do" uses an Advise | Engineer switch (`.what-tabs`, `whatTab`) and a
   swipeable row of steps (`.what-*` rules in `page.css`).
   The hero's "Scroll" hint moved to the Capabilities counter (`.scroll-hint`, `.cap-meta`).
+  On phones "02 AI & intelligent applications" and "03 Application development" use swipe
+  rows: the AI pipeline steps follow the active step (`aiFollow`), and the AI examples and
+  the applications have a counter and previous / next buttons (`.ai-*`, `.app-*`, `.sw-*`
+  rules in `page.css`; `swipeTo`, `swipeMove` in `logic.js`). Each application shows its
+  details list there, since phones cannot hover.
   Below 960px the pinned "05 Ideas into systems" section sits under the header with compact
   step cards (`.flow-*` rules in `page.css`); the floating buttons hide while it is pinned.
 - Never add a CSS framework (Tailwind etc.), a UI library or a web font.
@@ -111,9 +116,6 @@ own `<title>`, meta description and canonical URL.
 `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Previewing now: "02 AI & intelligent applications" and "03 Application development" on phones,
-with the same content and less scrolling. The AI pipeline steps, the six AI examples and the
-four applications become swipe rows; each application shows its details list, since phones
-cannot hover (`.ai-*`, `.app-*`, `.sw-*` rules at the end of `page.css`; `aiFollow`, `swipeTo`,
-`swipeMove` in `logic.js`). The "Preview" badge rule sits with them. (The "01 What we do" layout and the Capabilities carousel went live from
-earlier previews.)
+Nothing is being previewed right now. (The "01 What we do" layout, the Capabilities carousel
+and the swipe rows in sections 02 and 03 went live from earlier previews.) A new preview
+also needs the "Preview" badge rule: `html.pv-mobile body::after` in `page.css`.

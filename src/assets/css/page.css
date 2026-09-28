@@ -139,36 +139,35 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
   .scroll-hint-arrows{transform:rotate(90deg)}
 }
 
-/* PREVIEW (?preview=mobile): "02 AI & intelligent applications" and "03 Application development"
-   on phones and tablets. Same content, less scrolling: tighter spacing, the four AI pipeline
-   steps become a swipe row that follows the active step (aiFollow), and the AI examples and the
-   applications become swipe rows with a counter and previous / next buttons (.sw-*; swipeTo,
-   swipeMove in logic.js). Phones cannot hover, so each application shows its details list.
-   To make it live, drop the html.pv-mobile prefixes and the badge rule. */
+/* "02 AI & intelligent applications" and "03 Application development" on phones and tablets
+   (added for the live site; approved from the ?preview=mobile preview). Same content, less
+   scrolling: tighter spacing, the four AI pipeline steps are a swipe row that follows the
+   active step (aiFollow), and the AI examples and the applications are swipe rows with a
+   counter and previous / next buttons (.sw-*; swipeTo, swipeMove in logic.js). Phones cannot
+   hover, so each application shows its details list. */
 .sw-meta{display:none}
-html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
 @media (max-width:959px){
-  html.pv-mobile .ai-wrap,html.pv-mobile .app-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:28px!important}
-  html.pv-mobile .ai-flow{padding:20px!important;gap:14px!important}
-  html.pv-mobile .ai-steps{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px!important;margin:0 -20px;padding:10px 20px 2px;scroll-padding:0 20px;scrollbar-width:none;overscroll-behavior-x:contain}
-  html.pv-mobile .ai-steps::-webkit-scrollbar{display:none}
-  html.pv-mobile .ai-steps::after{content:'';flex:0 0 10px}
-  html.pv-mobile .ai-step{flex:0 0 min(74%,300px);scroll-snap-align:start;padding:16px!important;gap:8px!important}
-  html.pv-mobile .ai-step>span:first-of-type{font-size:1.2rem!important}
-  html.pv-mobile .sw-meta{display:flex;align-items:center;gap:14px;margin-bottom:-14px}
-  html.pv-mobile .sw-hint{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 'Inter',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#2451B8;animation:swipeFloat 2s ease-in-out infinite}
-  html.pv-mobile .sw-count{margin-left:auto;font:600 1.125rem/1 'Space Grotesk',sans-serif;color:#15181F}
-  html.pv-mobile .sw-arrows{display:inline-flex;gap:8px}
-  html.pv-mobile .sw-arrows button{width:36px;height:36px;border-radius:50%;border:1px solid #D6D3CB;background:#F5F4F0;color:#15181F;font:500 20px/1 'Inter',sans-serif;display:grid;place-items:center;padding:0 0 3px;cursor:pointer}
-  html.pv-mobile .sw-arrows button:active{background:#2451B8;border-color:#2451B8;color:#F5F4F0}
-  html.pv-mobile .sw-row{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;margin:0 -32px;padding:0 32px 4px;scroll-padding:0 32px;scrollbar-width:none;overscroll-behavior-x:contain}
-  html.pv-mobile .sw-row::-webkit-scrollbar{display:none}
-  html.pv-mobile .sw-row::after{content:'';flex:0 0 20px}
-  html.pv-mobile .sw-row>*{flex:0 0 min(84%,400px);scroll-snap-align:start;padding:22px!important;gap:10px!important}
-  html.pv-mobile .sw-row h3{font-size:1.25rem!important}
-  html.pv-mobile .app-hover{display:none!important}
-  html.pv-mobile .app-more{grid-template-rows:1fr!important}
-  html.pv-mobile .app-points{opacity:1!important;transform:none!important;grid-template-columns:1fr 1fr!important;gap:0 12px!important;padding-top:2px!important}
-  html.pv-mobile .app-points>span{font-size:13px!important;padding:7px 0!important;gap:6px!important}
+  .ai-wrap,.app-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:28px!important}
+  .ai-flow{padding:20px!important;gap:14px!important}
+  .ai-steps{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px!important;margin:0 -20px;padding:10px 20px 2px;scroll-padding:0 20px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .ai-steps::-webkit-scrollbar{display:none}
+  .ai-steps::after{content:'';flex:0 0 10px}
+  .ai-step{flex:0 0 min(74%,300px);scroll-snap-align:start;padding:16px!important;gap:8px!important}
+  .ai-step>span:first-of-type{font-size:1.2rem!important}
+  .sw-meta{display:flex;align-items:center;gap:14px;margin-bottom:-14px}
+  .sw-hint{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 'Inter',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#2451B8;animation:swipeFloat 2s ease-in-out infinite}
+  .sw-count{margin-left:auto;font:600 1.125rem/1 'Space Grotesk',sans-serif;color:#15181F}
+  .sw-arrows{display:inline-flex;gap:8px}
+  .sw-arrows button{width:36px;height:36px;border-radius:50%;border:1px solid #D6D3CB;background:#F5F4F0;color:#15181F;font:500 20px/1 'Inter',sans-serif;display:grid;place-items:center;padding:0 0 3px;cursor:pointer}
+  .sw-arrows button:active{background:#2451B8;border-color:#2451B8;color:#F5F4F0}
+  .sw-row{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;margin:0 -32px;padding:0 32px 4px;scroll-padding:0 32px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .sw-row::-webkit-scrollbar{display:none}
+  .sw-row::after{content:'';flex:0 0 20px}
+  .sw-row>*{flex:0 0 min(84%,400px);scroll-snap-align:start;padding:22px!important;gap:10px!important}
+  .sw-row h3{font-size:1.25rem!important}
+  .app-hover{display:none!important}
+  .app-more{grid-template-rows:1fr!important}
+  .app-points{opacity:1!important;transform:none!important;grid-template-columns:1fr 1fr!important;gap:0 12px!important;padding-top:2px!important}
+  .app-points>span{font-size:13px!important;padding:7px 0!important;gap:6px!important}
 }
 @media (prefers-reduced-motion:reduce){.sw-hint{animation:none!important}}
