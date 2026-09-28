@@ -828,7 +828,7 @@ export function template(v) {
       </section>
       <section id="ai" style={css("background:#EEECE6;border-top:1px solid #E2DFD7")}>
         {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
+        <div class="ai-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
           {" "}
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
@@ -843,7 +843,7 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <div ref={v.aiRef} style={css("position:relative;background:#15181F;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px;overflow:hidden")}>
+          <div ref={v.aiRef} class="ai-flow" style={css("position:relative;background:#15181F;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px;overflow:hidden")}>
             {" "}
             <div style={css("display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#B5B1A8")}>
               <span>How an intelligent system moves</span>
@@ -861,12 +861,12 @@ export function template(v) {
               {" "}
             </div>
             {" "}
-            <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px")}>
+            <div class="ai-steps" onTouchStart={v.aiHold} onPointerDown={v.aiHold} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px")}>
               {" "}
               {each(v.pipeline).map((p, $index) => (
                 <Fragment key={$index}>
                   {" "}
-                  <div style={css(`border:1px solid ${p.border ?? ""};background:${p.bg ?? ""};border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:12px;transform:${p.lift ?? ""};transition:all 500ms cubic-bezier(0.4,0,0.2,1)`)}>
+                  <div class="ai-step" style={css(`border:1px solid ${p.border ?? ""};background:${p.bg ?? ""};border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:12px;transform:${p.lift ?? ""};transition:all 500ms cubic-bezier(0.4,0,0.2,1)`)}>
                   {" "}
                   <div style={css("display:flex;justify-content:space-between;align-items:center")}>
                     <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:${p.numColor ?? ""}`)}>{txt(p.num)}</span>
@@ -898,12 +898,24 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px")}>
+          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
+          <div class="ai-cards-meta">
+            <span class="ai-hint" aria-hidden="true">
+              Swipe
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
+            </span>
+            <span class="ai-count">{txt(v.aiCardCounter)}</span>
+            <span class="ai-arrows">
+              <button type="button" aria-label="Previous example" onClick={v.aiPrev}>‹</button>
+              <button type="button" aria-label="Next example" onClick={v.aiNext}>›</button>
+            </span>
+          </div>
+          <div class="ai-cards" onScroll={v.aiSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px")}>
             {" "}
             {each(v.aiCards).map((a, $index) => (
               <Fragment key={$index}>
                 {" "}
-                <div class="scp1" data-reveal="1" style={css("background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;transition:transform 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)")}>
+                <div class="scp1 ai-card" data-reveal="1" style={css("background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;transition:transform 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)")}>
                 {" "}
                 <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.375rem;letter-spacing:-0.01em")}>{txt(a.title)}</h3>
                 {" "}

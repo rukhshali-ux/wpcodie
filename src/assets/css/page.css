@@ -138,3 +138,32 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
   .scroll-hint::before{content:'Swipe';font-size:12px}
   .scroll-hint-arrows{transform:rotate(90deg)}
 }
+
+/* PREVIEW (?preview=mobile): "02 AI & intelligent applications" on phones and tablets. Same
+   content, less scrolling: tighter spacing, the four pipeline steps become a swipe row that
+   follows the active step, and the six example cards become a swipe row with a counter
+   (aiFollow, aiSwipe, aiMove in logic.js). To make it live, drop the html.pv-mobile prefixes
+   and the badge rule. */
+.ai-cards-meta{display:none}
+html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+@media (max-width:959px){
+  html.pv-mobile .ai-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:28px!important}
+  html.pv-mobile .ai-flow{padding:20px!important;gap:14px!important}
+  html.pv-mobile .ai-steps{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px!important;margin:0 -20px;padding:10px 20px 2px;scroll-padding:0 20px;scrollbar-width:none;overscroll-behavior-x:contain}
+  html.pv-mobile .ai-steps::-webkit-scrollbar{display:none}
+  html.pv-mobile .ai-steps::after{content:'';flex:0 0 10px}
+  html.pv-mobile .ai-step{flex:0 0 min(74%,300px);scroll-snap-align:start;padding:16px!important;gap:8px!important}
+  html.pv-mobile .ai-step>span:first-of-type{font-size:1.2rem!important}
+  html.pv-mobile .ai-cards-meta{display:flex;align-items:center;gap:14px;margin-bottom:-14px}
+  html.pv-mobile .ai-hint{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 'Inter',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#2451B8;animation:swipeFloat 2s ease-in-out infinite}
+  html.pv-mobile .ai-count{margin-left:auto;font:600 1.125rem/1 'Space Grotesk',sans-serif;color:#15181F}
+  html.pv-mobile .ai-arrows{display:inline-flex;gap:8px}
+  html.pv-mobile .ai-arrows button{width:36px;height:36px;border-radius:50%;border:1px solid #D6D3CB;background:#F5F4F0;color:#15181F;font:500 20px/1 'Inter',sans-serif;display:grid;place-items:center;padding:0 0 3px;cursor:pointer}
+  html.pv-mobile .ai-arrows button:active{background:#2451B8;border-color:#2451B8;color:#F5F4F0}
+  html.pv-mobile .ai-cards{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;margin:0 -32px;padding:0 32px 4px;scroll-padding:0 32px;scrollbar-width:none;overscroll-behavior-x:contain}
+  html.pv-mobile .ai-cards::-webkit-scrollbar{display:none}
+  html.pv-mobile .ai-cards::after{content:'';flex:0 0 20px}
+  html.pv-mobile .ai-card{flex:0 0 min(84%,400px);scroll-snap-align:start;padding:22px!important;gap:10px!important}
+  html.pv-mobile .ai-card h3{font-size:1.25rem!important}
+}
+@media (prefers-reduced-motion:reduce){.ai-hint{animation:none!important}}

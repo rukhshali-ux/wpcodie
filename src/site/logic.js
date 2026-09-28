@@ -28,7 +28,7 @@ class Component extends DCLogic {
     this.raf = requestAnimationFrame(spin);
     const inView = (r) => { const el = r.current; if (!el) return false; const b = el.getBoundingClientRect(); return b.bottom > 0 && b.top < window.innerHeight; };
     this.wT = setInterval(() => { const a = inView(this.w1Ref), b = inView(this.w2Ref); if (a || b) this.setState(s => ({ w1: a ? (s.w1 + 1) % 5 : s.w1, w2: b ? (s.w2 + 1) % 7 : s.w2 })); }, 1700);
-    this.aiT = setInterval(() => { const el = this.aiRef.current; if (!el) return; const r = el.getBoundingClientRect(); if (r.bottom > 0 && r.top < window.innerHeight) this.setState(s => ({ ai: (s.ai + 1) % 4 })); }, 1600);
+    this.aiT = setInterval(() => { const el = this.aiRef.current; if (!el) return; const r = el.getBoundingClientRect(); if (r.bottom > 0 && r.top < window.innerHeight) this.setState(s => ({ ai: (s.ai + 1) % 4 }), this.aiFollow); }, 1600);
     this.onScroll = () => {
       const vh = window.innerHeight;
       // Back-to-top button (added for the live site).
@@ -92,6 +92,27 @@ class Component extends DCLogic {
     if (idx !== this.state.cap) this.setState({ cap: idx });
   };
   capMove = (dir) => { const sc = this.trackRef.current && this.trackRef.current.parentElement; if (sc) sc.scrollBy({ left: dir * this.capStep(sc), behavior: 'smooth' }); };
+  // "02 AI & intelligent applications" on phones: the pipeline and the example cards are swipe
+  // rows (.ai-* rules in page.css). The pipeline row keeps the active step in view, unless the
+  // visitor touched it in the last few seconds.
+  aiHold = () => { this.aiHeld = Date.now(); };
+  aiFollow = () => {
+    const row = this.aiRef.current && this.aiRef.current.querySelector('.ai-steps');
+    if (!row || row.scrollWidth - row.clientWidth < 2 || Date.now() - (this.aiHeld || 0) < 5000) return;
+    const card = row.querySelectorAll('.ai-step')[this.state.ai]; if (!card) return;
+    const left = row.scrollLeft + card.getBoundingClientRect().left - row.getBoundingClientRect().left - parseFloat(getComputedStyle(row).paddingLeft);
+    row.scrollTo({ left, behavior: 'smooth' });
+  };
+  aiSwipe = (e) => {
+    const sc = e.currentTarget, max = sc.scrollWidth - sc.clientWidth; if (max < 2) return;
+    const card = sc.querySelector('.ai-card'), step = card ? card.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0) : sc.clientWidth;
+    const idx = sc.scrollLeft >= max - 2 ? 5 : Math.max(0, Math.min(5, Math.round(sc.scrollLeft / step)));
+    if (idx !== (this.state.aiCard || 0)) this.setState({ aiCard: idx });
+  };
+  aiMove = (dir) => {
+    const sc = document.querySelector('#ai .ai-cards'), card = sc && sc.querySelector('.ai-card'); if (!card) return;
+    sc.scrollBy({ left: dir * (card.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0)), behavior: 'smooth' });
+  };
   loops = 0;
   tickPose = () => { clearTimeout(this.poseT); const dur = [2000, 1500, 1300, 1700, 1800][this.state.pose] || 1500;
     this.poseT = setTimeout(() => { if (this.state.intro !== 'closed') return this.tickPose();
@@ -239,6 +260,8 @@ class Component extends DCLogic {
       ringRef: this.ringRef, aiRef: this.aiRef, w1Ref: this.w1Ref, w2Ref: this.w2Ref, ...this.workVals(), ...this.introVals(), capRef: this.capRef, trackRef: this.trackRef, capBarRef: this.capBarRef, flowRef: this.flowRef, flowBarRef: this.flowBarRef,
       // Small-screen menu (added for the live site).
       capSwipe: this.capSwipe, capPrev: () => this.capMove(-1), capNext: () => this.capMove(1),
+      aiHold: this.aiHold, aiSwipe: this.aiSwipe, aiPrev: () => this.aiMove(-1), aiNext: () => this.aiMove(1),
+      aiCardCounter: String((this.state.aiCard || 0) + 1).padStart(2, '0') + ' / 06',
       whatTab: this.state.whatTab || 0, setWhatTab: (i) => this.setState({ whatTab: i }),
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
