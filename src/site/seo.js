@@ -5,6 +5,8 @@ import Logic from './logic.js';
 export const SITE = 'https://wpcodie.com';
 export const NAME = 'WPCodie';
 export const EMAIL = 'service@wpcodie.com';
+export { ADDRESS, ADDRESS_LINES, PHONE, PHONE_DISPLAY } from './business.js';
+import { ADDRESS, PHONE } from './business.js';
 export const TITLE = 'WPCodie — Technology consulting, AI & software';
 export const DESCRIPTION =
   'WPCodie helps teams choose the right technology direction, then designs and ships AI products and custom software.';
@@ -26,6 +28,24 @@ export function jsonLd() {
         name: NAME,
         url: `${SITE}/`,
         email: EMAIL,
+        telephone: PHONE,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: ADDRESS.street,
+          addressLocality: ADDRESS.locality,
+          addressRegion: ADDRESS.region,
+          postalCode: ADDRESS.postalCode,
+          addressCountry: ADDRESS.country,
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'sales',
+          telephone: PHONE,
+          email: EMAIL,
+          availableLanguage: ['English'],
+          areaServed: 'Worldwide',
+        },
+        areaServed: 'Worldwide',
         logo: `${SITE}/apple-touch-icon.png`,
         image: `${SITE}/og.png`,
         description: DESCRIPTION,

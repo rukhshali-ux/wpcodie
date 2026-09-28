@@ -60,6 +60,7 @@ to change may differ. Look at the images it writes before calling the change don
 | Copy for every repeated block: nav, capabilities, AI cards, applications, process steps, principles, case studies, form options | `src/site/logic.js`, in `renderVals()` / `workVals()` / `appsRaw()` |
 | Page behaviour: intro, scroll effects, form | `src/site/logic.js` |
 | Title, description, structured data (JSON-LD), llms.txt | `src/site/seo.js`, `src/pages/llms.txt.js` |
+| Business address and phone (footer, Contact, JSON-LD, llms.txt). Must match the Google Business Profile exactly | `src/site/business.js` |
 | `<head>`: meta tags, preloads, CSS order | `src/pages/index.astro` |
 | Design styles and fonts | `src/assets/css/`, `src/assets/fonts/` |
 | Contact form email sender | `public/contact.php` |

@@ -4,7 +4,7 @@
 // Linked from the homepage nav and its Selected work section; listed in the sitemap and llms.txt.
 import SiteHeader, { LINKS } from '../site/SiteHeader.jsx';
 import { FILTERS, PROJECTS, STACK, STATS } from '../site/portfolio.js';
-import { NAME, SITE } from '../site/seo.js';
+import { ADDRESS_LINES, NAME, PHONE, PHONE_DISPLAY, SITE } from '../site/seo.js';
 import interFont from '../assets/fonts/inter-7.woff2?url';
 import groteskFont from '../assets/fonts/space-grotesk-10.woff2?url';
 import '../assets/css/styles.css';
@@ -12,7 +12,7 @@ import '../assets/css/page.css';
 import '../assets/css/portfolio.css';
 
 const TITLE = 'Portfolio — WPCodie';
-const DESCRIPTION = 'Selected platforms WPCodie has delivered: healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe, PayU, Twilio, HubSpot and Google Maps integrations.';
+const DESCRIPTION = 'Case studies from WPCodie: healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe and Twilio integrations.';
 const URL = `${SITE}/portfolio/`;
 const count = (group) => (group === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.groups.includes(group)).length);
 const ld = {
@@ -161,6 +161,7 @@ const ld = {
       <div class="pf-footer-brand">
         <a href="/" class="pf-footer-logo"><span>W</span><strong>WPCodie</strong></a>
         <span>AI · Software · Technology consulting</span>
+        <address class="pf-nap">{ADDRESS_LINES.map((l) => <>{l}<br /></>)}<a href={`tel:${PHONE.replace(/-/g, '')}`}>{PHONE_DISPLAY}</a></address>
       </div>
       <nav class="pf-footer-nav">
         {LINKS.map(([href, label]) => <a href={href}>{label}</a>)}

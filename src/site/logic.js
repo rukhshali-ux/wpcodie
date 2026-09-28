@@ -2,6 +2,7 @@
 // principles, form options...). Carried over from the design export; the few changes made
 // for the live site are marked with comments.
 import { DCLogic, React } from './dc.js';
+import { ADDRESS_LINES, PHONE, PHONE_DISPLAY } from './business.js';
 
 // The intro laptop's width, W in introVals(), as CSS: min(740, 84% of width, 42% of height / 0.625).
 const CSS_W = 'min(740px, 84vw, 67.2dvh)';
@@ -274,6 +275,7 @@ class Component extends DCLogic {
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
       footNav: links.map(([href,,label]) => ({ href, label })),
+      phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
       heroTags: ['AI application development','Custom software & apps','Technology consulting'],
       capHeight: '420vh',

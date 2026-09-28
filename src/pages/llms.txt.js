@@ -1,6 +1,6 @@
 // /llms.txt — a plain-language summary for AI assistants (llmstxt.org), generated from the
 // page's own content.
-import { DESCRIPTION, EMAIL, NAME, SITE, TAGLINE, pageContent } from '../site/seo.js';
+import { ADDRESS_LINES, DESCRIPTION, EMAIL, NAME, PHONE_DISPLAY, SITE, TAGLINE, pageContent } from '../site/seo.js';
 import { PROJECTS } from '../site/portfolio.js';
 
 export function GET() {
@@ -33,6 +33,8 @@ export function GET() {
     '## Contact',
     '',
     `- Email: ${EMAIL}`,
+    `- Phone: ${PHONE_DISPLAY}`,
+    `- Address: ${ADDRESS_LINES.join(', ')}`,
     `- Website: ${SITE}/`,
     `- Start a project: ${SITE}/#contact`,
     '',

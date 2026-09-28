@@ -1614,6 +1614,11 @@ export function template(v) {
               </div>
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
+                <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Phone</span>
+                <a href={v.phoneHref} style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>{txt(v.phoneDisplay)}</a>
+              </div>
+              {" "}
+              <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Response</span>
                 <span style={css("font-size:15px;line-height:1.6")}>Within the same day, you'll hear back with our view and a suggested first step.</span>
               </div>
@@ -1744,6 +1749,11 @@ export function template(v) {
               </a>
               {" "}
               <span style={css("font-size:14px;color:#B5B1A8")}>AI · Software · Technology consulting</span>
+              {/* Address and phone (added for the live site; must match the Google Business Profile). */}
+              <address class="foot-nap" style={css("font-style:normal;font-size:13px;line-height:1.6;color:#B5B1A8")}>
+                {each(v.addressLines).map((l, $index) => <Fragment key={$index}>{txt(l)}<br /></Fragment>)}
+                <a href={v.phoneHref} style={css("color:#D9D6CE")}>{txt(v.phoneDisplay)}</a>
+              </address>
               {" "}
             </div>
             {" "}
