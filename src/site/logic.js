@@ -42,8 +42,10 @@ class Component extends DCLogic {
       if (showCta !== !!this.state.showCta) this.setState({ showCta });
       const prog = (el) => { if (!el) return 0; const r = el.getBoundingClientRect(); const tot = el.offsetHeight - vh; return tot > 0 ? Math.min(1, Math.max(0, -r.top / tot)) : 0; };
       const cp = prog(this.capRef.current), tr = this.trackRef.current;
-      // Phone carousel (preview): the cards are swiped, so page scrolling leaves them alone.
+      // Phone carousel: the cards are swiped, so page scrolling leaves them alone. Back on a wide
+      // screen, clear any swipe position so the scroll-driven track starts from its edge.
       const carousel = this.capCarousel();
+      if (!carousel && tr && tr.parentElement.scrollLeft) tr.parentElement.scrollLeft = 0;
       if (tr && !carousel) { const max = tr.scrollWidth - tr.parentElement.clientWidth; tr.style.transform = `translate3d(${-cp * Math.max(0, max)}px,0,0)`; }
       if (this.capBarRef.current && !carousel) this.capBarRef.current.style.width = (cp * 100) + '%';
       const ci = carousel ? (this.state.cap || 0) : Math.min(6, Math.floor(cp * 7));
@@ -78,8 +80,8 @@ class Component extends DCLogic {
     }, 300);
     window.addEventListener('scroll', () => this.reveal && this.reveal(), { passive: true });
   }
-  // Capabilities as a swipe carousel on phones (preview: only with ?preview=mobile).
-  capCarousel = () => typeof document !== 'undefined' && document.documentElement.classList.contains('pv-mobile') && window.innerWidth < 960;
+  // Capabilities as a swipe carousel below 960px (matches the .cap-* rules in page.css).
+  capCarousel = () => typeof window !== 'undefined' && window.innerWidth < 960;
   capStep = (sc) => { const card = sc.querySelector('.cap-card'); return card ? card.offsetWidth + 20 : sc.clientWidth; };
   capSwipe = (e) => {
     if (!this.capCarousel()) return;
