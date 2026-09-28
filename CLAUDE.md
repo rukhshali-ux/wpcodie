@@ -31,6 +31,9 @@ else:
   04 Applications, 05 Consulting, 06 Ideas into systems, 07 How we operate, 08 Contact.
   "Work" in the nav and footer goes to the portfolio page (`/portfolio/`), and Selected work
   ends with a "See all case studies" button (`.work-all`) linking there.
+  Every "Start a project" / "Contact" link targets the form card (`#contact-form`, not the
+  `#contact` section). On phones that lands on the form, and the Email / Response / Include
+  block (`.contact-info`) is hidden there.
   On phones "02 AI & intelligent applications", "03 Application development" and "06 How
   we operate" use swipe rows: the AI pipeline steps follow the active step (`aiFollow`), and
   the AI examples, the applications and the principles have a counter and previous / next

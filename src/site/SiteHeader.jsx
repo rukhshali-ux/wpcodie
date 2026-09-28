@@ -10,7 +10,7 @@ export const LINKS = [
   ['/#ai', 'AI'],
   ['/#applications', 'Applications'],
   ['/#consulting', 'Consulting'],
-  ['/#contact', 'Contact'],
+  ['/#contact-form', 'Contact'],
 ];
 
 export default function SiteHeader({ current = '' }) {
@@ -29,7 +29,7 @@ export default function SiteHeader({ current = '' }) {
               style={`padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;color:${color(href)};background:${href === current ? '#E3E8F4' : 'transparent'};transition:all 200ms cubic-bezier(0.4,0,0.2,1)`}>{label}</a>
           ))}
         </nav>
-        <a class="hdr-cta" href="/#contact" style="display:inline-flex;--color-midnight:#F5F4F0">
+        <a class="hdr-cta" href="/#contact-form" style="display:inline-flex;--color-midnight:#F5F4F0">
           <Button>Start a project →</Button>
         </a>
         <button type="button" class="hdr-toggle" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open ? 'true' : 'false'} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
@@ -43,7 +43,7 @@ export default function SiteHeader({ current = '' }) {
           {LINKS.map(([href, label]) => (
             <a key={href} href={href} onClick={() => setOpen(false)} style={`color:${color(href)}`}>{label}</a>
           ))}
-          <a href="/#contact" onClick={() => setOpen(false)} class="hdr-panel-cta" style="display:flex;--color-midnight:#F5F4F0">
+          <a href="/#contact-form" onClick={() => setOpen(false)} class="hdr-panel-cta" style="display:flex;--color-midnight:#F5F4F0">
             <Button size="lg">Start a project →</Button>
           </a>
         </div>
