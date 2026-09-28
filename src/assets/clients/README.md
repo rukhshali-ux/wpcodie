@@ -14,7 +14,7 @@ logo's display height and its card colour are in `clients` in `src/site/logic.js
 | `wagit.png` | WagIt | https://wagit.uk |
 | `sme-blue-pages.png` | SME Blue Pages | https://smebluepages.com |
 | `seattle-pro-contractors.png` | Seattle Pro Contractors (the logo reads "Seatle") | https://seattleprocontractors.com |
-| `premier-fl-magazine.png` | Premier FL Magazine | none yet |
+| `premier-fl-magazine.png` | Premier FL Magazine | https://premiereflmagazine.com |
 
 All were supplied as small RGB PNGs without transparency, so each sits on a card of its own
 background colour. The Seattle Pro file is a screenshot of a site header over a photo; it is

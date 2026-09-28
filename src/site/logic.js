@@ -323,7 +323,7 @@ class Component extends DCLogic {
         ['WagIt', 'https://wagit.uk', 'wagit', 135, 59, 34, '#FFFFFF'],
         ['SME Blue Pages', 'https://smebluepages.com', 'sme-blue-pages', 198, 43, 32, '#F0F8FF'],
         ['Seattle Pro Contractors', 'https://seattleprocontractors.com', 'seattle-pro-contractors', 307, 76, 44, 'linear-gradient(90deg,#878B8E,#787B83)'],
-        ['Premier FL Magazine', '', 'premier-fl-magazine', 166, 40, 34, '#FFFFFF'],
+        ['Premier FL Magazine', 'https://premiereflmagazine.com', 'premier-fl-magazine', 166, 40, 34, '#FFFFFF'],
       ].map(([name, url, file, w, h, size, bg]) => ({ name, url, logo: `/clients/${file}.webp`, w, h, size, bg })),
       principles: [['01','Outcomes over output','We\'re paid to fix a business problem, not to bill hours or write code for its own sake.'],['02','Room to grow','What we build grows with you, so you never pay to rebuild it twice.'],['03','Proof before hype','No AI you don\'t need. We prove it works with a prototype and real numbers first.'],['04','No handoff gap','The people who plan your project are the people who build it, so nothing gets lost.']].map(([num,title,body]) => ({num,title,body})),
       stackLeft: [{ title:'AI & data', items:['AI models','Data platforms','Intelligent automation'] },{ title:'Applications', items:['Web','Mobile','SaaS','Custom platforms'] }],
