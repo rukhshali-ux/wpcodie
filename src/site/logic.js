@@ -103,16 +103,17 @@ class Component extends DCLogic {
     const left = row.scrollLeft + card.getBoundingClientRect().left - row.getBoundingClientRect().left - parseFloat(getComputedStyle(row).paddingLeft);
     row.scrollTo({ left, behavior: 'smooth' });
   };
-  aiSwipe = (e) => {
+  // Swipe rows (the AI examples, the applications): the counter follows the card at the start
+  // of the row, and the previous / next buttons move one card.
+  swipeCard = (sc) => { const card = sc.firstElementChild; return card ? card.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0) : sc.clientWidth; };
+  swipeTo = (key, n) => (e) => {
     const sc = e.currentTarget, max = sc.scrollWidth - sc.clientWidth; if (max < 2) return;
-    const card = sc.querySelector('.ai-card'), step = card ? card.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0) : sc.clientWidth;
-    const idx = sc.scrollLeft >= max - 2 ? 5 : Math.max(0, Math.min(5, Math.round(sc.scrollLeft / step)));
-    if (idx !== (this.state.aiCard || 0)) this.setState({ aiCard: idx });
+    const idx = sc.scrollLeft >= max - 2 ? n - 1 : Math.max(0, Math.min(n - 1, Math.round(sc.scrollLeft / this.swipeCard(sc))));
+    if (idx !== (this.state[key] || 0)) this.setState({ [key]: idx });
   };
-  aiMove = (dir) => {
-    const sc = document.querySelector('#ai .ai-cards'), card = sc && sc.querySelector('.ai-card'); if (!card) return;
-    sc.scrollBy({ left: dir * (card.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0)), behavior: 'smooth' });
-  };
+  swipeMove = (sel, dir) => { const sc = document.querySelector(sel); if (sc) sc.scrollBy({ left: dir * this.swipeCard(sc), behavior: 'smooth' }); };
+  aiSwipe = this.swipeTo('aiCard', 6);
+  appSwipe = this.swipeTo('appCard', 4);
   loops = 0;
   tickPose = () => { clearTimeout(this.poseT); const dur = [2000, 1500, 1300, 1700, 1800][this.state.pose] || 1500;
     this.poseT = setTimeout(() => { if (this.state.intro !== 'closed') return this.tickPose();
@@ -260,8 +261,10 @@ class Component extends DCLogic {
       ringRef: this.ringRef, aiRef: this.aiRef, w1Ref: this.w1Ref, w2Ref: this.w2Ref, ...this.workVals(), ...this.introVals(), capRef: this.capRef, trackRef: this.trackRef, capBarRef: this.capBarRef, flowRef: this.flowRef, flowBarRef: this.flowBarRef,
       // Small-screen menu (added for the live site).
       capSwipe: this.capSwipe, capPrev: () => this.capMove(-1), capNext: () => this.capMove(1),
-      aiHold: this.aiHold, aiSwipe: this.aiSwipe, aiPrev: () => this.aiMove(-1), aiNext: () => this.aiMove(1),
+      aiHold: this.aiHold, aiSwipe: this.aiSwipe, aiPrev: () => this.swipeMove('#ai .ai-cards', -1), aiNext: () => this.swipeMove('#ai .ai-cards', 1),
       aiCardCounter: String((this.state.aiCard || 0) + 1).padStart(2, '0') + ' / 06',
+      appSwipe: this.appSwipe, appPrev: () => this.swipeMove('#applications .app-cards', -1), appNext: () => this.swipeMove('#applications .app-cards', 1),
+      appCardCounter: String((this.state.appCard || 0) + 1).padStart(2, '0') + ' / 04',
       whatTab: this.state.whatTab || 0, setWhatTab: (i) => this.setState({ whatTab: i }),
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),

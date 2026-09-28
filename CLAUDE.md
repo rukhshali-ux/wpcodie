@@ -111,8 +111,9 @@ own `<title>`, meta description and canonical URL.
 `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Previewing now: "02 AI & intelligent applications" on phones, with the same content and less
-scrolling. The four pipeline steps and the six example cards become swipe rows (`.ai-*` rules
-at the end of `page.css`; `aiFollow`, `aiSwipe`, `aiMove` in `logic.js`). The "Preview" badge
-rule sits with them. (The "01 What we do" layout and the Capabilities carousel went live from
+Previewing now: "02 AI & intelligent applications" and "03 Application development" on phones,
+with the same content and less scrolling. The AI pipeline steps, the six AI examples and the
+four applications become swipe rows; each application shows its details list, since phones
+cannot hover (`.ai-*`, `.app-*`, `.sw-*` rules at the end of `page.css`; `aiFollow`, `swipeTo`,
+`swipeMove` in `logic.js`). The "Preview" badge rule sits with them. (The "01 What we do" layout and the Capabilities carousel went live from
 earlier previews.)

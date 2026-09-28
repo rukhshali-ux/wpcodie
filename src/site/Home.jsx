@@ -899,18 +899,18 @@ export function template(v) {
           </div>
           {" "}
           {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
-          <div class="ai-cards-meta">
-            <span class="ai-hint" aria-hidden="true">
+          <div class="sw-meta">
+            <span class="sw-hint" aria-hidden="true">
               Swipe
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
             </span>
-            <span class="ai-count">{txt(v.aiCardCounter)}</span>
-            <span class="ai-arrows">
+            <span class="sw-count">{txt(v.aiCardCounter)}</span>
+            <span class="sw-arrows">
               <button type="button" aria-label="Previous example" onClick={v.aiPrev}>‹</button>
               <button type="button" aria-label="Next example" onClick={v.aiNext}>›</button>
             </span>
           </div>
-          <div class="ai-cards" onScroll={v.aiSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px")}>
+          <div class="ai-cards sw-row" onScroll={v.aiSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px")}>
             {" "}
             {each(v.aiCards).map((a, $index) => (
               <Fragment key={$index}>
@@ -940,7 +940,7 @@ export function template(v) {
       </section>
       <section id="applications">
         {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
+        <div class="app-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
           {" "}
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
@@ -955,12 +955,24 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(max(300px,calc(50% - 10px)),1fr));gap:20px")}>
+          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
+          <div class="sw-meta">
+            <span class="sw-hint" aria-hidden="true">
+              Swipe
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
+            </span>
+            <span class="sw-count">{txt(v.appCardCounter)}</span>
+            <span class="sw-arrows">
+              <button type="button" aria-label="Previous application" onClick={v.appPrev}>‹</button>
+              <button type="button" aria-label="Next application" onClick={v.appNext}>›</button>
+            </span>
+          </div>
+          <div class="app-cards sw-row" onScroll={v.appSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(max(300px,calc(50% - 10px)),1fr));gap:20px")}>
             {" "}
             {each(v.apps).map((a, $index) => (
               <Fragment key={$index}>
                 {" "}
-                <div data-reveal="1" onMouseEnter={a.enter} onMouseLeave={a.leave} onClick={a.enter} style={css(`cursor:default;border:1px solid ${a.border ?? ""};border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;background:${a.bg ?? ""};box-shadow:${a.shadow ?? ""};transition:border-color 250ms cubic-bezier(0.4,0,0.2,1),background 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)`)}>
+                <div class="app-card" data-reveal="1" onMouseEnter={a.enter} onMouseLeave={a.leave} onClick={a.enter} style={css(`cursor:default;border:1px solid ${a.border ?? ""};border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;background:${a.bg ?? ""};box-shadow:${a.shadow ?? ""};transition:border-color 250ms cubic-bezier(0.4,0,0.2,1),background 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)`)}>
                 {" "}
                 <span style={css("width:44px;height:44px;border-radius:10px;background:#E3E8F4;color:#2451B8;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px")}>{txt(a.mark)}</span>
                 {" "}
@@ -968,16 +980,16 @@ export function template(v) {
                 {" "}
                 <p style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>{txt(a.body)}</p>
                 {" "}
-                <div style={css(`display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#2451B8;opacity:${a.hintOpacity ?? ""};transition:opacity 200ms cubic-bezier(0.4,0,0.2,1)`)}>
+                <div class="app-hover" style={css(`display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#2451B8;opacity:${a.hintOpacity ?? ""};transition:opacity 200ms cubic-bezier(0.4,0,0.2,1)`)}>
                   <span>Hover for details</span>
                   <span>+</span>
                 </div>
                 {" "}
-                <div style={css(`display:grid;grid-template-rows:${a.rows ?? ""};transition:grid-template-rows 300ms cubic-bezier(0.4,0,0.2,1)`)}>
+                <div class="app-more" style={css(`display:grid;grid-template-rows:${a.rows ?? ""};transition:grid-template-rows 300ms cubic-bezier(0.4,0,0.2,1)`)}>
                   {" "}
                   <div style={css("overflow:hidden;min-height:0")}>
                     {" "}
-                    <div style={css(`display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:0 20px;padding-top:4px;opacity:${a.listOpacity ?? ""};transform:${a.listShift ?? ""};transition:opacity 300ms cubic-bezier(0.4,0,0.2,1),transform 300ms cubic-bezier(0.4,0,0.2,1)`)}>
+                    <div class="app-points" style={css(`display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:0 20px;padding-top:4px;opacity:${a.listOpacity ?? ""};transform:${a.listShift ?? ""};transition:opacity 300ms cubic-bezier(0.4,0,0.2,1),transform 300ms cubic-bezier(0.4,0,0.2,1)`)}>
                       {" "}
                       {each(a.points).map((p, $index) => (
                         <Fragment key={$index}>
