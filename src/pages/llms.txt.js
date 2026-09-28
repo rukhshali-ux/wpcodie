@@ -34,7 +34,7 @@ export function GET() {
     '',
     `- Email: ${EMAIL}`,
     `- Website: ${SITE}/`,
-    `- Start a project: ${SITE}/#contact-form`,
+    `- Start a project: ${SITE}/#contact`,
     '',
   ];
   return new Response(lines.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

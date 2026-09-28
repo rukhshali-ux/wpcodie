@@ -204,12 +204,9 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
 .work-all:hover,.work-all:focus-visible{background:#2451B8;color:#F5F4F0}
 @media (max-width:959px){.work-all{margin-top:-24px}}
 
-/* Contact (added for the live site): every "Start a project" / "Contact" link targets the form
-   card (#contact-form). On wide screens it lands exactly where the section used to (the section's
-   112px top padding); on phones it lands on the form, just under the header, and the Email /
-   Response / Include block is left out. */
-#contact-form{scroll-margin-top:112px}
+/* Contact on phones (added for the live site): links land on the section title, just under the
+   header, followed straight by the form; the Email / Response / Include block is left out. */
 @media (max-width:959px){
-  #contact-form{scroll-margin-top:100px}
+  .contact-wrap{padding-top:88px!important;padding-bottom:72px!important;gap:32px!important}
   .contact-info{display:none!important}
 }

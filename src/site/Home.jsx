@@ -377,7 +377,7 @@ export function template(v) {
             {" "}
           </nav>
           {" "}
-          <a class="hdr-cta" href="#contact-form" style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
+          <a class="hdr-cta" href="#contact" style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
             <Button>Start a project →</Button>
           </a>
           {" "}
@@ -393,7 +393,7 @@ export function template(v) {
             {each(v.nav).map((n, $index) => (
               <a key={$index} href={n.href} onClick={v.closeMenu} style={css(`color:${n.color ?? ""}`)}>{n.label}</a>
             ))}
-            <a href="#contact-form" onClick={v.closeMenu} class="hdr-panel-cta" style={css("display:flex;--color-midnight:#F5F4F0")}>
+            <a href="#contact" onClick={v.closeMenu} class="hdr-panel-cta" style={css("display:flex;--color-midnight:#F5F4F0")}>
               <Button size="lg">Start a project →</Button>
             </a>
           </div>
@@ -427,7 +427,7 @@ export function template(v) {
             {" "}
             <div data-reveal="1" style={css("display:flex;gap:12px;flex-wrap:wrap")}>
               {" "}
-              <a href="#contact-form" style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
+              <a href="#contact" style={css("display:inline-flex;--color-midnight:#F5F4F0")}>
                 <Button size="lg">Start a project →</Button>
               </a>
               {" "}
@@ -746,7 +746,7 @@ export function template(v) {
                 {" "}
                 <p style={css("margin:0;font-size:15px;line-height:1.6")}>Advice, architecture, and engineering come from the same people, so context carries from the first workshop to the final release.</p>
                 {" "}
-                <a href="#contact-form" style={css("margin-top:auto;display:inline-flex;--color-accent:#F5F4F0;--color-midnight:#15181F")}>
+                <a href="#contact" style={css("margin-top:auto;display:inline-flex;--color-accent:#F5F4F0;--color-midnight:#15181F")}>
                   <Button>Start a project →</Button>
                 </a>
                 {" "}
@@ -1449,7 +1449,7 @@ export function template(v) {
             {" "}
             <p data-reveal="1" style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>Our engagements end in something usable: decisions, architecture, and a plan an engineering team can pick up — whether that team is ours or yours.</p>
             {" "}
-            <a href="#contact-form" style={css("display:inline-flex;align-self:flex-start")}>
+            <a href="#contact" style={css("display:inline-flex;align-self:flex-start")}>
               <Button variant="secondary">Discuss your project</Button>
             </a>
             {" "}
@@ -1593,7 +1593,7 @@ export function template(v) {
       </section>
       <section id="contact" style={css("background:#2451B8;color:#F5F4F0")}>
         {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:64px;align-items:start")}>
+        <div class="contact-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:64px;align-items:start")}>
           {" "}
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:22px")}>
             {" "}
@@ -1771,7 +1771,7 @@ export function template(v) {
       </footer>
       {/* Added for the live site. Phones: a floating "Start a project" (after the hero, hidden at the
           contact form). All sizes: "Back to top" after the first screen; an icon beside it on phones. */}
-      <a href="#contact-form" class={v.showCta ? "m-cta is-visible" : "m-cta"} aria-hidden={v.showCta ? undefined : "true"} tabindex={v.showCta ? undefined : "-1"}>
+      <a href="#contact" class={v.showCta ? "m-cta is-visible" : "m-cta"} aria-hidden={v.showCta ? undefined : "true"} tabindex={v.showCta ? undefined : "-1"}>
         Start a project <span aria-hidden="true">→</span>
       </a>
       <a href="#top" class={v.showTop ? "to-top is-visible" : "to-top"} aria-label="Back to top" aria-hidden={v.showTop ? undefined : "true"} tabindex={v.showTop ? undefined : "-1"}>
