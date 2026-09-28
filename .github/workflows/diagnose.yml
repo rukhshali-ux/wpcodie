@@ -24,6 +24,16 @@ jobs:
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
+      - name: Contact form endpoint (no email is sent by these checks)
+        run: |
+          echo "== GET (expect 405: PHP runs, only POST allowed)"
+          curl -sS -w " -> HTTP %{http_code}\n" --max-time 20 https://wpcodie.com/contact.php || true
+          echo "== POST with an invalid email (expect 422: validation works)"
+          curl -sS -w " -> HTTP %{http_code}\n" --max-time 20 -H 'Content-Type: application/json' -d '{"name":"Check","email":"not-an-email"}' https://wpcodie.com/contact.php || true
+          echo "== POST that fills the spam trap (expect 200 and ok:true, but nothing is sent)"
+          curl -sS -w " -> HTTP %{http_code}\n" --max-time 20 -H 'Content-Type: application/json' -d '{"name":"Check","email":"check@example.com","website":"bot"}' https://wpcodie.com/contact.php || true
+          echo "== Is PHP mail() available on this host?"
+          curl -sS -I --max-time 20 https://wpcodie.com/contact.php | grep -iE "^(HTTP|x-powered-by|content-type)" || true
       - name: FTP folder layout
         env:
           S: ${{ secrets.FTP_SERVER }}
