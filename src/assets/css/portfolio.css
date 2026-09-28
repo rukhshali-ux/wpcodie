@@ -1,0 +1,96 @@
+/* wpcodie.com/portfolio/ (src/pages/portfolio.astro). Built from the homepage's palette, type and
+   spacing: page #F5F4F0, alternate #EEECE6, lines #E2DFD7, ink #15181F, body #4A4740, blue #2451B8,
+   Space Grotesk for headings and Inter for text. The header reuses the .hdr* rules in page.css. */
+.pf-body{margin:0;background:#F5F4F0;color:#15181F;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+.pf-body a{text-decoration:none}
+.pf-wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.pf-eyebrow{margin:0;font:600 13px/1.2 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8}
+
+/* Hero */
+.pf-hero{background-image:radial-gradient(#DAD7CF 1px,transparent 1px);background-size:24px 24px;border-bottom:1px solid #E2DFD7}
+.pf-hero-inner{padding-top:88px;padding-bottom:56px;display:flex;flex-direction:column;gap:18px}
+.pf-hero h1{margin:0;max-width:880px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;letter-spacing:-0.03em}
+.pf-lead{margin:0;max-width:720px;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty}
+.pf-stats{margin:22px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.pf-stats div{display:flex;flex-direction:column-reverse;gap:6px;padding-top:16px;border-top:1px solid #D6D3CB}
+.pf-stats dt{font-size:13px;color:#6B675F}
+.pf-stats dd{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.4vw,2.75rem);line-height:1;letter-spacing:-0.02em}
+
+/* Case studies */
+.pf-work{background:#EEECE6;padding:72px 0 96px}
+.pf-work-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.pf-work-head h2{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.75rem,3vw,2.25rem);letter-spacing:-0.02em}
+.pf-filters{display:flex;gap:8px;flex-wrap:wrap}
+.pf-filters button{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid #D6D3CB;border-radius:999px;background:#F5F4F0;color:#2B2F3A;font:500 13px/1.2 'Inter',sans-serif;cursor:pointer;transition:background 200ms,color 200ms,border-color 200ms}
+.pf-filters button span{font-size:12px;color:#8C877D}
+.pf-filters button[aria-pressed="true"]{background:#2451B8;border-color:#2451B8;color:#F5F4F0}
+.pf-filters button[aria-pressed="true"] span{color:#C9D6F2}
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:20px;align-items:start}
+.pf-card{background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:90px}
+.pf-card[hidden]{display:none}
+.pf-card-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase}
+.pf-sector{color:#2451B8}
+.pf-scale{color:#8C877D;letter-spacing:0.02em;text-transform:none;font-weight:500}
+.pf-logo{align-self:flex-start;height:32px;width:auto;margin-top:4px;mix-blend-mode:multiply}
+.pf-card h3{margin:2px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.375rem;letter-spacing:-0.01em}
+.pf-sub{margin:-6px 0 0;font-size:15px;color:#6B675F}
+.pf-url{align-self:flex-start;font-size:14px;font-weight:500;color:#2451B8}
+.pf-url:hover{text-decoration:underline}
+.pf-summary{margin:0;font-size:15px;line-height:1.6;color:#4A4740}
+.pf-tags{list-style:none;margin:2px 0 0;padding:0;display:flex;gap:6px;flex-wrap:wrap}
+.pf-tags li{font-size:12px;font-weight:500;padding:5px 10px;border:1px solid #D6D3CB;border-radius:999px;color:#2B2F3A;background:#FFFFFF}
+.pf-pending{margin:4px 0 0;font-size:14px;color:#8C877D;font-style:italic}
+.pf-more{border-top:1px solid #E2DFD7;margin-top:4px;padding-top:12px}
+.pf-more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:600;color:#2451B8}
+.pf-more summary::-webkit-details-marker{display:none}
+.pf-more summary::after{content:'+';font-size:20px;font-weight:400;line-height:1;transition:transform 200ms}
+.pf-more[open] summary::after{transform:rotate(45deg)}
+.pf-more h4{margin:16px 0 4px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B675F}
+.pf-list{list-style:none;margin:0;padding:0}
+.pf-list li{position:relative;padding:9px 0 9px 22px;border-top:1px solid #E2DFD7;font-size:14px;line-height:1.5;color:#2B2F3A}
+.pf-list li:first-child{border-top:none}
+.pf-list li::before{content:'→';position:absolute;left:0;color:#2451B8}
+.pf-why{margin-top:12px;background:#EEECE6;border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.pf-why span{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8}
+.pf-why p{margin:0;font-size:14px;line-height:1.55;color:#2B2F3A}
+.pf-empty{margin:24px 0 0;color:#6B675F}
+
+/* Integrations */
+.pf-stack-band{padding:56px 0;border-top:1px solid #E2DFD7}
+.pf-stack{list-style:none;margin:18px 0 0;padding:0;display:flex;gap:10px;flex-wrap:wrap}
+.pf-stack li{white-space:nowrap;font-size:13px;font-weight:500;padding:8px 14px;border:1px solid #D6D3CB;border-radius:999px;background:#F5F4F0;color:#2B2F3A}
+
+/* Call to action */
+.pf-cta{background:#2451B8;color:#F5F4F0}
+.pf-cta-inner{padding-top:80px;padding-bottom:80px;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.pf-cta h2{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em}
+.pf-cta p{margin:0;max-width:620px;font-size:1.125rem;line-height:1.6;color:#DDE5F7}
+.pf-cta-btn{margin-top:8px;display:inline-flex;align-items:center;padding:14px 28px;border-radius:8px;background:#F5F4F0;color:#15181F;font-weight:500;font-size:16px;transition:transform 200ms}
+.pf-cta-btn:hover{transform:translateY(-2px)}
+
+/* Footer (the homepage's footer, without the intro replay) */
+.pf-footer{background:#15181F;color:#F5F4F0}
+.pf-footer-inner{padding-top:56px;padding-bottom:32px;display:flex;flex-direction:column;gap:40px}
+.pf-footer-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.pf-footer-brand{display:flex;flex-direction:column;gap:10px;font-size:14px;color:#B5B1A8}
+.pf-footer-logo{display:flex;align-items:center;gap:10px;color:#F5F4F0}
+.pf-footer-logo span{width:30px;height:30px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font:700 15px 'Space Grotesk',sans-serif}
+.pf-footer-logo strong{font:600 19px 'Space Grotesk',sans-serif}
+.pf-footer-nav{display:flex;gap:24px;flex-wrap:wrap}
+.pf-footer-nav a{font-size:14px;color:#D9D6CE}
+.pf-footer-nav a:hover{color:#FFFFFF}
+.pf-footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid #2B2F3A;font-size:13px;color:#B5B1A8}
+.pf-footer-bottom a{color:#8FAAE8}
+
+@media (max-width:959px){
+  .pf-hero-inner{padding-top:56px;padding-bottom:40px}
+  .pf-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .pf-work{padding:56px 0 64px}
+  .pf-work-head{margin-bottom:24px}
+  .pf-filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -32px;padding:0 32px 4px;scrollbar-width:none;width:calc(100% + 64px)}
+  .pf-filters::-webkit-scrollbar{display:none}
+  .pf-filters button{flex:0 0 auto}
+  .pf-card{padding:22px}
+  .pf-cta-inner{padding-top:56px;padding-bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){.pf-cta-btn,.pf-more summary::after{transition:none}}

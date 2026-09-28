@@ -1,0 +1,177 @@
+---
+// wpcodie.com/portfolio/: the project portfolio, in the homepage's look (same header, colours,
+// type and footer). Content is in src/site/portfolio.js, styles in src/assets/css/portfolio.css.
+// Until the owner approves it: noindex, and left out of the sitemap (astro.config.mjs).
+import SiteHeader, { LINKS } from '../site/SiteHeader.jsx';
+import { FILTERS, PROJECTS, STACK, STATS } from '../site/portfolio.js';
+import { NAME, SITE } from '../site/seo.js';
+import interFont from '../assets/fonts/inter-7.woff2?url';
+import groteskFont from '../assets/fonts/space-grotesk-10.woff2?url';
+import '../assets/css/styles.css';
+import '../assets/css/page.css';
+import '../assets/css/portfolio.css';
+
+const TITLE = 'Portfolio — WPCodie';
+const DESCRIPTION = 'Selected platforms WPCodie has delivered: marketplaces, booking systems, directories and integrations with Stripe, PayU, Twilio, HubSpot and Google Maps.';
+const URL = `${SITE}/portfolio/`;
+const count = (group) => (group === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.group === group).length);
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: TITLE,
+  url: URL,
+  description: DESCRIPTION,
+  isPartOf: { '@id': `${SITE}/#website` },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: PROJECTS.filter((p) => !p.pending).map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: { '@type': 'CreativeWork', name: `${p.name}: ${p.subtitle}`, description: p.summary, ...(p.url ? { url: `https://${p.url}` } : {}), creator: { '@id': `${SITE}/#organization` } },
+    })),
+  },
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{TITLE}</title>
+<meta name="description" content={DESCRIPTION}>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href={URL}>
+<meta name="theme-color" content="#F5F4F0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin>
+<link rel="preload" href={groteskFont} as="font" type="font/woff2" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content={NAME}>
+<meta property="og:url" content={URL}>
+<meta property="og:title" content={TITLE}>
+<meta property="og:description" content={DESCRIPTION}>
+<meta property="og:image" content={`${SITE}/og.png`}>
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" is:inline set:html={JSON.stringify(ld)}></script>
+</head>
+<body class="pf-body">
+<SiteHeader client:load current="/portfolio/" />
+
+<main id="top">
+  <section class="pf-hero">
+    <div class="pf-wrap pf-hero-inner">
+      <span class="pf-eyebrow">Portfolio</span>
+      <h1>Platforms we have planned, built and shipped.</h1>
+      <p class="pf-lead">Marketplaces, booking systems, directories and the integrations behind them, for clients in the US, UK, France, Poland, Morocco and Ireland. Each project below started with a business problem; the case studies say what we built and why it mattered.</p>
+      <dl class="pf-stats">
+        {STATS.map(([n, label]) => (
+          <div><dt>{label}</dt><dd>{n}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="pf-work" aria-labelledby="pf-work-title">
+    <div class="pf-wrap">
+      <div class="pf-work-head">
+        <h2 id="pf-work-title">Selected case studies</h2>
+        <div class="pf-filters" role="group" aria-label="Filter projects">
+          {FILTERS.map(([key, label], i) => (
+            <button type="button" data-filter={key} aria-pressed={i === 0 ? 'true' : 'false'}>{label} <span>{count(key)}</span></button>
+          ))}
+        </div>
+      </div>
+      <div class="pf-grid">
+        {PROJECTS.map((p) => (
+          <article class="pf-card" id={p.slug} data-group={p.group}>
+            <div class="pf-card-top">
+              <span class="pf-sector">{p.sector}</span>
+              <span class="pf-scale">{p.scale}</span>
+            </div>
+            {p.logo && <img class="pf-logo" src={p.logo} alt="" height="32" loading="lazy" decoding="async" />}
+            <h3>{p.name}</h3>
+            <p class="pf-sub">{p.subtitle}</p>
+            {p.url && <a class="pf-url" href={`https://${p.url}`} target="_blank" rel="noopener">{p.url} <span aria-hidden="true">↗</span></a>}
+            <p class="pf-summary">{p.summary}</p>
+            <ul class="pf-tags" aria-label="Highlights">
+              {p.tags.map((t) => <li>{t}</li>)}
+            </ul>
+            {p.pending ? (
+              <p class="pf-pending">Full case study coming soon.</p>
+            ) : (
+              <details class="pf-more">
+                <summary>Read the case study</summary>
+                <h4>What we delivered</h4>
+                <ul class="pf-list">
+                  {p.delivered.map((d) => <li>{d}</li>)}
+                </ul>
+                <div class="pf-why">
+                  <span>Why it mattered</span>
+                  <p>{p.why}</p>
+                </div>
+              </details>
+            )}
+          </article>
+        ))}
+      </div>
+      <p class="pf-empty" hidden>No projects in this group yet.</p>
+    </div>
+  </section>
+
+  <section class="pf-stack-band" aria-labelledby="pf-stack-title">
+    <div class="pf-wrap">
+      <h2 id="pf-stack-title" class="pf-eyebrow">Integrations we deliver with</h2>
+      <ul class="pf-stack">
+        {STACK.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="pf-cta">
+    <div class="pf-wrap pf-cta-inner">
+      <h2>Have a platform in mind?</h2>
+      <p>Tell us what you are trying to fix. We will come back with a direction, a scope and a plan.</p>
+      <a class="pf-cta-btn" href="/#contact">Start a project →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="pf-footer">
+  <div class="pf-wrap pf-footer-inner">
+    <div class="pf-footer-top">
+      <div class="pf-footer-brand">
+        <a href="/" class="pf-footer-logo"><span>W</span><strong>WPCodie</strong></a>
+        <span>AI · Software · Technology consulting</span>
+      </div>
+      <nav class="pf-footer-nav">
+        {LINKS.map(([href, label]) => <a href={href}>{label}</a>)}
+      </nav>
+    </div>
+    <div class="pf-footer-bottom">
+      <span>© 2026 WPCodie. All rights reserved.</span>
+      <a href="mailto:service@wpcodie.com">service@wpcodie.com</a>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+(function () {
+  var buttons = document.querySelectorAll('.pf-filters button');
+  var cards = document.querySelectorAll('.pf-card');
+  var empty = document.querySelector('.pf-empty');
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-filter'), shown = 0;
+      buttons.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      cards.forEach(function (c) {
+        var on = f === 'all' || c.getAttribute('data-group') === f;
+        c.hidden = !on; if (on) shown++;
+      });
+      empty.hidden = shown > 0;
+    });
+  });
+})();
+</script>
+</body>
+</html>

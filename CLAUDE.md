@@ -58,6 +58,7 @@ to change may differ. Look at the images it writes before calling the change don
 | Server settings (HTTPS, caching, 404) | `public/.htaccess` |
 | robots.txt, favicon, social image | `public/` |
 | 404 page | `src/pages/404.astro` |
+| Portfolio page (wpcodie.com/portfolio/): case studies, stats, filters | content `src/site/portfolio.js`, page `src/pages/portfolio.astro`, styles `src/assets/css/portfolio.css`; header for non-home pages `src/site/SiteHeader.jsx` |
 
 Structured data and `llms.txt` are generated from the same content the page renders, so a
 copy change in `logic.js` updates them automatically.
