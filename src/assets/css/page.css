@@ -53,3 +53,11 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
 /* Gentle hover-in-place once the button has slid in (the delay lets the slide finish). */
 @keyframes ctaFloat{0%,100%{transform:translateY(0);box-shadow:0 8px 20px rgba(21,24,31,0.22)}50%{transform:translateY(-6px);box-shadow:0 14px 26px rgba(21,24,31,0.16)}}
 @media (prefers-reduced-motion:reduce){.to-top,.m-cta{transition:none}.m-cta.is-visible{animation:none}}
+
+/* Scroll hint beside the Capabilities counter (added for the live site). */
+.cap-meta{display:flex;align-items:flex-end;gap:24px}
+.scroll-hint{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;font:600 12px/1 'Inter',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#8FAAE8;animation:scrollFloat 2s ease-in-out infinite}
+.scroll-hint-arrows{display:flex;flex-direction:column;gap:3px}
+.scroll-hint-arrows svg{display:block}
+@keyframes scrollFloat{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion:reduce){.scroll-hint{animation:none}}

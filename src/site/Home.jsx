@@ -487,11 +487,6 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <span style={css("display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8C877D")}>
-            <span style={css("width:1px;height:28px;background:#2451B8;animation:wpPulse 1.8s ease-in-out infinite")} />
-            Scroll
-          </span>
-          {" "}
         </div>
       </section>
       <section id="capabilities" ref={v.capRef} style={css(`position:relative;height:${v.capHeight ?? ""};background:#15181F;color:#F5F4F0`)}>
@@ -508,6 +503,15 @@ export function template(v) {
               {" "}
             </div>
             {" "}
+            <div class="cap-meta">
+            {/* Scroll hint (moved here from the hero for the live site): this section moves sideways as you scroll. */}
+            <span class="scroll-hint" aria-hidden="true">
+              Scroll
+              <span class="scroll-hint-arrows">
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6 L5 2 L9 6" /></svg>
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 L5 5 L9 1" /></svg>
+              </span>
+            </span>
             <div style={css("display:flex;flex-direction:column;align-items:end;gap:8px")}>
               {" "}
               <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600")}>{txt(v.capCounter)}</span>
@@ -516,6 +520,7 @@ export function template(v) {
                 <div ref={v.capBarRef} style={css("position:absolute;left:0;top:0;bottom:0;width:0%;background:#8FAAE8")} />
               </div>
               {" "}
+            </div>
             </div>
             {" "}
           </div>

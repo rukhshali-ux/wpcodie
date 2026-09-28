@@ -20,6 +20,7 @@ else:
   floating "Back to top" button (`.to-top`, shown after the first screen via `showTop`;
   an ↑ icon on phones), and on phones a floating, gently bobbing "Start a project" (`.m-cta`, `showCta`:
   shown past the hero, hidden once the contact section is on screen).
+  The hero's "Scroll" hint moved to the Capabilities counter (`.scroll-hint`, `.cap-meta`).
 - Never add a CSS framework (Tailwind etc.), a UI library or a web font.
 - Copy changes are fine and expected. So are new pages and sections, when asked for, built
   from the same styles.
