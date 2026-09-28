@@ -489,9 +489,9 @@ export function template(v) {
           {" "}
         </div>
       </section>
-      <section id="capabilities" ref={v.capRef} style={css(`position:relative;height:${v.capHeight ?? ""};background:#15181F;color:#F5F4F0`)}>
+      <section id="capabilities" class="cap-section" ref={v.capRef} style={css(`position:relative;height:${v.capHeight ?? ""};background:#15181F;color:#F5F4F0`)}>
         {" "}
-        <div style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,3vh,40px);padding:64px 0 clamp(8px,3vh,48px)")}>
+        <div class="cap-pin" style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,3vh,40px);padding:64px 0 clamp(8px,3vh,48px)")}>
           {" "}
           <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap")}>
             {" "}
@@ -516,23 +516,28 @@ export function template(v) {
               {" "}
               <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600")}>{txt(v.capCounter)}</span>
               {" "}
-              <div style={css("width:160px;height:2px;background:#2B2F3A;position:relative")}>
+              <div class="cap-bar-track" style={css("width:160px;height:2px;background:#2B2F3A;position:relative")}>
                 <div ref={v.capBarRef} style={css("position:absolute;left:0;top:0;bottom:0;width:0%;background:#8FAAE8")} />
               </div>
               {" "}
             </div>
+            {/* Phone carousel only: previous / next buttons (hidden elsewhere). */}
+            <span class="cap-arrows">
+              <button type="button" aria-label="Previous capability" onClick={v.capPrev}>‹</button>
+              <button type="button" aria-label="Next capability" onClick={v.capNext}>›</button>
+            </span>
             </div>
             {" "}
           </div>
           {" "}
-          <div style={css("width:100%;overflow:hidden")}>
+          <div class="cap-scroller" onScroll={v.capSwipe} style={css("width:100%;overflow:hidden")}>
             {" "}
-            <div ref={v.trackRef} style={css("display:flex;gap:20px;padding:0 max(32px,calc((100vw - 1216px)/2));will-change:transform")}>
+            <div class="cap-track" ref={v.trackRef} style={css("display:flex;gap:20px;padding:0 max(32px,calc((100vw - 1216px)/2));will-change:transform")}>
               {" "}
               {each(v.caps).map((c, $index) => (
                 <Fragment key={$index}>
                   {" "}
-                  <div style={css(`flex:0 0 min(400px,82vw);border:1px solid ${c.border ?? ""};background:${c.bg ?? ""};border-radius:16px;padding:clamp(18px,3vh,28px);display:flex;flex-direction:column;gap:clamp(8px,1.6vh,14px);transition:border-color 300ms cubic-bezier(0.4,0,0.2,1),background 300ms cubic-bezier(0.4,0,0.2,1)`)}>
+                  <div class="cap-card" style={css(`flex:0 0 min(400px,82vw);border:1px solid ${c.border ?? ""};background:${c.bg ?? ""};border-radius:16px;padding:clamp(18px,3vh,28px);display:flex;flex-direction:column;gap:clamp(8px,1.6vh,14px);transition:border-color 300ms cubic-bezier(0.4,0,0.2,1),background 300ms cubic-bezier(0.4,0,0.2,1)`)}>
                   {" "}
                   <div style={css("position:relative;height:clamp(56px,12vh,130px);flex-shrink:0;border-radius:10px;background:#11141A;border:1px solid #232833;overflow:hidden;background-image:radial-gradient(#232833 1px,transparent 1px);background-size:14px 14px")}>
                     {" "}
@@ -719,7 +724,7 @@ export function template(v) {
                 </Fragment>
               ))}
               {" "}
-              <div style={css("flex:0 0 min(400px,82vw);background:#2451B8;border-radius:16px;padding:clamp(18px,3vh,28px);display:flex;flex-direction:column;gap:16px")}>
+              <div class="cap-card-end" style={css("flex:0 0 min(400px,82vw);background:#2451B8;border-radius:16px;padding:clamp(18px,3vh,28px);display:flex;flex-direction:column;gap:16px")}>
                 {" "}
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Next</span>
                 {" "}

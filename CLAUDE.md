@@ -107,5 +107,7 @@ own `<title>`, meta description and canonical URL.
 `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Nothing is being previewed right now. (The "01 What we do" phone layout went live from
-`?preview=mobile` / `?preview=mobile2`.)
+Currently previewed at `?preview=mobile`: Capabilities as a swipe carousel on phones
+(`.cap-*` rules at the end of `page.css`; `capCarousel`, `capSwipe`, `capMove` in `logic.js`,
+which check for the `pv-mobile` class; drop that check when it goes live). The "01 What we
+do" phone layout already went live from `?preview=mobile` / `?preview=mobile2`.

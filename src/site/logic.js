@@ -42,9 +42,11 @@ class Component extends DCLogic {
       if (showCta !== !!this.state.showCta) this.setState({ showCta });
       const prog = (el) => { if (!el) return 0; const r = el.getBoundingClientRect(); const tot = el.offsetHeight - vh; return tot > 0 ? Math.min(1, Math.max(0, -r.top / tot)) : 0; };
       const cp = prog(this.capRef.current), tr = this.trackRef.current;
-      if (tr) { const max = tr.scrollWidth - tr.parentElement.clientWidth; tr.style.transform = `translate3d(${-cp * Math.max(0, max)}px,0,0)`; }
-      if (this.capBarRef.current) this.capBarRef.current.style.width = (cp * 100) + '%';
-      const ci = Math.min(6, Math.floor(cp * 7));
+      // Phone carousel (preview): the cards are swiped, so page scrolling leaves them alone.
+      const carousel = this.capCarousel();
+      if (tr && !carousel) { const max = tr.scrollWidth - tr.parentElement.clientWidth; tr.style.transform = `translate3d(${-cp * Math.max(0, max)}px,0,0)`; }
+      if (this.capBarRef.current && !carousel) this.capBarRef.current.style.width = (cp * 100) + '%';
+      const ci = carousel ? (this.state.cap || 0) : Math.min(6, Math.floor(cp * 7));
       const fp = prog(this.flowRef.current);
       if (this.flowBarRef.current) this.flowBarRef.current.style.width = (fp * 100) + '%';
       const fr = this.flowRef.current ? this.flowRef.current.getBoundingClientRect() : null;
@@ -76,6 +78,18 @@ class Component extends DCLogic {
     }, 300);
     window.addEventListener('scroll', () => this.reveal && this.reveal(), { passive: true });
   }
+  // Capabilities as a swipe carousel on phones (preview: only with ?preview=mobile).
+  capCarousel = () => typeof document !== 'undefined' && document.documentElement.classList.contains('pv-mobile') && window.innerWidth < 960;
+  capStep = (sc) => { const card = sc.querySelector('.cap-card'); return card ? card.offsetWidth + 20 : sc.clientWidth; };
+  capSwipe = (e) => {
+    if (!this.capCarousel()) return;
+    const sc = e.currentTarget, step = this.capStep(sc), max = sc.scrollWidth - sc.clientWidth;
+    const idx = sc.scrollLeft >= max - 2 ? 6 : Math.max(0, Math.min(6, Math.round(sc.scrollLeft / step)));
+    // The last card snaps at 6 steps, before the end of the scroll area: that is 100%.
+    if (this.capBarRef.current) this.capBarRef.current.style.width = Math.min(100, (sc.scrollLeft / (6 * step)) * 100) + '%';
+    if (idx !== this.state.cap) this.setState({ cap: idx });
+  };
+  capMove = (dir) => { const sc = this.trackRef.current && this.trackRef.current.parentElement; if (sc) sc.scrollBy({ left: dir * this.capStep(sc), behavior: 'smooth' }); };
   loops = 0;
   tickPose = () => { clearTimeout(this.poseT); const dur = [2000, 1500, 1300, 1700, 1800][this.state.pose] || 1500;
     this.poseT = setTimeout(() => { if (this.state.intro !== 'closed') return this.tickPose();
@@ -222,6 +236,7 @@ class Component extends DCLogic {
     return {
       ringRef: this.ringRef, aiRef: this.aiRef, w1Ref: this.w1Ref, w2Ref: this.w2Ref, ...this.workVals(), ...this.introVals(), capRef: this.capRef, trackRef: this.trackRef, capBarRef: this.capBarRef, flowRef: this.flowRef, flowBarRef: this.flowBarRef,
       // Small-screen menu (added for the live site).
+      capSwipe: this.capSwipe, capPrev: () => this.capMove(-1), capNext: () => this.capMove(1),
       whatTab: this.state.whatTab || 0, setWhatTab: (i) => this.setState({ whatTab: i }),
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
