@@ -1,0 +1,32 @@
+---
+// wpcodie.com/preview/: the homepage with the current design preview switched on (the rules
+// under html.pv-mobile in page.css), for the owner to review before it goes live. Hidden from
+// search engines and left out of the sitemap; nothing links to it.
+import Page from '../site/Page.jsx';
+import { DESCRIPTION, SITE, TITLE } from '../site/seo.js';
+import interFont from '../assets/fonts/inter-7.woff2?url';
+import groteskFont from '../assets/fonts/space-grotesk-10.woff2?url';
+// Order matters: it is the cascade order of the original design.
+import '../assets/css/runtime.css';
+import '../assets/css/styles.css';
+import '../assets/css/page.css';
+---
+<!DOCTYPE html>
+<html lang="en" class="pv-mobile">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{`Preview · ${TITLE}`}</title>
+<meta name="description" content={DESCRIPTION}>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href={`${SITE}/`}>
+<meta name="theme-color" content="#F5F4F0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin>
+<link rel="preload" href={groteskFont} as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+<div id="dc-root"><div class="sc-host" data-sc-name="index"><Page client:load motion={true} intro={true} /></div></div>
+</body>
+</html>

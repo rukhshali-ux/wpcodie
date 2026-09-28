@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://wpcodie.com',
-  integrations: [preact(), sitemap()],
+  // The /preview/ page is for the owner only: keep it out of the sitemap.
+  integrations: [preact(), sitemap({ filter: (page) => !page.includes('/preview') })],
   build: {
     // One page: inlining the CSS removes a render-blocking request.
     inlineStylesheets: 'always',

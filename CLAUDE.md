@@ -113,8 +113,10 @@ own `<title>`, meta description and canonical URL.
 
 ## Design previews
 
-`wpcodie.com/?preview=mobile` adds the class `pv-mobile` to `<html>` (inline script in
-`src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
+`wpcodie.com/preview/` (`src/pages/preview.astro`; noindex, not in the sitemap) is the
+homepage with `pv-mobile` always on, so the owner can review a preview as its own page.
+`wpcodie.com/?preview=mobile` does the same on the homepage itself: it adds the class
+`pv-mobile` to `<html>` (inline script in `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
 Previewing now, on every screen size: a "Clients who worked with us" logo ticker under the
