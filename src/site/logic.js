@@ -32,10 +32,13 @@ class Component extends DCLogic {
     this.onScroll = () => {
       const vh = window.innerHeight;
       // Back-to-top button (added for the live site).
-      const showTop = window.scrollY > vh; if (showTop !== !!this.state.showTop) this.setState({ showTop });
+      // Both floating buttons stay out of the way while "05 Ideas into systems" is pinned: it fills the screen.
+      const sys = document.getElementById('systems'), sr = sys && sys.getBoundingClientRect();
+      const inSystems = !!sr && sr.top < vh * 0.5 && sr.bottom > vh * 0.5;
+      const showTop = window.scrollY > vh && !inSystems; if (showTop !== !!this.state.showTop) this.setState({ showTop });
       // Floating call to action on phones: past the hero, until the contact section comes on screen.
       const contact = document.getElementById('contact');
-      const showCta = window.scrollY > vh * 0.8 && !(contact && contact.getBoundingClientRect().top < vh);
+      const showCta = window.scrollY > vh * 0.8 && !inSystems && !(contact && contact.getBoundingClientRect().top < vh);
       if (showCta !== !!this.state.showCta) this.setState({ showCta });
       const prog = (el) => { if (!el) return 0; const r = el.getBoundingClientRect(); const tot = el.offsetHeight - vh; return tot > 0 ? Math.min(1, Math.max(0, -r.top / tot)) : 0; };
       const cp = prog(this.capRef.current), tr = this.trackRef.current;

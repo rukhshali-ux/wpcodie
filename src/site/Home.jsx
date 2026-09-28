@@ -1043,7 +1043,7 @@ export function template(v) {
       </section>
       <section id="systems" ref={v.flowRef} style={css("position:relative;height:320vh;background:#15181F;color:#F5F4F0")}>
         {" "}
-        <div style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,4vh,48px);padding:clamp(56px,8vh,80px) 0 clamp(16px,3vh,32px)")}>
+        <div class="flow-pin" style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,4vh,48px);padding:clamp(56px,8vh,80px) 0 clamp(16px,3vh,32px)")}>
           {" "}
           <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:14px")}>
             {" "}
@@ -1054,7 +1054,7 @@ export function template(v) {
             {" "}
             <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.5rem,min(3.6vw,5vh),2.75rem);line-height:1.1;letter-spacing:-0.02em")}>An idea is only the starting point.</h2>
             {" "}
-            <p style={css("margin:0;font-size:1.0625rem;line-height:1.6;color:#C9C6BE;max-width:620px")}>Keep scrolling. A rough idea comes in on the left and leaves on the right as a deployed, intelligent system.</p>
+            <p class="flow-intro" style={css("margin:0;font-size:1.0625rem;line-height:1.6;color:#C9C6BE;max-width:620px")}>Keep scrolling. A rough idea comes in on the left and leaves on the right as a deployed, intelligent system.</p>
             {" "}
           </div>
           {" "}
@@ -1064,7 +1064,7 @@ export function template(v) {
               <div ref={v.flowBarRef} style={css("position:absolute;left:0;top:0;bottom:0;width:0%;background:#2451B8")} />
             </div>
             {" "}
-            <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px")}>
+            <div class="flow-grid" style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px")}>
               {" "}
               {each(v.flow).map((f, $index) => (
                 <Fragment key={$index}>

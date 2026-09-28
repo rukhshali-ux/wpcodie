@@ -61,3 +61,20 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
 .scroll-hint-arrows svg{display:block}
 @keyframes scrollFloat{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
 @media (prefers-reduced-motion:reduce){.scroll-hint{animation:none}}
+
+/* "05 Ideas into systems" on phones and tablets (added for the live site). The design pins it
+   at the full screen height from the very top, centred: on a phone that is taller than the
+   screen and starts behind the header. Pin it below the 70px header, start at the top and
+   make the six steps compact. */
+@media (max-width:959px){
+  .flow-pin{top:70px!important;height:calc(100vh - 70px)!important;height:calc(100dvh - 70px)!important;justify-content:flex-start!important;gap:20px!important;padding:24px 0 16px!important}
+  .flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .flow-grid>div{min-height:0!important;padding:12px!important;gap:6px!important}
+}
+@media (max-width:959px) and (max-height:760px){
+  .flow-intro{display:none}
+  .flow-pin{gap:14px!important;padding-top:16px!important;padding-bottom:6px!important}
+  .flow-grid>div>span:nth-of-type(2){font-size:1.05rem!important}
+  .flow-grid>div>div{flex-direction:row!important;flex-wrap:wrap;gap:4px!important}
+  .flow-grid>div>div>span{font-size:11px!important;padding:3px 6px!important}
+}
