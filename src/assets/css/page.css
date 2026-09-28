@@ -78,3 +78,22 @@ a{color:#2451B8;text-decoration:none}a:hover{color:#1B3F92}
   .flow-grid>div>div{flex-direction:row!important;flex-wrap:wrap;gap:4px!important}
   .flow-grid>div>div>span{font-size:11px!important;padding:3px 6px!important}
 }
+
+/* ---------------------------------------------------------------------------------------
+   PREVIEW ONLY (wpcodie.com/?preview=mobile): proposed phone layout for "01 What we do".
+   Nothing here applies on the normal site. */
+html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+@media (max-width:959px){
+  html.pv-mobile .what-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:32px!important}
+  html.pv-mobile .what-card{padding:24px!important;gap:12px!important}
+  html.pv-mobile .what-body{display:none}
+  html.pv-mobile .what-steps{display:flex!important;flex-direction:column;border-top:none!important}
+  html.pv-mobile .what-step{position:relative;padding:0 0 20px 46px!important;border-top:none!important;margin-top:0!important;gap:2px!important}
+  html.pv-mobile .what-step::before{content:'';position:absolute;left:15px;top:32px;bottom:2px;width:2px;background:#D6D3CB}
+  html.pv-mobile .what-step:last-child{padding-bottom:0!important}
+  html.pv-mobile .what-step:last-child::before{display:none}
+  html.pv-mobile .what-step-num{position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:#2451B8;color:#F5F4F0!important;display:flex;align-items:center;justify-content:center;font-size:0!important;letter-spacing:0!important}
+  html.pv-mobile .what-step-num .sc-interp{font-size:12px;line-height:1}
+  html.pv-mobile .what-step-title{font-size:1.125rem!important;line-height:32px}
+  html.pv-mobile .what-step-body{font-size:14px!important;line-height:1.5!important}
+}

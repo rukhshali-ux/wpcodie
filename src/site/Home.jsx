@@ -741,7 +741,7 @@ export function template(v) {
       </section>
       <section id="what">
         {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:56px")}>
+        <div class="what-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:56px")}>
           {" "}
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
@@ -761,7 +761,7 @@ export function template(v) {
             {each(v.disciplines).map((d, $index) => (
               <Fragment key={$index}>
                 {" "}
-                <div data-reveal="1" style={css(`border:1px solid #E2DFD7;background:${d.bg ?? ""};color:${d.fg ?? ""};border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:18px`)}>
+                <div class="what-card" data-reveal="1" style={css(`border:1px solid #E2DFD7;background:${d.bg ?? ""};color:${d.fg ?? ""};border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:18px`)}>
                 {" "}
                 <div style={css("display:flex;align-items:baseline;gap:14px")}>
                   <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:${d.accent ?? ""}`)}>{txt(d.num)}</span>
@@ -770,7 +770,7 @@ export function template(v) {
                 {" "}
                 <p style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:500;line-height:1.35")}>{txt(d.lead)}</p>
                 {" "}
-                <p style={css("margin:0;font-size:15px;line-height:1.6;opacity:0.85")}>{txt(d.body)}</p>
+                <p class="what-body" style={css("margin:0;font-size:15px;line-height:1.6;opacity:0.85")}>{txt(d.body)}</p>
                 {" "}
                 <div style={css("display:flex;gap:8px;flex-wrap:wrap;padding-top:8px")}>
                   {" "}
@@ -789,18 +789,18 @@ export function template(v) {
             {" "}
           </div>
           {" "}
-          <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid #D6D3CB")}>
+          <div class="what-steps" style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid #D6D3CB")}>
             {" "}
             {each(v.steps).map((s, $index) => (
               <Fragment key={$index}>
                 {" "}
-                <div data-reveal="1" style={css("padding:24px 20px 8px 0;display:flex;flex-direction:column;gap:10px;border-top:2px solid #2451B8;margin-top:-1px")}>
+                <div class="what-step" data-reveal="1" style={css("padding:24px 20px 8px 0;display:flex;flex-direction:column;gap:10px;border-top:2px solid #2451B8;margin-top:-1px")}>
                 {" "}
-                <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8C877D")}>{"Step "}{txt(s.num)}</span>
+                <span class="what-step-num" style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8C877D")}>{"Step "}{txt(s.num)}</span>
                 {" "}
-                <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(s.title)}</span>
+                <span class="what-step-title" style={css("font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(s.title)}</span>
                 {" "}
-                <span style={css("font-size:14px;line-height:1.6;color:#4A4740")}>{txt(s.body)}</span>
+                <span class="what-step-body" style={css("font-size:14px;line-height:1.6;color:#4A4740")}>{txt(s.body)}</span>
                 {" "}
               </div>
                 {" "}

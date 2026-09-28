@@ -98,3 +98,11 @@ Create `src/pages/<name>.astro`. Import `../assets/css/styles.css` and
 `../assets/css/page.css`, and reuse the header, footer and section styles from `Home.jsx`
 so the new page matches the design. It is added to the sitemap automatically. Give it its
 own `<title>`, meta description and canonical URL.
+
+## Design previews
+
+`wpcodie.com/?preview=mobile` adds the class `pv-mobile` to `<html>` (inline script in
+`src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
+the owner can try on a phone before they go live; the normal site ignores them. To make a
+proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
+Currently previewed: the phone layout of "01 What we do" (`.what-*` classes).
