@@ -61,6 +61,8 @@ jobs:
           curl -sS --max-time 30 --user "$U:$P" "ftp://$S/%2Fdomains/wpcodie.com/public_html/" || true
           curl -sS --max-time 30 --user "$U:$P" "ftp://$S/%2Fdomains/wpcodie.com/public_html/.htaccess" -o backup/htaccess.txt || true
           echo "== current .htaccess"; cat backup/htaccess.txt || true
+          echo "== saved enquiries (names and sizes only; contents are never printed)"
+          curl -sS --max-time 30 --user "$U:$P" "ftp://$S/%2Fdomains/wpcodie.com/enquiries/" || echo "(no enquiries folder yet)"
       - uses: actions/upload-artifact@v4
         with:
           name: webroot-htaccess-current

@@ -1,6 +1,10 @@
 <?php
-// Contact form endpoint. The site posts JSON here (src/site/logic.js, `submit`) and this
-// emails it to the inbox below. Runs on the Hostinger web host; no framework, no database.
+// Contact form endpoint. The site posts JSON here (src/site/logic.js, `submit`). Every
+// enquiry is first saved to a CSV file outside the web root, then emailed to the inbox below,
+// so nothing is lost if email fails. Runs on the Hostinger web host; no framework, no database.
+//
+// Saved enquiries: /domains/wpcodie.com/enquiries/enquiries.csv (hPanel -> File Manager). That
+// folder sits next to public_html, not inside it, so it cannot be opened from a browser.
 declare(strict_types=1);
 
 // Where enquiries go, and the address they are sent from. FROM must be a mailbox that
@@ -8,6 +12,7 @@ declare(strict_types=1);
 const TO = 'hello@wpcodie.com';
 const FROM = 'hello@wpcodie.com';
 const MAX_PER_HOUR = 5;
+const STORE_DIR = __DIR__ . '/../enquiries';
 const NEEDS = ['AI application', 'Custom software', 'Web app', 'Mobile app', 'Automation', 'Consulting'];
 
 header('Content-Type: application/json; charset=utf-8');
@@ -24,6 +29,38 @@ function field(array $in, string $key, int $max): string
 {
     $value = isset($in[$key]) && is_string($in[$key]) ? trim($in[$key]) : '';
     return mb_substr($value, 0, $max);
+}
+
+/**
+ * Appends one enquiry to enquiries.csv, creating the folder and header row the first time.
+ * Cells a spreadsheet would read as a formula are prefixed with a quote.
+ */
+function store(array $row): bool
+{
+    if (!is_dir(STORE_DIR) && !@mkdir(STORE_DIR, 0700, true)) {
+        return false;
+    }
+    $guard = STORE_DIR . '/.htaccess';
+    if (!is_file($guard)) {
+        @file_put_contents($guard, "Require all denied\nDeny from all\n");
+    }
+    $file = STORE_DIR . '/enquiries.csv';
+    $new = !is_file($file);
+    $fh = @fopen($file, 'ab');
+    if ($fh === false) {
+        return false;
+    }
+    $safe = array_map(static fn ($v) => preg_match('/^[=+\-@\t\r]/', (string) $v) ? "'" . $v : (string) $v, $row);
+    $ok = flock($fh, LOCK_EX);
+    if ($ok && $new) {
+        $ok = fputcsv($fh, ['received (UTC)', 'name', 'email', 'company', 'needs', 'message', 'emailed'], ',', '"', '') !== false;
+    }
+    if ($ok) {
+        $ok = fputcsv($fh, $safe, ',', '"', '') !== false;
+    }
+    flock($fh, LOCK_UN);
+    fclose($fh);
+    return $ok;
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -76,5 +113,9 @@ $headers = implode("\r\n", [
     'Content-Type: text/plain; charset=UTF-8',
 ]);
 
-$sent = mail(TO, mb_encode_mimeheader('New enquiry: ' . $name, 'UTF-8'), $body, $headers, '-f' . FROM);
-reply($sent ? 200 : 500, ['ok' => $sent]);
+$sent = @mail(TO, mb_encode_mimeheader('New enquiry: ' . $name, 'UTF-8'), $body, $headers, '-f' . FROM);
+$stored = store([gmdate('Y-m-d H:i:s'), $name, $email, $company, implode(', ', $needs), $message, $sent ? 'yes' : 'no']);
+
+// Saved or emailed is enough: the enquiry reached us. Only when both fail does the visitor
+// see the "please email us instead" message.
+reply($stored || $sent ? 200 : 500, ['ok' => $stored || $sent, 'stored' => $stored, 'emailed' => $sent]);

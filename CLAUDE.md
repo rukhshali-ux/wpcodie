@@ -89,8 +89,11 @@ put them in the repository.
 
 ## Contact form
 
-The form posts JSON to `/contact.php`, which emails `hello@wpcodie.com` with the
-enquirer's address as Reply-To. It has a hidden spam-trap field (`website`) and allows five
+The form posts JSON to `/contact.php`, which first saves the enquiry to
+`/domains/wpcodie.com/enquiries/enquiries.csv` (outside the web root, so private; open it
+from hPanel File Manager), then emails `hello@wpcodie.com` with the enquirer's address as
+Reply-To. The visitor sees success if it was saved or emailed. The **Test contact form**
+workflow sends one labelled test enquiry end to end. It has a hidden spam-trap field (`website`) and allows five
 messages an hour per IP address. `FROM` in `contact.php` must be a real mailbox on the
 domain in Hostinger, or the mail will be marked as spam. Test it after any change to the
 form: `npm run build`, then `php -S localhost:8000 -t dist` and submit the form.

@@ -1,0 +1,25 @@
+# Manual end-to-end check of the live contact form. Sends ONE enquiry named "WPCodie form test"
+# (it is saved to enquiries.csv and emailed to hello@wpcodie.com like a real one), prints the
+# server's answer (stored / emailed), and lists the enquiries folder (sizes only).
+# Run it from the Actions tab: Test contact form -> Run workflow.
+name: Test contact form
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send one test enquiry
+        run: |
+          curl -sS -w "  -> HTTP %{http_code}\n" --max-time 30 -H 'Content-Type: application/json' \
+            -d "{\"name\":\"WPCodie form test\",\"email\":\"form-test@wpcodie.com\",\"company\":\"GitHub Actions\",\"msg\":\"Automated end-to-end test of the contact form, run ${GITHUB_RUN_ID}. Safe to delete.\",\"needs\":[\"Consulting\"]}" \
+            https://wpcodie.com/contact.php
+      - name: Saved enquiries folder (names and sizes only)
+        env:
+          S: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          curl -sS --max-time 30 --user "$U:$P" "ftp://$S/%2Fdomains/wpcodie.com/enquiries/" || echo "(no enquiries folder yet)"
