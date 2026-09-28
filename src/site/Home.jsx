@@ -495,7 +495,7 @@ export function template(v) {
         <div class="clients-viewport">
           <div class="clients-track">
             {[0, 1].map((copy) => each(v.clients).map((c, $index) => {
-              const logo = <img src={c.logo} alt={copy ? "" : c.name} width={c.w} height={c.h} loading="lazy" decoding="async" style={css(`--h:${c.size}px`)} />;
+              const logo = <img src={c.logo} alt={copy ? "" : c.name} width={c.w} height={c.h} decoding="async" style={css(`--h:${c.size}px`)} />;
               return c.url
                 ? <a key={copy + "-" + $index} class="client" href={c.url} target="_blank" rel="noopener" title={c.name} aria-hidden={copy ? "true" : undefined} tabIndex={copy ? -1 : undefined} style={css(`background:${c.bg}`)}>{logo}</a>
                 : <span key={copy + "-" + $index} class="client" title={c.name} aria-hidden={copy ? "true" : undefined} style={css(`background:${c.bg}`)}>{logo}</span>;
@@ -765,7 +765,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b data-pv="01">01</b>
+              <b>01</b>
               {" What we do"}
             </span>
             {" "}
@@ -840,371 +840,6 @@ export function template(v) {
           {" "}
         </div>
       </section>
-      <section id="ai" style={css("background:#EEECE6;border-top:1px solid #E2DFD7")}>
-        {" "}
-        <div class="ai-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
-          {" "}
-          <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
-            {" "}
-            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b data-pv="03">02</b>
-              {" AI & intelligent applications"}
-            </span>
-            {" "}
-            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>AI that holds up after the pilot.</h2>
-            {" "}
-            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty")}>We build practical AI that plugs into the way your business already operates. The problem decides where AI goes — not the hype cycle.</p>
-            {" "}
-          </div>
-          {" "}
-          <div ref={v.aiRef} class="ai-flow" style={css("position:relative;background:#15181F;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px;overflow:hidden")}>
-            {" "}
-            <div style={css("display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#B5B1A8")}>
-              <span>How an intelligent system moves</span>
-              <span style={css("color:#8FAAE8;display:flex;align-items:center;gap:8px")}>
-                <span style={css("width:7px;height:7px;border-radius:50%;background:#8FAAE8;animation:wpPulse 1.4s infinite")} />
-                {txt(v.aiLabel)}
-              </span>
-            </div>
-            {" "}
-            <div style={css("position:relative;height:2px;background:#2B2F3A;margin:0 4px")}>
-              {" "}
-              <div style={css(`position:absolute;left:0;top:0;bottom:0;width:${v.aiProgress ?? ""};background:#2451B8;transition:width 900ms cubic-bezier(0.4,0,0.2,1)`)} />
-              {" "}
-              <span style={css(`position:absolute;top:-4px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#8FAAE8;box-shadow:0 0 0 4px rgba(143,170,232,0.2);left:${v.aiProgress ?? ""};transition:left 900ms cubic-bezier(0.4,0,0.2,1)`)} />
-              {" "}
-            </div>
-            {" "}
-            <div class="ai-steps" onTouchStart={v.aiHold} onPointerDown={v.aiHold} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px")}>
-              {" "}
-              {each(v.pipeline).map((p, $index) => (
-                <Fragment key={$index}>
-                  {" "}
-                  <div class="ai-step" style={css(`border:1px solid ${p.border ?? ""};background:${p.bg ?? ""};border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:12px;transform:${p.lift ?? ""};transition:all 500ms cubic-bezier(0.4,0,0.2,1)`)}>
-                  {" "}
-                  <div style={css("display:flex;justify-content:space-between;align-items:center")}>
-                    <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:${p.numColor ?? ""}`)}>{txt(p.num)}</span>
-                    <span style={css(`font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:${p.numColor ?? ""}`)}>{txt(p.state)}</span>
-                  </div>
-                  {" "}
-                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.375rem;font-weight:600;color:#F5F4F0")}>{txt(p.title)}</span>
-                  {" "}
-                  <span style={css("font-size:14px;line-height:1.6;color:#C9C6BE")}>{txt(p.body)}</span>
-                  {" "}
-                  <div style={css("display:flex;flex-direction:column;gap:5px;margin-top:auto")}>
-                    {" "}
-                    {each(p.signals).map((s, $index) => (
-                      <Fragment key={$index}>
-                        <div style={css("height:5px;border-radius:3px;background:#2B2F3A;overflow:hidden")}>
-                        <div style={css(`height:100%;width:${s.w ?? ""};background:${s.c ?? ""};border-radius:3px;transition:width 700ms cubic-bezier(0.4,0,0.2,1) ${s.d ?? ""}`)} />
-                      </div>
-                      </Fragment>
-                    ))}
-                    {" "}
-                  </div>
-                  {" "}
-                </div>
-                  {" "}
-                </Fragment>
-              ))}
-              {" "}
-            </div>
-            {" "}
-          </div>
-          {" "}
-          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
-          <div class="sw-meta">
-            <span class="sw-hint" aria-hidden="true">
-              Swipe
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
-            </span>
-            <span class="sw-count">{txt(v.aiCardCounter)}</span>
-            <span class="sw-arrows">
-              <button type="button" aria-label="Previous example" onClick={v.aiPrev}>‹</button>
-              <button type="button" aria-label="Next example" onClick={v.aiNext}>›</button>
-            </span>
-          </div>
-          <div class="ai-cards sw-row" onScroll={v.aiSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px")}>
-            {" "}
-            {each(v.aiCards).map((a, $index) => (
-              <Fragment key={$index}>
-                {" "}
-                <div class="scp1 ai-card" data-reveal="1" style={css("background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;transition:transform 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)")}>
-                {" "}
-                <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.375rem;letter-spacing:-0.01em")}>{txt(a.title)}</h3>
-                {" "}
-                <p style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>{txt(a.body)}</p>
-                {" "}
-                <div style={css("margin-top:auto;background:#EEECE6;border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:6px")}>
-                  {" "}
-                  <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>In practice</span>
-                  {" "}
-                  <span style={css("font-size:14px;line-height:1.55;color:#2B2F3A")}>{txt(a.example)}</span>
-                  {" "}
-                </div>
-                {" "}
-              </div>
-                {" "}
-              </Fragment>
-            ))}
-            {" "}
-          </div>
-          {" "}
-        </div>
-      </section>
-      <section id="applications">
-        {" "}
-        <div class="app-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
-          {" "}
-          <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
-            {" "}
-            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b data-pv="04">03</b>
-              {" Application development"}
-            </span>
-            {" "}
-            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Idea in, product out.</h2>
-            {" "}
-            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty")}>We ship whole products, not just code: definition, architecture, engineering, release, and the operations that keep them healthy.</p>
-            {" "}
-          </div>
-          {" "}
-          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
-          <div class="sw-meta">
-            <span class="sw-hint" aria-hidden="true">
-              Swipe
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
-            </span>
-            <span class="sw-count">{txt(v.appCardCounter)}</span>
-            <span class="sw-arrows">
-              <button type="button" aria-label="Previous application" onClick={v.appPrev}>‹</button>
-              <button type="button" aria-label="Next application" onClick={v.appNext}>›</button>
-            </span>
-          </div>
-          <div class="app-cards sw-row" onScroll={v.appSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(max(300px,calc(50% - 10px)),1fr));gap:20px")}>
-            {" "}
-            {each(v.apps).map((a, $index) => (
-              <Fragment key={$index}>
-                {" "}
-                <div class="app-card" data-reveal="1" onMouseEnter={a.enter} onMouseLeave={a.leave} onClick={a.enter} style={css(`cursor:default;border:1px solid ${a.border ?? ""};border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;background:${a.bg ?? ""};box-shadow:${a.shadow ?? ""};transition:border-color 250ms cubic-bezier(0.4,0,0.2,1),background 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)`)}>
-                {" "}
-                <span style={css("width:44px;height:44px;border-radius:10px;background:#E3E8F4;color:#2451B8;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px")}>{txt(a.mark)}</span>
-                {" "}
-                <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.375rem")}>{txt(a.title)}</h3>
-                {" "}
-                <p style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>{txt(a.body)}</p>
-                {" "}
-                <div class="app-hover" style={css(`display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#2451B8;opacity:${a.hintOpacity ?? ""};transition:opacity 200ms cubic-bezier(0.4,0,0.2,1)`)}>
-                  <span>Hover for details</span>
-                  <span>+</span>
-                </div>
-                {" "}
-                <div class="app-more" style={css(`display:grid;grid-template-rows:${a.rows ?? ""};transition:grid-template-rows 300ms cubic-bezier(0.4,0,0.2,1)`)}>
-                  {" "}
-                  <div style={css("overflow:hidden;min-height:0")}>
-                    {" "}
-                    <div class="app-points" style={css(`display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:0 20px;padding-top:4px;opacity:${a.listOpacity ?? ""};transform:${a.listShift ?? ""};transition:opacity 300ms cubic-bezier(0.4,0,0.2,1),transform 300ms cubic-bezier(0.4,0,0.2,1)`)}>
-                      {" "}
-                      {each(a.points).map((p, $index) => (
-                        <Fragment key={$index}>
-                          <span style={css("font-size:14px;padding:9px 0;border-top:1px solid #E2DFD7;display:flex;gap:10px")}>
-                          <span style={css("color:#2451B8")}>→</span>
-                          {txt(p)}
-                        </span>
-                        </Fragment>
-                      ))}
-                      {" "}
-                    </div>
-                    {" "}
-                  </div>
-                  {" "}
-                </div>
-                {" "}
-              </div>
-                {" "}
-              </Fragment>
-            ))}
-            {" "}
-          </div>
-          {" "}
-        </div>
-      </section>
-      <section id="consulting" style={css("background:#EEECE6;border-top:1px solid #E2DFD7")}>
-        {" "}
-        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:64px;align-items:start")}>
-          {" "}
-          <div style={css("display:flex;flex-direction:column;gap:24px")}>
-            {" "}
-            <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px")}>
-              {" "}
-              <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-                <b data-pv="05">04</b>
-                {" Technology consulting"}
-              </span>
-              {" "}
-              <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Understand first. Build second.</h2>
-              {" "}
-              <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty")}>Good technology begins with a well-understood problem. We help teams weigh options, set technical direction, and draw up a roadmap before any development starts.</p>
-              {" "}
-            </div>
-            {" "}
-            <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:0;border-top:1px solid #D6D3CB")}>
-              {" "}
-              {each(v.deliverables).map((d, $index) => (
-                <Fragment key={$index}>
-                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.0625rem;font-weight:500;padding:13px 0;border-bottom:1px solid #D6D3CB;display:flex;gap:12px")}>
-                  <span style={css("color:#2451B8")}>✓</span>
-                  {txt(d)}
-                </span>
-                </Fragment>
-              ))}
-              {" "}
-            </div>
-            {" "}
-            <p data-reveal="1" style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>Our engagements end in something usable: decisions, architecture, and a plan an engineering team can pick up — whether that team is ours or yours.</p>
-            {" "}
-            <a href="#contact" style={css("display:inline-flex;align-self:flex-start")}>
-              <Button variant="secondary">Discuss your project</Button>
-            </a>
-            {" "}
-          </div>
-          {" "}
-          <div style={css("display:flex;flex-direction:column;position:relative")}>
-            {" "}
-            <div style={css("position:absolute;left:19px;top:28px;bottom:28px;width:1px;background:#C9C5BB")} />
-            {" "}
-            {each(v.phases).map((p, $index) => (
-              <Fragment key={$index}>
-                {" "}
-                <div data-reveal="1" style={css("position:relative;display:grid;grid-template-columns:40px 1fr;gap:20px;padding:18px 0")}>
-                {" "}
-                <span style={css("width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;background:#2451B8;color:#F5F4F0")}>{txt(p.num)}</span>
-                {" "}
-                <div style={css("display:flex;flex-direction:column;gap:6px;background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:18px 20px")}>
-                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(p.title)}</span>
-                  <span style={css("font-size:14px;line-height:1.6;color:#4A4740")}>{txt(p.body)}</span>
-                </div>
-                {" "}
-              </div>
-                {" "}
-              </Fragment>
-            ))}
-            {" "}
-          </div>
-          {" "}
-        </div>
-      </section>
-      <section id="systems" ref={v.flowRef} style={css("position:relative;height:320vh;background:#15181F;color:#F5F4F0")}>
-        {" "}
-        <div class="flow-pin" style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,4vh,48px);padding:clamp(56px,8vh,80px) 0 clamp(16px,3vh,32px)")}>
-          {" "}
-          <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:14px")}>
-            {" "}
-            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8FAAE8")}>
-              <b data-pv="06">05</b>
-              {" Ideas into systems"}
-            </span>
-            {" "}
-            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.5rem,min(3.6vw,5vh),2.75rem);line-height:1.1;letter-spacing:-0.02em")}>An idea is only the starting point.</h2>
-            {" "}
-            <p class="flow-intro" style={css("margin:0;font-size:1.0625rem;line-height:1.6;color:#C9C6BE;max-width:620px")}>Keep scrolling. A rough idea comes in on the left and leaves on the right as a deployed, intelligent system.</p>
-            {" "}
-          </div>
-          {" "}
-          <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:24px")}>
-            {" "}
-            <div style={css("position:relative;height:2px;background:#2B2F3A")}>
-              <div ref={v.flowBarRef} style={css("position:absolute;left:0;top:0;bottom:0;width:0%;background:#2451B8")} />
-            </div>
-            {" "}
-            <div class="flow-grid" style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px")}>
-              {" "}
-              {each(v.flow).map((f, $index) => (
-                <Fragment key={$index}>
-                  {" "}
-                  <div style={css(`border:1px solid ${f.border ?? ""};background:${f.bg ?? ""};border-radius:12px;padding:clamp(12px,2.2vh,20px);min-height:clamp(110px,22vh,190px);display:flex;flex-direction:column;gap:clamp(6px,1.2vh,12px);opacity:${f.opacity ?? ""};transform:${f.transform ?? ""};transition:all 400ms cubic-bezier(0.4,0,0.2,1)`)}>
-                  {" "}
-                  <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:${f.numColor ?? ""}`)}>{txt(f.num)}</span>
-                  {" "}
-                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(f.title)}</span>
-                  {" "}
-                  <div style={css("display:flex;flex-direction:column;gap:6px;margin-top:auto")}>
-                    {" "}
-                    {each(f.items).map((i, $index) => (
-                      <Fragment key={$index}>
-                        <span style={css("font-size:12px;padding:5px 8px;border-radius:6px;background:rgba(245,244,240,0.08);color:#D9D6CE")}>{txt(i)}</span>
-                      </Fragment>
-                    ))}
-                    {" "}
-                  </div>
-                  {" "}
-                </div>
-                  {" "}
-                </Fragment>
-              ))}
-              {" "}
-            </div>
-            {" "}
-            <div style={css("display:flex;justify-content:space-between;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#B5B1A8")}>
-              <span>Idea</span>
-              <span>Impact</span>
-            </div>
-            {" "}
-          </div>
-          {" "}
-        </div>
-      </section>
-      <section id="principles">
-        {" "}
-        <div class="ops-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
-          {" "}
-          <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
-            {" "}
-            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b data-pv="07">06</b>
-              {" How we operate"}
-            </span>
-            {" "}
-            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Technology decisions you can defend.</h2>
-            {" "}
-            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740")}>Four principles guide every engagement, from the first workshop to the production release.</p>
-            {" "}
-          </div>
-          {" "}
-          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
-          <div class="sw-meta">
-            <span class="sw-hint" aria-hidden="true">
-              Swipe
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
-            </span>
-            <span class="sw-count">{txt(v.opsCardCounter)}</span>
-            <span class="sw-arrows">
-              <button type="button" aria-label="Previous principle" onClick={v.opsPrev}>‹</button>
-              <button type="button" aria-label="Next principle" onClick={v.opsNext}>›</button>
-            </span>
-          </div>
-          <div class="ops-cards sw-row" onScroll={v.opsSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px")}>
-            {" "}
-            {each(v.principles).map((p, $index) => (
-              <Fragment key={$index}>
-                {" "}
-                <div data-reveal="1" style={css("background:#EEECE6;border:1px solid #E2DFD7;border-radius:12px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;min-height:240px")}>
-                {" "}
-                <span style={css("font-family:'Space Grotesk',sans-serif;font-size:2.25rem;font-weight:600;color:#2451B8;letter-spacing:-0.02em")}>{txt(p.num)}</span>
-                {" "}
-                <h3 style={css("margin:auto 0 0;font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(p.title)}</h3>
-                {" "}
-                <span style={css("font-size:15px;line-height:1.6;color:#4A4740")}>{txt(p.body)}</span>
-                {" "}
-              </div>
-                {" "}
-              </Fragment>
-            ))}
-            {" "}
-          </div>
-          {" "}
-        </div>
-      </section>
       <section id="work" style={css("background:#EEECE6;border-top:1px solid #E2DFD7")}>
         {" "}
         <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:72px")}>
@@ -1212,7 +847,7 @@ export function template(v) {
           <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
             {" "}
             <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
-              <b data-pv="02">07</b>
+              <b>02</b>
               {" Selected work"}
             </span>
             {" "}
@@ -1584,6 +1219,371 @@ export function template(v) {
               </div>
               {" "}
             </div>
+            {" "}
+          </div>
+          {" "}
+        </div>
+      </section>
+      <section id="ai" style={css("background:#EEECE6;border-top:1px solid #E2DFD7")}>
+        {" "}
+        <div class="ai-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
+          {" "}
+          <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
+            {" "}
+            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
+              <b>03</b>
+              {" AI & intelligent applications"}
+            </span>
+            {" "}
+            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>AI that holds up after the pilot.</h2>
+            {" "}
+            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty")}>We build practical AI that plugs into the way your business already operates. The problem decides where AI goes — not the hype cycle.</p>
+            {" "}
+          </div>
+          {" "}
+          <div ref={v.aiRef} class="ai-flow" style={css("position:relative;background:#15181F;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px;overflow:hidden")}>
+            {" "}
+            <div style={css("display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#B5B1A8")}>
+              <span>How an intelligent system moves</span>
+              <span style={css("color:#8FAAE8;display:flex;align-items:center;gap:8px")}>
+                <span style={css("width:7px;height:7px;border-radius:50%;background:#8FAAE8;animation:wpPulse 1.4s infinite")} />
+                {txt(v.aiLabel)}
+              </span>
+            </div>
+            {" "}
+            <div style={css("position:relative;height:2px;background:#2B2F3A;margin:0 4px")}>
+              {" "}
+              <div style={css(`position:absolute;left:0;top:0;bottom:0;width:${v.aiProgress ?? ""};background:#2451B8;transition:width 900ms cubic-bezier(0.4,0,0.2,1)`)} />
+              {" "}
+              <span style={css(`position:absolute;top:-4px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#8FAAE8;box-shadow:0 0 0 4px rgba(143,170,232,0.2);left:${v.aiProgress ?? ""};transition:left 900ms cubic-bezier(0.4,0,0.2,1)`)} />
+              {" "}
+            </div>
+            {" "}
+            <div class="ai-steps" onTouchStart={v.aiHold} onPointerDown={v.aiHold} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px")}>
+              {" "}
+              {each(v.pipeline).map((p, $index) => (
+                <Fragment key={$index}>
+                  {" "}
+                  <div class="ai-step" style={css(`border:1px solid ${p.border ?? ""};background:${p.bg ?? ""};border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:12px;transform:${p.lift ?? ""};transition:all 500ms cubic-bezier(0.4,0,0.2,1)`)}>
+                  {" "}
+                  <div style={css("display:flex;justify-content:space-between;align-items:center")}>
+                    <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:${p.numColor ?? ""}`)}>{txt(p.num)}</span>
+                    <span style={css(`font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:${p.numColor ?? ""}`)}>{txt(p.state)}</span>
+                  </div>
+                  {" "}
+                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.375rem;font-weight:600;color:#F5F4F0")}>{txt(p.title)}</span>
+                  {" "}
+                  <span style={css("font-size:14px;line-height:1.6;color:#C9C6BE")}>{txt(p.body)}</span>
+                  {" "}
+                  <div style={css("display:flex;flex-direction:column;gap:5px;margin-top:auto")}>
+                    {" "}
+                    {each(p.signals).map((s, $index) => (
+                      <Fragment key={$index}>
+                        <div style={css("height:5px;border-radius:3px;background:#2B2F3A;overflow:hidden")}>
+                        <div style={css(`height:100%;width:${s.w ?? ""};background:${s.c ?? ""};border-radius:3px;transition:width 700ms cubic-bezier(0.4,0,0.2,1) ${s.d ?? ""}`)} />
+                      </div>
+                      </Fragment>
+                    ))}
+                    {" "}
+                  </div>
+                  {" "}
+                </div>
+                  {" "}
+                </Fragment>
+              ))}
+              {" "}
+            </div>
+            {" "}
+          </div>
+          {" "}
+          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
+          <div class="sw-meta">
+            <span class="sw-hint" aria-hidden="true">
+              Swipe
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
+            </span>
+            <span class="sw-count">{txt(v.aiCardCounter)}</span>
+            <span class="sw-arrows">
+              <button type="button" aria-label="Previous example" onClick={v.aiPrev}>‹</button>
+              <button type="button" aria-label="Next example" onClick={v.aiNext}>›</button>
+            </span>
+          </div>
+          <div class="ai-cards sw-row" onScroll={v.aiSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px")}>
+            {" "}
+            {each(v.aiCards).map((a, $index) => (
+              <Fragment key={$index}>
+                {" "}
+                <div class="scp1 ai-card" data-reveal="1" style={css("background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;transition:transform 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)")}>
+                {" "}
+                <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.375rem;letter-spacing:-0.01em")}>{txt(a.title)}</h3>
+                {" "}
+                <p style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>{txt(a.body)}</p>
+                {" "}
+                <div style={css("margin-top:auto;background:#EEECE6;border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:6px")}>
+                  {" "}
+                  <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>In practice</span>
+                  {" "}
+                  <span style={css("font-size:14px;line-height:1.55;color:#2B2F3A")}>{txt(a.example)}</span>
+                  {" "}
+                </div>
+                {" "}
+              </div>
+                {" "}
+              </Fragment>
+            ))}
+            {" "}
+          </div>
+          {" "}
+        </div>
+      </section>
+      <section id="applications">
+        {" "}
+        <div class="app-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
+          {" "}
+          <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
+            {" "}
+            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
+              <b>04</b>
+              {" Application development"}
+            </span>
+            {" "}
+            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Idea in, product out.</h2>
+            {" "}
+            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty")}>We ship whole products, not just code: definition, architecture, engineering, release, and the operations that keep them healthy.</p>
+            {" "}
+          </div>
+          {" "}
+          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
+          <div class="sw-meta">
+            <span class="sw-hint" aria-hidden="true">
+              Swipe
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
+            </span>
+            <span class="sw-count">{txt(v.appCardCounter)}</span>
+            <span class="sw-arrows">
+              <button type="button" aria-label="Previous application" onClick={v.appPrev}>‹</button>
+              <button type="button" aria-label="Next application" onClick={v.appNext}>›</button>
+            </span>
+          </div>
+          <div class="app-cards sw-row" onScroll={v.appSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(max(300px,calc(50% - 10px)),1fr));gap:20px")}>
+            {" "}
+            {each(v.apps).map((a, $index) => (
+              <Fragment key={$index}>
+                {" "}
+                <div class="app-card" data-reveal="1" onMouseEnter={a.enter} onMouseLeave={a.leave} onClick={a.enter} style={css(`cursor:default;border:1px solid ${a.border ?? ""};border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:14px;background:${a.bg ?? ""};box-shadow:${a.shadow ?? ""};transition:border-color 250ms cubic-bezier(0.4,0,0.2,1),background 250ms cubic-bezier(0.4,0,0.2,1),box-shadow 250ms cubic-bezier(0.4,0,0.2,1)`)}>
+                {" "}
+                <span style={css("width:44px;height:44px;border-radius:10px;background:#E3E8F4;color:#2451B8;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px")}>{txt(a.mark)}</span>
+                {" "}
+                <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.375rem")}>{txt(a.title)}</h3>
+                {" "}
+                <p style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>{txt(a.body)}</p>
+                {" "}
+                <div class="app-hover" style={css(`display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#2451B8;opacity:${a.hintOpacity ?? ""};transition:opacity 200ms cubic-bezier(0.4,0,0.2,1)`)}>
+                  <span>Hover for details</span>
+                  <span>+</span>
+                </div>
+                {" "}
+                <div class="app-more" style={css(`display:grid;grid-template-rows:${a.rows ?? ""};transition:grid-template-rows 300ms cubic-bezier(0.4,0,0.2,1)`)}>
+                  {" "}
+                  <div style={css("overflow:hidden;min-height:0")}>
+                    {" "}
+                    <div class="app-points" style={css(`display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:0 20px;padding-top:4px;opacity:${a.listOpacity ?? ""};transform:${a.listShift ?? ""};transition:opacity 300ms cubic-bezier(0.4,0,0.2,1),transform 300ms cubic-bezier(0.4,0,0.2,1)`)}>
+                      {" "}
+                      {each(a.points).map((p, $index) => (
+                        <Fragment key={$index}>
+                          <span style={css("font-size:14px;padding:9px 0;border-top:1px solid #E2DFD7;display:flex;gap:10px")}>
+                          <span style={css("color:#2451B8")}>→</span>
+                          {txt(p)}
+                        </span>
+                        </Fragment>
+                      ))}
+                      {" "}
+                    </div>
+                    {" "}
+                  </div>
+                  {" "}
+                </div>
+                {" "}
+              </div>
+                {" "}
+              </Fragment>
+            ))}
+            {" "}
+          </div>
+          {" "}
+        </div>
+      </section>
+      <section id="consulting" style={css("background:#EEECE6;border-top:1px solid #E2DFD7")}>
+        {" "}
+        <div style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:64px;align-items:start")}>
+          {" "}
+          <div style={css("display:flex;flex-direction:column;gap:24px")}>
+            {" "}
+            <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px")}>
+              {" "}
+              <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
+                <b>05</b>
+                {" Technology consulting"}
+              </span>
+              {" "}
+              <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Understand first. Build second.</h2>
+              {" "}
+              <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740;text-wrap:pretty")}>Good technology begins with a well-understood problem. We help teams weigh options, set technical direction, and draw up a roadmap before any development starts.</p>
+              {" "}
+            </div>
+            {" "}
+            <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:0;border-top:1px solid #D6D3CB")}>
+              {" "}
+              {each(v.deliverables).map((d, $index) => (
+                <Fragment key={$index}>
+                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.0625rem;font-weight:500;padding:13px 0;border-bottom:1px solid #D6D3CB;display:flex;gap:12px")}>
+                  <span style={css("color:#2451B8")}>✓</span>
+                  {txt(d)}
+                </span>
+                </Fragment>
+              ))}
+              {" "}
+            </div>
+            {" "}
+            <p data-reveal="1" style={css("margin:0;font-size:15px;line-height:1.6;color:#4A4740")}>Our engagements end in something usable: decisions, architecture, and a plan an engineering team can pick up — whether that team is ours or yours.</p>
+            {" "}
+            <a href="#contact" style={css("display:inline-flex;align-self:flex-start")}>
+              <Button variant="secondary">Discuss your project</Button>
+            </a>
+            {" "}
+          </div>
+          {" "}
+          <div style={css("display:flex;flex-direction:column;position:relative")}>
+            {" "}
+            <div style={css("position:absolute;left:19px;top:28px;bottom:28px;width:1px;background:#C9C5BB")} />
+            {" "}
+            {each(v.phases).map((p, $index) => (
+              <Fragment key={$index}>
+                {" "}
+                <div data-reveal="1" style={css("position:relative;display:grid;grid-template-columns:40px 1fr;gap:20px;padding:18px 0")}>
+                {" "}
+                <span style={css("width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;background:#2451B8;color:#F5F4F0")}>{txt(p.num)}</span>
+                {" "}
+                <div style={css("display:flex;flex-direction:column;gap:6px;background:#F5F4F0;border:1px solid #E2DFD7;border-radius:12px;padding:18px 20px")}>
+                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(p.title)}</span>
+                  <span style={css("font-size:14px;line-height:1.6;color:#4A4740")}>{txt(p.body)}</span>
+                </div>
+                {" "}
+              </div>
+                {" "}
+              </Fragment>
+            ))}
+            {" "}
+          </div>
+          {" "}
+        </div>
+      </section>
+      <section id="systems" ref={v.flowRef} style={css("position:relative;height:320vh;background:#15181F;color:#F5F4F0")}>
+        {" "}
+        <div class="flow-pin" style={css("position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,4vh,48px);padding:clamp(56px,8vh,80px) 0 clamp(16px,3vh,32px)")}>
+          {" "}
+          <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:14px")}>
+            {" "}
+            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8FAAE8")}>
+              <b>06</b>
+              {" Ideas into systems"}
+            </span>
+            {" "}
+            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.5rem,min(3.6vw,5vh),2.75rem);line-height:1.1;letter-spacing:-0.02em")}>An idea is only the starting point.</h2>
+            {" "}
+            <p class="flow-intro" style={css("margin:0;font-size:1.0625rem;line-height:1.6;color:#C9C6BE;max-width:620px")}>Keep scrolling. A rough idea comes in on the left and leaves on the right as a deployed, intelligent system.</p>
+            {" "}
+          </div>
+          {" "}
+          <div style={css("max-width:1280px;width:100%;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:24px")}>
+            {" "}
+            <div style={css("position:relative;height:2px;background:#2B2F3A")}>
+              <div ref={v.flowBarRef} style={css("position:absolute;left:0;top:0;bottom:0;width:0%;background:#2451B8")} />
+            </div>
+            {" "}
+            <div class="flow-grid" style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px")}>
+              {" "}
+              {each(v.flow).map((f, $index) => (
+                <Fragment key={$index}>
+                  {" "}
+                  <div style={css(`border:1px solid ${f.border ?? ""};background:${f.bg ?? ""};border-radius:12px;padding:clamp(12px,2.2vh,20px);min-height:clamp(110px,22vh,190px);display:flex;flex-direction:column;gap:clamp(6px,1.2vh,12px);opacity:${f.opacity ?? ""};transform:${f.transform ?? ""};transition:all 400ms cubic-bezier(0.4,0,0.2,1)`)}>
+                  {" "}
+                  <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:${f.numColor ?? ""}`)}>{txt(f.num)}</span>
+                  {" "}
+                  <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(f.title)}</span>
+                  {" "}
+                  <div style={css("display:flex;flex-direction:column;gap:6px;margin-top:auto")}>
+                    {" "}
+                    {each(f.items).map((i, $index) => (
+                      <Fragment key={$index}>
+                        <span style={css("font-size:12px;padding:5px 8px;border-radius:6px;background:rgba(245,244,240,0.08);color:#D9D6CE")}>{txt(i)}</span>
+                      </Fragment>
+                    ))}
+                    {" "}
+                  </div>
+                  {" "}
+                </div>
+                  {" "}
+                </Fragment>
+              ))}
+              {" "}
+            </div>
+            {" "}
+            <div style={css("display:flex;justify-content:space-between;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#B5B1A8")}>
+              <span>Idea</span>
+              <span>Impact</span>
+            </div>
+            {" "}
+          </div>
+          {" "}
+        </div>
+      </section>
+      <section id="principles">
+        {" "}
+        <div class="ops-wrap" style={css("max-width:1280px;margin:0 auto;padding:112px 32px;display:flex;flex-direction:column;gap:48px")}>
+          {" "}
+          <div data-reveal="1" style={css("display:flex;flex-direction:column;gap:14px;max-width:760px")}>
+            {" "}
+            <span style={css("font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>
+              <b>07</b>
+              {" How we operate"}
+            </span>
+            {" "}
+            <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Technology decisions you can defend.</h2>
+            {" "}
+            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740")}>Four principles guide every engagement, from the first workshop to the production release.</p>
+            {" "}
+          </div>
+          {" "}
+          {/* Phone swipe row only: hint, counter and previous / next buttons (hidden elsewhere). */}
+          <div class="sw-meta">
+            <span class="sw-hint" aria-hidden="true">
+              Swipe
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5 H12 M8 1 L12 5 L8 9" /></svg>
+            </span>
+            <span class="sw-count">{txt(v.opsCardCounter)}</span>
+            <span class="sw-arrows">
+              <button type="button" aria-label="Previous principle" onClick={v.opsPrev}>‹</button>
+              <button type="button" aria-label="Next principle" onClick={v.opsNext}>›</button>
+            </span>
+          </div>
+          <div class="ops-cards sw-row" onScroll={v.opsSwipe} style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px")}>
+            {" "}
+            {each(v.principles).map((p, $index) => (
+              <Fragment key={$index}>
+                {" "}
+                <div data-reveal="1" style={css("background:#EEECE6;border:1px solid #E2DFD7;border-radius:12px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;min-height:240px")}>
+                {" "}
+                <span style={css("font-family:'Space Grotesk',sans-serif;font-size:2.25rem;font-weight:600;color:#2451B8;letter-spacing:-0.02em")}>{txt(p.num)}</span>
+                {" "}
+                <h3 style={css("margin:auto 0 0;font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600")}>{txt(p.title)}</h3>
+                {" "}
+                <span style={css("font-size:15px;line-height:1.6;color:#4A4740")}>{txt(p.body)}</span>
+                {" "}
+              </div>
+                {" "}
+              </Fragment>
+            ))}
             {" "}
           </div>
           {" "}

@@ -56,7 +56,7 @@ class Component extends DCLogic {
       // The nav highlight goes to the section whose top most recently passed 40% of the screen,
       // so it does not depend on the order the sections are in.
       let active = '', last = -Infinity;
-      ['capabilities','ai','applications','consulting','work','contact'].forEach(id => { const el = document.getElementById(id), t = el ? el.getBoundingClientRect().top : Infinity; if (t < vh * 0.4 && t > last) { active = id; last = t; } });
+      ['capabilities','work','ai','applications','consulting','contact'].forEach(id => { const el = document.getElementById(id), t = el ? el.getBoundingClientRect().top : Infinity; if (t < vh * 0.4 && t > last) { active = id; last = t; } });
       if (ci !== this.state.cap || fi !== this.state.flow || active !== this.state.active) this.setState({ cap: ci, flow: fi, active });
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
@@ -247,7 +247,7 @@ class Component extends DCLogic {
       ]; }
   renderVals() {
     const B = '#2451B8', INK = '#15181F', OFF = '#F5F4F0';
-    const links = [['#capabilities','capabilities','Capabilities'],['#ai','ai','AI'],['#applications','applications','Applications'],['#consulting','consulting','Consulting'],['#work','work','Work'],['#contact','contact','Contact']];
+    const links = [['#capabilities','capabilities','Capabilities'],['#work','work','Work'],['#ai','ai','AI'],['#applications','applications','Applications'],['#consulting','consulting','Consulting'],['#contact','contact','Contact']];
     const orbitData = [['Direction','Roadmap · Priorities'],['Data','Models · Pipelines'],['APIs','Services · Integrations'],['Outcome','Shipped · Measured'],['Product','Web · Mobile · Custom']];
     const capData = [
       ['AI applications','Products built around models from day one: retrieval, reasoning, and automation shaped by your data and your policies.',['Assistants','Search','Decision support','Evaluation']],
