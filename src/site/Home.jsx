@@ -763,7 +763,7 @@ export function template(v) {
                 <button key={$index} type="button" role="tab" aria-selected={$index === v.whatTab ? "true" : "false"} class={$index === v.whatTab ? "is-active" : ""} onClick={() => v.setWhatTab($index)}>{d.title}</button>
               ))}
             </div>
-            <span class={v.whatTapped ? "what-tabs-hint is-done" : "what-tabs-hint"}>Tap to switch</span>
+            <span class="what-tabs-hint">Tap to switch</span>
           </div>
           <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px")}>
             {" "}

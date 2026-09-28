@@ -106,7 +106,6 @@ html.pv-mobile2 body::after{content:'Preview 2'}
   html.pv-mobile2 .what-tabs-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:-12px}
   html.pv-mobile2 .what-tabs{display:flex;gap:4px;padding:4px;border:1px solid #D6D3CB;border-radius:999px;background:#FFFFFF}
   html.pv-mobile2 .what-tabs-hint{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8C877D}
-  html.pv-mobile2 .what-tabs-hint.is-done{opacity:0;transition:opacity 400ms}
   html.pv-mobile2 .what-tabs button{border:0;border-radius:999px;padding:10px 22px;background:transparent;color:#2B2F3A;font:600 15px/1 'Space Grotesk',sans-serif;cursor:pointer;transition:background 200ms,color 200ms}
   html.pv-mobile2 .what-tabs button.is-active{background:#2451B8;color:#F5F4F0}
   html.pv-mobile2 .what-card:not(.is-active){display:none!important}

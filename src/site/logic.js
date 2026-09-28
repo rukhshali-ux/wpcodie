@@ -222,7 +222,7 @@ class Component extends DCLogic {
     return {
       ringRef: this.ringRef, aiRef: this.aiRef, w1Ref: this.w1Ref, w2Ref: this.w2Ref, ...this.workVals(), ...this.introVals(), capRef: this.capRef, trackRef: this.trackRef, capBarRef: this.capBarRef, flowRef: this.flowRef, flowBarRef: this.flowBarRef,
       // Small-screen menu (added for the live site).
-      whatTab: this.state.whatTab || 0, whatTapped: !!this.state.whatTapped, setWhatTab: (i) => this.setState({ whatTab: i, whatTapped: true }),
+      whatTab: this.state.whatTab || 0, setWhatTab: (i) => this.setState({ whatTab: i }),
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
       footNav: links.map(([href,,label]) => ({ href, label })),
