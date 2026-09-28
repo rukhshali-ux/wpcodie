@@ -202,11 +202,25 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
 /* "See all case studies" at the end of Selected work, linking to /portfolio/ (added for the live site). */
 .work-all{align-self:flex-start;display:inline-flex;align-items:center;padding:14px 28px;border:1px solid #2451B8;border-radius:8px;color:#2451B8;font-weight:500;font-size:16px;transition:background 200ms,color 200ms}
 .work-all:hover,.work-all:focus-visible{background:#2451B8;color:#F5F4F0}
-@media (max-width:959px){.work-all{margin-top:-24px}}
 
 /* Contact on phones (added for the live site): links land on the section title, just under the
-   header, followed straight by the form; the Email / Response / Include block is left out. */
+   header (see scroll-margin-top below), followed straight by the form; the Email / Response /
+   Include block is left out. */
 @media (max-width:959px){
-  .contact-wrap{padding-top:88px!important;padding-bottom:72px!important;gap:32px!important}
+  .contact-wrap{padding-top:72px!important;padding-bottom:72px!important;gap:32px!important}
   .contact-info{display:none!important}
+}
+
+/* Phones: "02 Selected work" and "05 Consulting" (added for the live site) use the same rhythm as
+   the other sections on phones: 72px above and below, 32-40px between blocks, instead of the
+   desktop's 112px padding and 64-72px gaps. */
+@media (max-width:959px){
+  #work>div,#consulting>div{padding-top:72px!important;padding-bottom:72px!important}
+  #work>div{gap:40px!important}
+  #work>div>div:nth-of-type(n+2){gap:32px!important}
+  #work>div>div:nth-of-type(2)>div:nth-of-type(2){padding-bottom:16px!important}
+  #consulting>div{gap:40px!important}
+  .work-all{margin-top:-8px}
+  /* Menu and button links land every section's title the same distance under the 70px header. */
+  #top>section[id]{scroll-margin-top:16px}
 }

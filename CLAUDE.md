@@ -34,6 +34,9 @@ else:
   On phones the Contact section starts from its title right under the header, goes straight
   into the form, and hides the Email / Response / Include block (`.contact-wrap`,
   `.contact-info`).
+  Phone spacing is one rhythm for every section: 72px above and below, 28-40px between blocks
+  (Selected work and Consulting are brought into line by `#work>div` / `#consulting>div`
+  rules), and menu links land each title 18px under the header (`scroll-margin-top:16px`).
   On phones "02 AI & intelligent applications", "03 Application development" and "06 How
   we operate" use swipe rows: the AI pipeline steps follow the active step (`aiFollow`), and
   the AI examples, the applications and the principles have a counter and previous / next
