@@ -12,9 +12,9 @@ import '../assets/css/page.css';
 import '../assets/css/portfolio.css';
 
 const TITLE = 'Portfolio — WPCodie';
-const DESCRIPTION = 'Selected platforms WPCodie has delivered: marketplaces, booking systems, directories and integrations with Stripe, PayU, Twilio, HubSpot and Google Maps.';
+const DESCRIPTION = 'Selected platforms WPCodie has delivered: healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe, PayU, Twilio, HubSpot and Google Maps integrations.';
 const URL = `${SITE}/portfolio/`;
-const count = (group) => (group === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.group === group).length);
+const count = (group) => (group === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.groups.includes(group)).length);
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -63,7 +63,7 @@ const ld = {
     <div class="pf-wrap pf-hero-inner">
       <span class="pf-eyebrow">Portfolio</span>
       <h1>Platforms we have planned, built and shipped.</h1>
-      <p class="pf-lead">Marketplaces, booking systems, directories and the integrations behind them, for clients in the US, UK, France, Poland, Morocco and Ireland. Each project below started with a business problem; the case studies say what we built and why it mattered.</p>
+      <p class="pf-lead">Marketplaces, booking systems, directories and the integrations behind them, for clients in the US, UK, France, Greece, Poland, Morocco and Ireland. Each project below started with a business problem; the case studies say what we built and why it mattered.</p>
       <dl class="pf-stats">
         {STATS.map(([n, label]) => (
           <div><dt>{label}</dt><dd>{n}</dd></div>
@@ -84,7 +84,7 @@ const ld = {
       </div>
       <div class="pf-grid">
         {PROJECTS.map((p) => (
-          <article class={p.featured ? 'pf-card pf-card-featured' : 'pf-card'} id={p.slug} data-group={p.group}>
+          <article class={p.featured ? 'pf-card pf-card-featured' : 'pf-card'} id={p.slug} data-group={p.groups.join(' ')}>
             <div class="pf-card-top">
               <span class="pf-sector">{p.sector}</span>
               <span class="pf-scale">{p.scale}</span>
@@ -93,6 +93,11 @@ const ld = {
             <h3>{p.name}</h3>
             <p class="pf-sub">{p.subtitle}</p>
             {p.url && <a class="pf-url" href={`https://${p.url}`} target="_blank" rel="noopener">{p.url} <span aria-hidden="true">↗</span></a>}
+            {p.metrics && (
+              <dl class="pf-metrics">
+                {p.metrics.map(([n, label]) => <div><dt>{label}</dt><dd>{n}</dd></div>)}
+              </dl>
+            )}
             <p class="pf-summary">{p.summary}</p>
             <ul class="pf-tags" aria-label="Highlights">
               {p.tags.map((t) => <li>{t}</li>)}
@@ -179,7 +184,7 @@ const ld = {
       var f = b.getAttribute('data-filter'), shown = 0;
       buttons.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
       cards.forEach(function (c) {
-        var on = f === 'all' || c.getAttribute('data-group') === f;
+        var on = f === 'all' || (' ' + c.getAttribute('data-group') + ' ').indexOf(' ' + f + ' ') >= 0;
         c.hidden = !on; if (on) shown++;
       });
       empty.hidden = shown > 0;
