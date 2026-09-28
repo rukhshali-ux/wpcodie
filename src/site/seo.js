@@ -4,7 +4,7 @@ import Logic from './logic.js';
 
 export const SITE = 'https://wpcodie.com';
 export const NAME = 'WPCodie';
-export const EMAIL = 'hello@wpcodie.com';
+export const EMAIL = 'service@wpcodie.com';
 export const TITLE = 'WPCodie — Technology consulting, AI & software';
 export const DESCRIPTION =
   'WPCodie helps teams choose the right technology direction, then designs and ships AI products and custom software.';

@@ -294,7 +294,7 @@ class Component extends DCLogic {
         const trap = document.querySelector('input[name="website"]');
         fetch('/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...f, needs: this.state.needs || [], website: trap ? trap.value : '' }) })
           .then((r) => { if (!r.ok) throw new Error(String(r.status)); this.setState({ sent: true, sending: false }); })
-          .catch(() => this.setState({ sending: false, sendError: 'Your message could not be sent. Please email hello@wpcodie.com instead.' })); },
+          .catch(() => this.setState({ sending: false, sendError: 'Your message could not be sent. Please email service@wpcodie.com instead.' })); },
       sending: this.state.sending, sendError: this.state.sendError,
       reset: () => this.setState({ sent: false, sendError: '', needs: [], form: { name: '', email: '', company: '', msg: '' } }),
       sent: this.state.sent, notSent: !this.state.sent, firstName: this.state.form.name.trim().split(' ')[0] || 'there',

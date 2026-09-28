@@ -1558,7 +1558,7 @@ export function template(v) {
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Email</span>
-                <a href="mailto:hello@wpcodie.com" style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>hello@wpcodie.com</a>
+                <a href="mailto:service@wpcodie.com" style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>service@wpcodie.com</a>
               </div>
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
@@ -1643,7 +1643,7 @@ export function template(v) {
                   {" "}
                   <span style={css("font-size:13px;color:#6B675F")}>
                     {"Or email "}
-                    <a href="mailto:hello@wpcodie.com">hello@wpcodie.com</a>
+                    <a href="mailto:service@wpcodie.com">service@wpcodie.com</a>
                   </span>
                   {" "}
                 </div>
@@ -1711,7 +1711,7 @@ export function template(v) {
             {" "}
             <span>© 2026 WPCodie. All rights reserved.</span>
             <span class="scp0" onClick={v.replayIntro} style={css("cursor:pointer;color:#8FAAE8")}>Replay intro ↺</span>
-            <a href="mailto:hello@wpcodie.com" style={css("color:#8FAAE8")}>hello@wpcodie.com</a>
+            <a href="mailto:service@wpcodie.com" style={css("color:#8FAAE8")}>service@wpcodie.com</a>
             {" "}
           </div>
           {" "}

@@ -1,5 +1,5 @@
 # Manual end-to-end check of the live contact form. Sends ONE enquiry named "WPCodie form test"
-# (it is saved to enquiries.csv and emailed to hello@wpcodie.com like a real one), prints the
+# (it is saved to enquiries.csv and emailed to service@wpcodie.com like a real one), prints the
 # server's answer (stored / emailed), and lists the enquiries folder (sizes only).
 # Run it from the Actions tab: Test contact form -> Run workflow.
 name: Test contact form

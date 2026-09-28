@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 // Where enquiries go, and the address they are sent from. FROM must be a mailbox that
 // exists on this domain in Hostinger, or providers will mark the mail as spam.
-const TO = 'hello@wpcodie.com';
-const FROM = 'hello@wpcodie.com';
+const TO = 'service@wpcodie.com';
+const FROM = 'service@wpcodie.com';
 const MAX_PER_HOUR = 5;
 const STORE_DIR = __DIR__ . '/../enquiries';
 const NEEDS = ['AI application', 'Custom software', 'Web app', 'Mobile app', 'Automation', 'Consulting'];
