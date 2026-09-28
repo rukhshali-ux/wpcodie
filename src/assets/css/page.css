@@ -97,3 +97,22 @@ html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;
   html.pv-mobile .what-step-title{font-size:1.125rem!important;line-height:32px}
   html.pv-mobile .what-step-body{font-size:14px!important;line-height:1.5!important}
 }
+
+/* PREVIEW ONLY (wpcodie.com/?preview=mobile2): the bigger change for "01 What we do", on
+   top of the ?preview=mobile rules: Advise | Engineer tabs, and the steps as a swipe row. */
+.what-tabs,.what-steps-hint{display:none}
+html.pv-mobile2 body::after{content:'Preview 2'}
+@media (max-width:959px){
+  html.pv-mobile2 .what-tabs{display:flex;gap:4px;padding:4px;border:1px solid #D6D3CB;border-radius:999px;background:#FFFFFF;align-self:flex-start;margin-bottom:-12px}
+  html.pv-mobile2 .what-tabs button{border:0;border-radius:999px;padding:10px 22px;background:transparent;color:#2B2F3A;font:600 15px/1 'Space Grotesk',sans-serif;cursor:pointer;transition:background 200ms,color 200ms}
+  html.pv-mobile2 .what-tabs button.is-active{background:#2451B8;color:#F5F4F0}
+  html.pv-mobile2 .what-card:not(.is-active){display:none!important}
+  html.pv-mobile2 .what-steps-hint{display:block;margin-bottom:-18px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8C877D}
+  html.pv-mobile2 .what-steps{flex-direction:row!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -32px;padding:4px 32px 8px;scroll-padding:0 32px;scrollbar-width:none}
+  html.pv-mobile2 .what-steps::-webkit-scrollbar{display:none}
+  html.pv-mobile2 .what-step{flex:0 0 78%;scroll-snap-align:start;padding:18px 18px 20px!important;border:1px solid #D6D3CB!important;border-radius:14px;background:#FFFFFF;gap:6px!important}
+  html.pv-mobile2 .what-step::before{display:none}
+  html.pv-mobile2 .what-step:last-child{padding-bottom:20px!important}
+  html.pv-mobile2 .what-step-num{position:static;margin-bottom:6px}
+  html.pv-mobile2 .what-step-title{line-height:1.3}
+}

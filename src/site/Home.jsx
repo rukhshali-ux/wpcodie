@@ -756,12 +756,18 @@ export function template(v) {
             {" "}
           </div>
           {" "}
+          {/* Preview only (?preview=mobile2): Advise | Engineer tabs on phones; hidden otherwise. */}
+          <div class="what-tabs" role="tablist" aria-label="What we do">
+            {each(v.disciplines).map((d, $index) => (
+              <button key={$index} type="button" role="tab" aria-selected={$index === v.whatTab ? "true" : "false"} class={$index === v.whatTab ? "is-active" : ""} onClick={() => v.setWhatTab($index)}>{d.title}</button>
+            ))}
+          </div>
           <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px")}>
             {" "}
             {each(v.disciplines).map((d, $index) => (
               <Fragment key={$index}>
                 {" "}
-                <div class="what-card" data-reveal="1" style={css(`border:1px solid #E2DFD7;background:${d.bg ?? ""};color:${d.fg ?? ""};border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:18px`)}>
+                <div class={$index === v.whatTab ? "what-card is-active" : "what-card"} data-reveal="1" style={css(`border:1px solid #E2DFD7;background:${d.bg ?? ""};color:${d.fg ?? ""};border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:18px`)}>
                 {" "}
                 <div style={css("display:flex;align-items:baseline;gap:14px")}>
                   <span style={css(`font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:${d.accent ?? ""}`)}>{txt(d.num)}</span>
@@ -789,6 +795,7 @@ export function template(v) {
             {" "}
           </div>
           {" "}
+          <span class="what-steps-hint">Swipe through the 5 steps <span aria-hidden="true">→</span></span>
           <div class="what-steps" style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid #D6D3CB")}>
             {" "}
             {each(v.steps).map((s, $index) => (

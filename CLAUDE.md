@@ -106,3 +106,5 @@ own `<title>`, meta description and canonical URL.
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
 Currently previewed: the phone layout of "01 What we do" (`.what-*` classes).
+`?preview=mobile2` adds `pv-mobile2` on top: Advise | Engineer tabs (`.what-tabs`, `whatTab`
+in `logic.js`) and the five steps as a swipe row.

@@ -35,8 +35,8 @@ import '../assets/css/page.css';
 <meta name="twitter:title" content={TITLE}>
 <meta name="twitter:description" content={DESCRIPTION}>
 <meta name="twitter:image" content={`${SITE}/og.png`}>
-<!-- Design previews: wpcodie.com/?preview=mobile turns on the rules under html.pv-mobile in page.css. -->
-<script is:inline>if (/[?&]preview=mobile\b/.test(location.search)) document.documentElement.classList.add('pv-mobile');</script>
+<!-- Design previews: ?preview=mobile turns on the rules under html.pv-mobile in page.css; ?preview=mobile2 adds html.pv-mobile2 on top. -->
+<script is:inline>(function(){var m=/[?&]preview=(mobile2?)\b/.exec(location.search);if(m){document.documentElement.classList.add('pv-mobile');if(m[1]==='mobile2')document.documentElement.classList.add('pv-mobile2');}})();</script>
 <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd())}></script>
 </head>
 <body>
