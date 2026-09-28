@@ -10,7 +10,7 @@ logo's display height and its card colour are in `clients` in `src/site/logic.js
 | `silver-streak-senior-services.png` | Silver Streak Senior Services | https://silverstreakhelp.com/ |
 | `wellapy.png` | Wellapy | https://wellapy.gr |
 | `shield-funding.png` | Shield Funding | https://shieldfunding.com |
-| `resource-roadmap.png` | re:source Roadmap | none yet |
+| `resource-roadmap.png` | re:source Roadmap | https://resourceroadmap.com/ |
 | `wagit.png` | WagIt | https://wagit.uk |
 | `sme-blue-pages.png` | SME Blue Pages | https://smebluepages.com |
 | `seattle-pro-contractors.png` | Seattle Pro Contractors (the logo reads "Seatle") | https://seattleprocontractors.com |

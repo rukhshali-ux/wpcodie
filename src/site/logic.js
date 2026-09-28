@@ -319,7 +319,7 @@ class Component extends DCLogic {
         ['Silver Streak Senior Services', 'https://silverstreakhelp.com/', 'silver-streak-senior-services', 217, 55, 40, '#06152B'],
         ['Wellapy', 'https://wellapy.gr', 'wellapy', 264, 60, 34, '#FFFFFF'],
         ['Shield Funding', 'https://shieldfunding.com', 'shield-funding', 400, 64, 34, '#FFFFFF'],
-        ['re:source Roadmap', '', 'resource-roadmap', 388, 21, 14, '#4B1901'],
+        ['re:source Roadmap', 'https://resourceroadmap.com/', 'resource-roadmap', 388, 21, 14, '#4B1901'],
         ['WagIt', 'https://wagit.uk', 'wagit', 135, 59, 34, '#FFFFFF'],
         ['SME Blue Pages', 'https://smebluepages.com', 'sme-blue-pages', 198, 43, 32, '#F0F8FF'],
         ['Seattle Pro Contractors', 'https://seattleprocontractors.com', 'seattle-pro-contractors', 307, 76, 44, 'linear-gradient(90deg,#878B8E,#787B83)'],
