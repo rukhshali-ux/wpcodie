@@ -84,7 +84,7 @@ const ld = {
       </div>
       <div class="pf-grid">
         {PROJECTS.map((p) => (
-          <article class="pf-card" id={p.slug} data-group={p.group}>
+          <article class={p.featured ? 'pf-card pf-card-featured' : 'pf-card'} id={p.slug} data-group={p.group}>
             <div class="pf-card-top">
               <span class="pf-sector">{p.sector}</span>
               <span class="pf-scale">{p.scale}</span>
@@ -106,6 +106,20 @@ const ld = {
                 <ul class="pf-list">
                   {p.delivered.map((d) => <li>{d}</li>)}
                 </ul>
+                {p.flows && p.flows.map(([title, steps]) => (
+                  <>
+                    <h4>{title}</h4>
+                    <ol class="pf-flow">
+                      {steps.map((st) => <li>{st}</li>)}
+                    </ol>
+                  </>
+                ))}
+                {p.role && (
+                  <>
+                    <h4>Our role</h4>
+                    <p class="pf-role">{p.role}</p>
+                  </>
+                )}
                 <div class="pf-why">
                   <span>Why it mattered</span>
                   <p>{p.why}</p>
