@@ -9,6 +9,10 @@ on:
         description: Text to look for in the live homepage (optional)
         required: false
         default: ''
+      urls:
+        description: Space-separated addresses to check for embedding (status and frame headers only)
+        required: false
+        default: ''
 
 jobs:
   diagnose:
@@ -36,6 +40,13 @@ jobs:
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
+      - name: Can these addresses be embedded in wpcodie.com?
+        if: ${{ inputs.urls != '' }}
+        run: |
+          for u in ${{ inputs.urls }}; do
+            echo "== $u"
+            curl -sS -I -L --max-time 20 -A 'Mozilla/5.0' "$u" | grep -iE '^(HTTP|location|x-frame-options|content-security-policy)' | cut -c1-400 || true
+          done
       - name: Contact form endpoint (no email is sent by these checks)
         run: |
           echo "== GET (expect 405: PHP runs, only POST allowed)"
