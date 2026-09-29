@@ -224,3 +224,23 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
   /* Menu and button links land every section's title the same distance under the 70px header. */
   #top>section[id]{scroll-margin-top:16px}
 }
+
+/* LegalFlow demo button and pop-up (added for the live site). */
+.demo-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:0;border-radius:8px;background:#2451B8;color:#F5F4F0;font:500 15px/1 'Inter',sans-serif;cursor:pointer;transition:transform 200ms,box-shadow 200ms}
+.demo-btn:hover,.demo-btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 16px rgba(36,81,184,0.25)}
+.demo-btn-play{width:22px;height:22px;border-radius:50%;background:#F5F4F0;color:#2451B8;display:grid;place-items:center;font-size:9px;padding-left:2px;box-sizing:border-box}
+.demo-modal{position:fixed;inset:0;z-index:60;background:rgba(21,24,31,0.72);backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px;animation:demoIn 200ms ease-out}
+.demo-box{width:min(1200px,100%);background:#15181F;border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.4);display:flex;flex-direction:column}
+.demo-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;color:#D9D6CE;font:600 13px 'Inter',sans-serif}
+.demo-close{width:36px;height:36px;border-radius:50%;border:1px solid #2B2F3A;background:transparent;color:#F5F4F0;font-size:15px;cursor:pointer}
+.demo-close:hover,.demo-close:focus-visible{background:#2451B8;border-color:#2451B8}
+.demo-frame{position:relative;width:100%;aspect-ratio:16/9;max-height:calc(100vh - 150px);background:#0E1015}
+.demo-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.demo-newtab{align-self:center;padding:10px 0 12px;font-size:13px;color:#8FAAE8}
+@keyframes demoIn{from{opacity:0}to{opacity:1}}
+@media (max-width:959px){
+  .demo-modal{padding:0;place-items:stretch}
+  .demo-box{border-radius:0;height:100%}
+  .demo-frame{aspect-ratio:auto;flex:1;max-height:none}
+}
+@media (prefers-reduced-motion:reduce){.demo-modal{animation:none}.demo-btn{transition:none}}

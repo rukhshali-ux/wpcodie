@@ -900,6 +900,11 @@ export function template(v) {
                   </Fragment>
                 ))}
               </div>
+              {/* Opens the interactive LegalFlow demo in a pop-up (added for the live site). */}
+              <button type="button" class="demo-btn" onClick={v.openDemo} aria-haspopup="dialog">
+                <span class="demo-btn-play" aria-hidden="true">▶</span>
+                Watch the demo
+              </button>
               {" "}
             </div>
             {" "}
@@ -1782,6 +1787,20 @@ export function template(v) {
       </footer>
       {/* Added for the live site. Phones: a floating "Start a project" (after the hero, hidden at the
           contact form). All sizes: "Back to top" after the first screen; an icon beside it on phones. */}
+      {v.demoOpen ? (
+        <div class="demo-modal" role="dialog" aria-modal="true" aria-label="LegalFlow CRM interactive demo" onClick={v.closeDemo}>
+          <div class="demo-box" onClick={v.stopClick}>
+            <div class="demo-bar">
+              <span>LegalFlow CRM · interactive demo</span>
+              <button type="button" class="demo-close" onClick={v.closeDemo} aria-label="Close the demo">✕</button>
+            </div>
+            <div class="demo-frame">
+              <iframe src={v.demoSrc} title="LegalFlow CRM interactive demo" allow="fullscreen" allowFullScreen></iframe>
+            </div>
+            <a class="demo-newtab" href={v.demoShare} target="_blank" rel="noopener">Open the demo in a new tab ↗</a>
+          </div>
+        </div>
+      ) : null}
       <a href="#contact" class={v.showCta ? "m-cta is-visible" : "m-cta"} aria-hidden={v.showCta ? undefined : "true"} tabindex={v.showCta ? undefined : "-1"}>
         Start a project <span aria-hidden="true">→</span>
       </a>

@@ -3,6 +3,10 @@
 // for the live site are marked with comments.
 import { DCLogic, React } from './dc.js';
 import { ADDRESS_LINES, PHONE, PHONE_DISPLAY } from './business.js';
+// The interactive LegalFlow CRM demo (Storylane). DEMO_EMBED is shown in the pop-up; DEMO_SHARE is the
+// plain share link, offered as "open in a new tab".
+const DEMO_SHARE = 'https://demo.storylane.com/share/lcs5qgcze6zi';
+const DEMO_EMBED = 'https://demo.storylane.com/share/lcs5qgcze6zi';
 
 // The intro laptop's width, W in introVals(), as CSS: min(740, 84% of width, 42% of height / 0.625).
 const CSS_W = 'min(740px, 84vw, 67.2dvh)';
@@ -118,6 +122,20 @@ class Component extends DCLogic {
   aiSwipe = this.swipeTo('aiCard', 6);
   appSwipe = this.swipeTo('appCard', 4);
   opsSwipe = this.swipeTo('opsCard', 4);
+  // LegalFlow demo pop-up (added for the live site): the Storylane iframe loads only when opened;
+  // Esc, the close button or a click outside closes it, and focus returns to the button.
+  openDemo = (e) => {
+    this.demoOpener = e && e.currentTarget;
+    this.setState({ demoOpen: true });
+    this.onDemoKey = (ev) => { if (ev.key === 'Escape') this.closeDemo(); };
+    window.addEventListener('keydown', this.onDemoKey);
+    setTimeout(() => { const b = document.querySelector('.demo-close'); if (b) b.focus(); }, 0);
+  };
+  closeDemo = () => {
+    window.removeEventListener('keydown', this.onDemoKey);
+    this.setState({ demoOpen: false });
+    if (this.demoOpener) this.demoOpener.focus();
+  };
   loops = 0;
   tickPose = () => { clearTimeout(this.poseT); const dur = [2000, 1500, 1300, 1700, 1800][this.state.pose] || 1500;
     this.poseT = setTimeout(() => { if (this.state.intro !== 'closed') return this.tickPose();
@@ -126,7 +144,7 @@ class Component extends DCLogic {
   replayIntro = () => { clearTimeout(this.iT1); clearTimeout(this.iT2); this.loops = 0; this.setState({ pose: 0, hoverOpen: false }, this.tickPose); window.scrollTo(0, 0); document.documentElement.style.overflow = 'hidden'; this.setState({ intro: 'closed' }); };
   componentDidUpdate(prev) {
     if (prev.intro !== this.props.intro && prev.intro !== undefined) { if (this.props.intro === false) this.setState({ intro: 'done' }); else this.replayIntro(); }
-    const want = this.state.intro === 'done' ? '' : 'hidden';
+    const want = this.state.intro === 'done' && !this.state.demoOpen ? '' : 'hidden';
     if (document.documentElement.style.overflow !== want) { document.documentElement.style.overflow = want; if (!want) this.onScroll && this.onScroll(); }
   }
   componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.aiT); clearTimeout(this.poseT); clearTimeout(this.iT1); clearTimeout(this.iT2); window.removeEventListener('resize', this.onResizeIntro); document.documentElement.style.overflow = ''; clearInterval(this.wT); clearTimeout(this.revealT); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); this.io && this.io.disconnect(); }
@@ -275,7 +293,9 @@ class Component extends DCLogic {
       showTop: !!this.state.showTop && this.state.intro === 'done', showCta: !!this.state.showCta && this.state.intro === 'done', menuOpen: !!this.state.menuOpen, toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
       footNav: links.map(([href,,label]) => ({ href, label })),
-      phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
+      demoOpen: !!this.state.demoOpen, openDemo: this.openDemo, closeDemo: this.closeDemo, stopClick: (e) => e.stopPropagation(),
+      demoSrc: DEMO_EMBED, demoShare: DEMO_SHARE,
+            phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
       heroTags: ['AI application development','Custom software & apps','Technology consulting'],
       capHeight: '420vh',
