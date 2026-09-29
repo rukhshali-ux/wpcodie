@@ -6,7 +6,7 @@ export const SITE = 'https://wpcodie.com';
 export const NAME = 'WPCodie';
 export const EMAIL = 'service@wpcodie.com';
 export { ADDRESS, ADDRESS_LINES, PHONE, PHONE_DISPLAY } from './business.js';
-import { ADDRESS, PHONE } from './business.js';
+import { ADDRESS, OFFICES, PHONE } from './business.js';
 export const TITLE = 'AI & Custom Software Development | WPCodie';
 export const DESCRIPTION =
   'WPCodie is an AI and custom software development company in Kalispell, MT, building AI apps, web and mobile apps, and technology roadmaps for clients worldwide.';
@@ -46,6 +46,7 @@ export function jsonLd() {
           areaServed: 'Worldwide',
         },
         areaServed: 'Worldwide',
+        department: OFFICES.slice(1).map((o) => ({ '@id': `${SITE}/#office-${o.key}` })),
         logo: `${SITE}/icon-512.png`,
         image: `${SITE}/og.png`,
         description: DESCRIPTION,
@@ -60,6 +61,25 @@ export function jsonLd() {
           })),
         },
       },
+      // The other offices, each its own local business under the main one.
+      ...OFFICES.slice(1).map((o) => ({
+        '@type': 'ProfessionalService',
+        '@id': `${SITE}/#office-${o.key}`,
+        name: NAME,
+        url: `${SITE}/`,
+        email: EMAIL,
+        telephone: o.phone,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: o.address.street,
+          addressLocality: o.address.locality,
+          ...(o.address.region ? { addressRegion: o.address.region } : {}),
+          postalCode: o.address.postalCode,
+          addressCountry: o.address.country,
+        },
+        parentOrganization: { '@id': org },
+        image: `${SITE}/og.png`,
+      })),
       {
         '@type': 'WebSite',
         '@id': `${SITE}/#website`,

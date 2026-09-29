@@ -70,7 +70,7 @@ to change may differ. Look at the images it writes before calling the change don
 | Copy for every repeated block: nav, capabilities, AI cards, applications, process steps, principles, case studies, form options | `src/site/logic.js`, in `renderVals()` / `workVals()` / `appsRaw()` |
 | Page behaviour: intro, scroll effects, form | `src/site/logic.js` |
 | Title, description, structured data (JSON-LD), llms.txt | `src/site/seo.js`, `src/pages/llms.txt.js` |
-| Business address and phone (footer, Contact, JSON-LD, llms.txt). Must match the Google Business Profile exactly | `src/site/business.js` |
+| Offices: address and phone of each (footer, Contact, JSON-LD, llms.txt). Each must match its Google Business Profile exactly | `src/site/business.js` (`OFFICES`; the first is the main one) |
 | `<head>`: meta tags, preloads, CSS order | `src/pages/index.astro` |
 | Design styles and fonts | `src/assets/css/`, `src/assets/fonts/` |
 | Contact form email sender | `public/contact.php` |
@@ -145,7 +145,7 @@ homepage with `pv-mobile` always on, so the owner can review a preview as its ow
 `pv-mobile` to `<html>` (inline script in `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Nothing is being previewed right now, so `/preview/` shows the same page as the homepage. (The
+In preview now: the Manchester office beside Kalispell in Contact and the footers (`.nap-two`, replacing `.nap-one`), and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`, replacing `.demo-row-main`). (The
 "01 What we do" layout, the Capabilities carousel, the swipe rows in sections 02, 03 and 06,
 the clients ticker, the section order and the LegalFlow demo pop-up went live from earlier previews.) A new preview also
 needs the orange badge rule back: `html.pv-mobile body::after{content:'Preview';...}` in

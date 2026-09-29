@@ -90,6 +90,8 @@
 .pf-footer-logo strong{font:600 19px 'Space Grotesk',sans-serif}
 .pf-nap{font-style:normal;font-size:13px;line-height:1.6;color:#B5B1A8}
 .pf-nap a{color:#D9D6CE}
+.pf-offices{display:flex;gap:28px;flex-wrap:wrap}
+.pf-office{display:block;margin-bottom:2px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8C877D}
 .pf-footer-nav{display:flex;gap:24px;flex-wrap:wrap}
 .pf-footer-nav a{font-size:14px;color:#D9D6CE}
 .pf-footer-nav a:hover{color:#FFFFFF}

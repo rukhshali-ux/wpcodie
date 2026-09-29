@@ -225,6 +225,19 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
   #top>section[id]{scroll-margin-top:16px}
 }
 
+/* PREVIEW: the second (Manchester) office in Contact and the footer. To make it live, delete the
+   .nap-one elements in Home.jsx and portfolio.astro, the badge rule and these two rules. */
+html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+html:not(.pv-mobile) .nap-two{display:none!important}
+html.pv-mobile .nap-one{display:none!important}
+/* PREVIEW: where the case study sits side by side with its illustration (two columns from about
+   1200px), the demo button and Idea Guy move above the illustration (.demo-side). */
+.demo-side{display:none}
+@media (min-width:1200px){
+  html.pv-mobile .demo-row-main{display:none}
+  html.pv-mobile .demo-side{display:flex;justify-content:center;margin:0 clamp(110px,22%,160px) 48px 0;padding-top:56px}
+}
+
 /* LegalFlow demo button and pop-up (Home.jsx, openDemo/closeDemo in logic.js). */
 .demo-row{display:flex;position:relative;align-self:flex-start}
 .demo-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:0;border-radius:8px;background:#2451B8;color:#F5F4F0;font:500 15px/1 'Inter',sans-serif;cursor:pointer;transition:transform 200ms,box-shadow 200ms}

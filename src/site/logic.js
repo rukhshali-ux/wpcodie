@@ -2,7 +2,7 @@
 // principles, form options...). Carried over from the design export; the few changes made
 // for the live site are marked with comments.
 import { DCLogic, React } from './dc.js';
-import { ADDRESS_LINES, PHONE, PHONE_DISPLAY } from './business.js';
+import { ADDRESS_LINES, OFFICES, PHONE, PHONE_DISPLAY, telHref } from './business.js';
 // The interactive LegalFlow CRM demo (Storylane). DEMO_EMBED is shown in the pop-up; DEMO_SHARE is the
 // plain share link, offered as "open in a new tab".
 const DEMO_SHARE = 'https://demo.storylane.com/share/lcs5qgcze6zi';
@@ -324,6 +324,7 @@ class Component extends DCLogic {
       demoFull: !!this.state.demoFull, enterDemoFull: this.enterDemoFull, exitDemoFull: this.exitDemoFull,
       demoSrc: DEMO_EMBED, demoShare: DEMO_SHARE,
             phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
+            offices: OFFICES.map((o) => ({ label: o.label, lines: o.lines, phoneDisplay: o.phoneDisplay, phoneHref: telHref(o.phone) })),
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
       heroTags: ['AI application development','Custom software & apps','Technology consulting'],
       capHeight: '420vh',
