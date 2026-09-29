@@ -24,7 +24,7 @@ else:
   `page.css`; `capCarousel`, `capSwipe`, `capMove` in `logic.js`), and "01 What we do" uses an Advise | Engineer switch (`.what-tabs`, `whatTab`) and a
   swipeable row of steps (`.what-*` rules in `page.css`).
   The hero's "Scroll" hint moved to the Capabilities counter (`.scroll-hint`, `.cap-meta`).
-  On every screen size: a "Clients who worked with us" logo ticker sits under the hero
+  On every screen size: a "Clients we've worked with" logo ticker sits under the hero
   (`#clients`, `.client*` rules at the end of `page.css`; the list is `clients` in `logic.js`,
   the logos are in `public/clients/`, originals and notes in `src/assets/clients/`). The
   sections were reordered so proof comes early: 01 What we do, 02 Selected work, 03 AI,
@@ -40,7 +40,6 @@ else:
   from the intro points at it (`DemoDoodle.jsx`, `.demo-doodle` / `.dd-*` rules).
   The pop-up tells visitors how to use the Storylane demo (click, or tap on touch screens, the
   pulsing dots): `.demo-hint` under the demo, `.demo-hint-float` over it when it fills the screen.
-  The button and doodle are still in preview: they show only on `/preview/` (see the rule in `page.css`).
   On phones the Contact section starts from its title right under the header, goes straight
   into the form, and hides the Email / Response / Include block (`.contact-wrap`,
   `.contact-info`).
@@ -61,6 +60,7 @@ else:
 
 **Verify every change with `npm run visual-diff`** (see below). Only the screens you meant
 to change may differ. Look at the images it writes before calling the change done.
+  The copy is US English (centralized, center, inquiry); keep new copy in US spelling.
 
 ## Where things are
 
@@ -146,6 +146,6 @@ the owner can try on a phone before they go live; the normal site ignores them. 
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
 Nothing is being previewed right now, so `/preview/` shows the same page as the homepage. (The
 "01 What we do" layout, the Capabilities carousel, the swipe rows in sections 02, 03 and 06,
-the clients ticker and the section order went live from earlier previews.) A new preview also
+the clients ticker, the section order and the LegalFlow demo pop-up went live from earlier previews.) A new preview also
 needs the orange badge rule back: `html.pv-mobile body::after{content:'Preview';...}` in
 `page.css`.

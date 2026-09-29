@@ -491,8 +491,8 @@ export function template(v) {
         </div>
       </section>
       {/* Clients ticker (added for the live site): the logos loop sideways, each links to the client's site. */}
-      <section id="clients" class="clients" aria-label="Clients who worked with us">
-        <div class="clients-head">Clients who worked with us</div>
+      <section id="clients" class="clients" aria-label="Clients we've worked with">
+        <div class="clients-head">Clients we've worked with</div>
         <div class="clients-viewport">
           <div class="clients-track">
             {[0, 1].map((copy) => each(v.clients).map((c, $index) => {
@@ -854,7 +854,7 @@ export function template(v) {
             {" "}
             <h2 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.1;letter-spacing:-0.02em")}>Systems our clients run every day.</h2>
             {" "}
-            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740")}>Two recent builds: one connects a law firm to its clients, the other takes admin off a business owner's plate.</p>
+            <p style={css("margin:0;font-size:1.125rem;line-height:1.6;color:#4A4740")}>Two recent builds: one connects law firms to their clients; the other takes admin off a business owner's plate.</p>
             {" "}
           </div>
           {" "}
@@ -870,7 +870,7 @@ export function template(v) {
               {" "}
               <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.75rem,3vw,2.25rem);line-height:1.15;letter-spacing:-0.02em")}>{"LegalFlow CRM: one platform for law firms and their clients."}</h3>
               {" "}
-              <p style={css("margin:0;font-size:16px;line-height:1.6;color:#4A4740")}>A centralized CRM and client portal built for law firms to manage the complete client journey: from enquiry and onboarding to case assignment, communication, documents, payments, and ongoing matter management.</p>
+              <p style={css("margin:0;font-size:16px;line-height:1.6;color:#4A4740")}>A centralized CRM and client portal built for law firms to manage the complete client journey: from inquiry and onboarding to case assignment, communication, documents, payments, and ongoing matter management.</p>
               {" "}
               <div style={css("display:flex;flex-direction:column;border-top:1px solid #D6D3CB")}>
                 {" "}
@@ -1630,7 +1630,7 @@ export function template(v) {
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Response</span>
-                <span style={css("font-size:15px;line-height:1.6")}>Within the same day, you'll hear back with our view and a suggested first step.</span>
+                <span style={css("font-size:15px;line-height:1.6")}>You'll hear back the same day with our view and a suggested first step.</span>
               </div>
               {" "}
               <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0")}>
@@ -1730,7 +1730,7 @@ export function template(v) {
                 {" "}
                 <span style={css("font-family:'Space Grotesk',sans-serif;font-size:1.75rem;font-weight:600")}>{"Thanks, "}{txt(v.firstName)}{"."}</span>
                 {" "}
-                <span style={css("font-size:15px;line-height:1.6;color:#4A4740")}>{"Your message is on its way. We'll reply to "}{txt(v.form.email)}{" within the same day with our view and a suggested first step."}</span>
+                <span style={css("font-size:15px;line-height:1.6;color:#4A4740")}>{"Your message is on its way. We'll reply to "}{txt(v.form.email)}{" the same day with our view and a suggested first step."}</span>
                 {" "}
                 <div onClick={v.reset} style={css("display:inline-flex")}>
                   <Button variant="tertiary">Send another</Button>

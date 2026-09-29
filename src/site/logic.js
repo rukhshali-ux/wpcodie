@@ -253,9 +253,9 @@ class Component extends DCLogic {
     const panel = (i) => ({ b: w2 === i ? B : '#2B2F3A', o: w2 >= i ? 1 : 0.45 });
     return {
       cs1Points: [
-        { t:'Lead & client management', d:'Capture, qualify, and convert enquiries without duplicate data entry.' },
+        { t:'Lead & client management', d:'Capture, qualify, and convert inquiries without duplicate data entry.' },
         { t:'Case management', d:'Assign matters to the right teams and track ownership, progress, tasks, and deadlines.' },
-        { t:'Centralised communication', d:'Keep emails, messages, documents, and activity connected to each client and matter.' },
+        { t:'Centralized communication', d:'Keep emails, messages, documents, and activity connected to each client and matter.' },
         { t:'Client portal', d:'Clients can upload documents, make payments, receive updates, and communicate securely with the firm.' },
       ],
       cs1Tags: ['Law firms','Fee earners','Case managers','Administrators','Their clients'],
@@ -332,8 +332,8 @@ class Component extends DCLogic {
         isAI: i === 0, isSW: i === 1, isWeb: i === 2, isMob: i === 3, isAuto: i === 4, isAPI: i === 5, isCon: i === 6,
         bg: i === this.state.cap ? '#1F2430' : '#181B23', border: i === this.state.cap ? '#8FAAE8' : '#2B2F3A' })),
       disciplines: [
-        { num:'01', title:'Advise', lead:'Make technology questions into clear choices.', body:'Technology strategy, architecture, technical discovery, AI opportunity reviews, automation planning, and product definition.', tags:['Strategy','Architecture','Discovery','AI opportunities','Automation planning','Product definition'], bg: OFF, fg: INK, accent: B, tagBorder:'#D6D3CB' },
-        { num:'02', title:'Engineer', lead:'Make those choices into running technology.', body:'AI products, web and mobile applications, APIs, integrations, automation, and custom software.', tags:['AI products','Web apps','Mobile apps','APIs','Integrations','Automation','Custom software'], bg: B, fg: OFF, accent: OFF, tagBorder:'rgba(245,244,240,0.45)' },
+        { num:'01', title:'Advise', lead:'Turn technology questions into clear choices.', body:'Technology strategy, architecture, technical discovery, AI opportunity reviews, automation planning, and product definition.', tags:['Strategy','Architecture','Discovery','AI opportunities','Automation planning','Product definition'], bg: OFF, fg: INK, accent: B, tagBorder:'#D6D3CB' },
+        { num:'02', title:'Engineer', lead:'Turn those choices into running technology.', body:'AI products, web and mobile applications, APIs, integrations, automation, and custom software.', tags:['AI products','Web apps','Mobile apps','APIs','Integrations','Automation','Custom software'], bg: B, fg: OFF, accent: OFF, tagBorder:'rgba(245,244,240,0.45)' },
       ],
       steps: [['01','Challenge','A problem, constraint, or opening that technology can address.'],['02','Strategy','The right direction, weighed against cost, scale, and risk.'],['03','Architecture','Systems, data, and integrations designed before coding starts.'],['04','Build','Engineering in steady iterations, with the architecture as the agreement.'],['05','Launch','Deployed, monitored, and ready to grow with the business.']].map(([num,title,body]) => ({num,title,body})),
       aiLabel: ['Ingesting data','Reasoning','Deciding','Acting'][this.state.ai],
@@ -346,7 +346,7 @@ class Component extends DCLogic {
           signals: [0.9, 0.6, 0.75].map((w, k) => ({ w: (cur || done) ? (w * 100) + '%' : '12%', c: cur ? '#F5F4F0' : '#8FAAE8', d: (k * 120) + 'ms' })) };
       }),
       aiCards: [
-        { title:'AI applications', body:'Products with models at their centre, not added on later.', example:'A claims assistant that reviews submissions against policy and prepares a recommendation for an adjuster.' },
+        { title:'AI applications', body:'Products with models at their center, not added on later.', example:'A claims assistant that reviews submissions against policy and prepares a recommendation for an adjuster.' },
         { title:'Intelligent automation', body:'Multi-step processes that run unattended and escalate only when needed.', example:'Supplier invoices are matched, approved within thresholds, and posted, with exceptions sent to finance.' },
         { title:'AI-powered workflows', body:'Intelligence placed inside the tools your teams use every day.', example:'Account managers see suggested next steps and drafted emails right inside their CRM.' },
         { title:'Conversational interfaces', body:'Assistants and agents grounded in your own data and rules.', example:'A help-desk assistant answers from your knowledge base and passes full context to a human when needed.' },
@@ -375,7 +375,7 @@ class Component extends DCLogic {
         ['Seattle Pro Contractors', 'https://seattleprocontractors.com', 'seattle-pro-contractors', 307, 76, 44, 'linear-gradient(90deg,#878B8E,#787B83)'],
         ['Premier FL Magazine', 'https://premiereflmagazine.com', 'premier-fl-magazine', 166, 40, 34, '#FFFFFF'],
       ].map(([name, url, file, w, h, size, bg]) => ({ name, url, logo: `/clients/${file}.webp`, w, h, size, bg })),
-      principles: [['01','Outcomes over output','We\'re paid to fix a business problem, not to bill hours or write code for its own sake.'],['02','Room to grow','What we build grows with you, so you never pay to rebuild it twice.'],['03','Proof before hype','No AI you don\'t need. We prove it works with a prototype and real numbers first.'],['04','No handoff gap','The people who plan your project are the people who build it, so nothing gets lost.']].map(([num,title,body]) => ({num,title,body})),
+      principles: [['01','Outcomes over output','We\'re paid to fix a business problem, not to bill hours or write code for its own sake.'],['02','Room to grow','What we build grows with you, so you never pay to build it twice.'],['03','Proof before hype','No AI you don\'t need. We prove it works with a prototype and real numbers first.'],['04','No handoff gap','The people who plan your project are the people who build it, so nothing gets lost.']].map(([num,title,body]) => ({num,title,body})),
       stackLeft: [{ title:'AI & data', items:['AI models','Data platforms','Intelligent automation'] },{ title:'Applications', items:['Web','Mobile','SaaS','Custom platforms'] }],
       stackRight: [{ title:'Infrastructure', items:['Cloud','APIs','Databases','Security'] },{ title:'Integrations', items:['Business systems','Payments','CRM','Third-party platforms'] }],
       form: this.state.form, setName: this.field('name'), setEmail: this.field('email'), setCompany: this.field('company'), setMsg: this.field('msg'),

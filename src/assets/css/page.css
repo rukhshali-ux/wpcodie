@@ -225,12 +225,8 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
   #top>section[id]{scroll-margin-top:16px}
 }
 
-/* LegalFlow demo button and pop-up. PREVIEW: the button only shows on the /preview/ page (and
-   ?preview=mobile) until the owner approves it; to make it live, delete the badge rule and the
-   html.pv-mobile .demo-row rule, and change display:none to flex on .demo-row. */
-html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
-html.pv-mobile .demo-row{display:flex}
-.demo-row{display:none;position:relative;align-self:flex-start}
+/* LegalFlow demo button and pop-up (Home.jsx, openDemo/closeDemo in logic.js). */
+.demo-row{display:flex;position:relative;align-self:flex-start}
 .demo-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:0;border-radius:8px;background:#2451B8;color:#F5F4F0;font:500 15px/1 'Inter',sans-serif;cursor:pointer;transition:transform 200ms,box-shadow 200ms}
 .demo-btn:hover,.demo-btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 16px rgba(36,81,184,0.25)}
 .demo-btn-play{width:22px;height:22px;border-radius:50%;background:#F5F4F0;color:#2451B8;display:grid;place-items:center;font-size:9px;padding-left:2px;box-sizing:border-box}
