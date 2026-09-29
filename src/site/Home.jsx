@@ -1804,8 +1804,14 @@ export function template(v) {
             <div class="demo-stage">
               <iframe src={v.demoSrc} title="LegalFlow CRM interactive demo" allow="fullscreen" allowFullScreen></iframe>
               <button type="button" class="demo-exit" onClick={v.exitDemoFull}>Exit full screen</button>
+              <p class="demo-hint-float" aria-hidden="true"><span class="demo-dot"></span><span class="demo-hint-click">Click the pulsing dots to move through the demo</span><span class="demo-hint-tap">Tap the pulsing dots to move through the demo</span></p>
               <button type="button" class="demo-close-float" onClick={v.closeDemo} aria-label="Close the demo">✕</button>
             </div>
+            <p class="demo-hint">
+              <span class="demo-dot" aria-hidden="true"></span>
+              <span class="demo-hint-click"><b>How it works:</b> click a pulsing dot to open its tip, then click the tip to go to the next screen.</span>
+              <span class="demo-hint-tap"><b>How it works:</b> tap a pulsing dot to open its tip, then tap the tip to go to the next screen.</span>
+            </p>
             <div class="demo-tools">
               <button type="button" class="demo-fs-big" onClick={v.enterDemoFull}>⤢ View full screen</button>
               <span class="demo-rotate">↻ Or turn your phone sideways for a bigger view</span>

@@ -38,6 +38,8 @@ else:
   demo sideways (real full screen plus a landscape lock where the browser allows it; on iPhone,
   which has neither, the frame is rotated with CSS, `.demo-full`). Beside the button, Idea Guy
   from the intro points at it (`DemoDoodle.jsx`, `.demo-doodle` / `.dd-*` rules).
+  The pop-up tells visitors how to use the Storylane demo (click, or tap on touch screens, the
+  pulsing dots): `.demo-hint` under the demo, `.demo-hint-float` over it when it fills the screen.
   The button and doodle are still in preview: they show only on `/preview/` (see the rule in `page.css`).
   On phones the Contact section starts from its title right under the header, goes straight
   into the form, and hides the Email / Response / Include block (`.contact-wrap`,

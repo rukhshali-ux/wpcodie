@@ -241,12 +241,26 @@ html.pv-mobile .demo-row{display:flex}
 .demo-fs{height:36px;padding:0 14px;border-radius:999px;border:1px solid #2B2F3A;background:transparent;color:#F5F4F0;font:500 13px 'Inter',sans-serif;cursor:pointer}
 .demo-close{width:36px;height:36px;border-radius:50%;border:1px solid #2B2F3A;background:transparent;color:#F5F4F0;font-size:15px;cursor:pointer}
 .demo-fs:hover,.demo-fs:focus-visible,.demo-close:hover,.demo-close:focus-visible{background:#2451B8;border-color:#2451B8}
-.demo-stage{position:relative;width:100%;aspect-ratio:16/9;max-height:calc(100vh - 150px);background:#0E1015}
+.demo-stage{position:relative;width:100%;aspect-ratio:16/9;max-height:calc(100vh - 190px);background:#0E1015}
 .demo-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .demo-exit,.demo-close-float{display:none;position:absolute;top:10px;right:10px;z-index:2;border:0;border-radius:999px;background:rgba(21,24,31,0.78);color:#F5F4F0;font:600 13px 'Inter',sans-serif;cursor:pointer}
 .demo-exit{padding:10px 16px}
 .demo-close-float{width:40px;height:40px;font-size:16px}
 .demo-tools{display:none}
+.demo-hint{margin:0;display:flex;align-items:flex-start;justify-content:center;gap:10px;padding:14px 20px 0;font:400 14px/1.5 'Inter',sans-serif;color:#D9D6CE;text-align:left}
+.demo-hint b{color:#F5F4F0;font-weight:600}
+.demo-dot{flex:0 0 auto;position:relative;width:12px;height:12px;margin-top:4px;border-radius:50%;background:#8FAAE8}
+.demo-dot::after{content:'';position:absolute;inset:0;border-radius:50%;background:#8FAAE8;animation:demoDot 1.6s ease-out infinite}
+@keyframes demoDot{from{transform:scale(1);opacity:0.7}to{transform:scale(2.4);opacity:0}}
+.demo-hint-tap{display:none}
+@media (hover:none),(pointer:coarse){.demo-hint-click{display:none}.demo-hint-tap{display:inline}}
+/* The same tip over the demo when it fills the screen; it fades after a few seconds. */
+.demo-hint-float{display:none;position:absolute;left:50%;bottom:14px;z-index:2;margin:0;transform:translateX(-50%);max-width:calc(100% - 28px);box-sizing:border-box;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;background:rgba(21,24,31,0.85);color:#F5F4F0;font:500 13px/1.3 'Inter',sans-serif;width:max-content;pointer-events:none;animation:demoHintOut 7s forwards}
+.demo-hint-float .demo-dot{margin-top:0}
+@keyframes demoHintOut{0%,80%{opacity:1}100%{opacity:0;visibility:hidden}}
+.demo-stage:fullscreen .demo-hint-float{display:flex}
+.demo-stage:-webkit-full-screen .demo-hint-float{display:flex}
+.demo-full .demo-hint-float{display:flex}
 .demo-newtab{align-self:center;padding:10px 0 12px;font-size:13px;color:#8FAAE8}
 @keyframes demoIn{from{opacity:0}to{opacity:1}}
 /* Idea Guy beside the button (DemoDoodle.jsx): points at it, waves and hops now and then. */
@@ -288,6 +302,8 @@ html.pv-mobile .demo-row{display:flex}
   .demo-bar,.demo-tools,.demo-newtab{display:none}
   .demo-stage{width:100vw;height:100vh;height:100dvh;aspect-ratio:auto;max-height:none}
   .demo-close-float{display:block}
+  .demo-hint-float{display:flex}
+  .demo-hint{display:none}
   .demo-full .demo-close-float{display:none}
 }
-@media (prefers-reduced-motion:reduce){.demo-modal{animation:none}.demo-btn{transition:none}.dd-hop,.dd-marks,.dd-wave,.dd-point,.dd-blink{animation:none}}
+@media (prefers-reduced-motion:reduce){.demo-dot::after{animation:none}.demo-modal{animation:none}.demo-btn{transition:none}.dd-hop,.dd-marks,.dd-wave,.dd-point,.dd-blink{animation:none}}
