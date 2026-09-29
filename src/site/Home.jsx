@@ -864,12 +864,12 @@ export function template(v) {
               <div style={css("display:flex;gap:8px;flex-wrap:wrap")}>
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2451B8")}>Case study 01</span>
                 <span style={css("font-size:12px;color:#8C877D")}>·</span>
-                <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B675F")}>Legal · CRM + client app</span>
+                <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B675F")}>Legal · CRM + client portal</span>
               </div>
               {" "}
-              <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.75rem,3vw,2.25rem);line-height:1.15;letter-spacing:-0.02em")}>{"Ashford & Ross LLP: one system for the firm and its clients."}</h3>
+              <h3 style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.75rem,3vw,2.25rem);line-height:1.15;letter-spacing:-0.02em")}>{"LegalFlow CRM: one platform for law firms and their clients."}</h3>
               {" "}
-              <p style={css("margin:0;font-size:16px;line-height:1.6;color:#4A4740")}>Client correspondence lived in inboxes, leads in spreadsheets, and case assignments in people's heads. We built a staff CRM and a companion client app that share one source of truth.</p>
+              <p style={css("margin:0;font-size:16px;line-height:1.6;color:#4A4740")}>A centralized CRM and client portal built for law firms to manage the complete client journey: from enquiry and onboarding to case assignment, communication, documents, payments, and ongoing matter management.</p>
               {" "}
               <div style={css("display:flex;flex-direction:column;border-top:1px solid #D6D3CB")}>
                 {" "}
@@ -892,7 +892,8 @@ export function template(v) {
                 {" "}
               </div>
               {" "}
-              <div style={css("display:flex;gap:8px;flex-wrap:wrap")}>
+              <div style={css("display:flex;gap:8px;flex-wrap:wrap;align-items:center")}>
+                <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B675F;margin-right:4px")}>Built for</span>
                 {each(v.cs1Tags).map((t, $index) => (
                   <Fragment key={$index}>
                     <span style={css("white-space:nowrap;font-size:12px;font-weight:500;padding:6px 12px;border-radius:999px;background:#F5F4F0;border:1px solid #D6D3CB")}>{txt(t)}</span>
@@ -921,8 +922,8 @@ export function template(v) {
                   <div style={css("background:#F5F4F0;border-right:1px solid #EEECE6;padding:14px 10px;display:flex;flex-direction:column;gap:4px")}>
                     {" "}
                     <div style={css("display:flex;align-items:center;gap:8px;padding:0 4px 12px")}>
-                      <span style={css("width:22px;height:22px;border-radius:6px;background:#15181F;color:#F5F4F0;display:grid;place-items:center;font:700 10px 'Space Grotesk',sans-serif")}>A</span>
-                      <span style={css("font:600 11px 'Space Grotesk',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis")}>{"Ashford & Ross"}</span>
+                      <span style={css("width:22px;height:22px;border-radius:6px;background:#15181F;color:#F5F4F0;display:grid;place-items:center;font:700 10px 'Space Grotesk',sans-serif")}>LF</span>
+                      <span style={css("font:600 11px 'Space Grotesk',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis")}>{"LegalFlow"}</span>
                     </div>
                     {" "}
                     {each(v.crmNav).map((n, $index) => (
@@ -1003,9 +1004,9 @@ export function template(v) {
               <div style={css("position:absolute;right:0;bottom:0;width:clamp(140px,26%,190px);background:#F5F4F0;border:6px solid #15181F;border-radius:26px;box-shadow:0 16px 32px rgba(21,24,31,0.2);padding:12px 10px;display:flex;flex-direction:column;gap:8px")}>
                 {" "}
                 <div style={css("display:flex;align-items:center;gap:6px")}>
-                  <span style={css("width:20px;height:20px;border-radius:5px;background:#15181F;color:#F5F4F0;display:grid;place-items:center;font:700 8px 'Space Grotesk',sans-serif")}>{"A&R"}</span>
+                  <span style={css("width:20px;height:20px;border-radius:5px;background:#15181F;color:#F5F4F0;display:grid;place-items:center;font:700 8px 'Space Grotesk',sans-serif")}>{"LF"}</span>
                   <div style={css("display:flex;flex-direction:column")}>
-                    <span style={css("font:600 9px 'Space Grotesk',sans-serif")}>{"Ashford & Ross"}</span>
+                    <span style={css("font:600 9px 'Space Grotesk',sans-serif")}>{"LegalFlow"}</span>
                     <span style={css("font-size:8px;color:#8C877D")}>Your case</span>
                   </div>
                 </div>

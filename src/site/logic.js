@@ -208,12 +208,12 @@ class Component extends DCLogic {
     const panel = (i) => ({ b: w2 === i ? B : '#2B2F3A', o: w2 >= i ? 1 : 0.45 });
     return {
       cs1Points: [
-        { t:'Client correspondence', d:'Every email, message, and document tied to the matter it belongs to.' },
-        { t:'Lead management', d:'Enquiries captured, qualified, and converted into clients without re-keying.' },
-        { t:'Case assignment', d:'Matters routed to the right fee earner based on the office structure.' },
-        { t:'Client app', d:'Clients see what\'s needed, upload documents, pay, and message the firm.' },
+        { t:'Lead & client management', d:'Capture, qualify, and convert enquiries without duplicate data entry.' },
+        { t:'Case management', d:'Assign matters to the right teams and track ownership, progress, tasks, and deadlines.' },
+        { t:'Centralised communication', d:'Keep emails, messages, documents, and activity connected to each client and matter.' },
+        { t:'Client portal', d:'Clients can upload documents, make payments, receive updates, and communicate securely with the firm.' },
       ],
-      cs1Tags: ['Staff CRM','Client mobile app','Document review','Payments'],
+      cs1Tags: ['Law firms','Fee earners','Case managers','Administrators','Their clients'],
       crmNav: ['My day','Matters','Leads','Clients','Conversations','Calendar'].map((l, i) => ({ l, bg: i === 0 ? '#E3E8F4' : 'transparent', fg: i === 0 ? B : '#2B2F3A', w: i === 0 ? 600 : 400, dot: (i === 4 && w1 >= 3) ? 1 : 0 })),
       crmStats: [{ l:'Dates', v:'2', c:'#B3261E' }, { l:'Review', v: w1 >= 2 ? '4' : '3', c: B, hi: w1 === 2 }, { l:'Leads', v:'5', c:'#15181F' }].map(s => ({ ...s, border: s.hi ? B : '#EEECE6' })),
       crmDocs: [{ f:'engagement.pdf', m:'Owen Mercer · Agreement' }, { f:'id_passport.jpg', m:'Leila Shah · Identity' }, { f:'tax_return.pdf', m:'Tom Avery · Financials' }],
