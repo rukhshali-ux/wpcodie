@@ -4,6 +4,11 @@ name: Diagnose hosting
 
 on:
   workflow_dispatch:
+    inputs:
+      find:
+        description: Text to look for in the live homepage (optional)
+        required: false
+        default: ''
 
 jobs:
   diagnose:
@@ -23,6 +28,11 @@ jobs:
           echo "has floating CTA (m-cta): $(grep -c 'm-cta' /tmp/home.html)"
           echo "phone swipe rows (sw-row, expect 3): $(grep -o 'sw-row' /tmp/home.html | wc -l)"
           echo "How we operate swipe row (ops-cards): $(grep -o 'ops-cards' /tmp/home.html | wc -l)"
+          if [ -n "${{ inputs.find }}" ]; then
+            echo "== live homepage contains \"${{ inputs.find }}\": $(grep -o -F "${{ inputs.find }}" /tmp/home.html | wc -l) time(s)"
+            echo "== same page with a cache-busting query:"
+            curl -sS --compressed --max-time 20 "https://wpcodie.com/?nocache=$(date +%s)" | grep -o -F "${{ inputs.find }}" | wc -l
+          fi
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
