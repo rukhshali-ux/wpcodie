@@ -34,6 +34,7 @@ else:
   Case study 01 (LegalFlow CRM) has a "Watch the demo" button (`.demo-btn`) that opens the
   Storylane demo in a pop-up (`.demo-modal`; `openDemo`/`closeDemo` and the demo address,
   `DEMO_SHARE`/`DEMO_EMBED`, at the top of `logic.js`). The iframe loads only when opened.
+  The button is still in preview: it shows only on `/preview/` (see the rule in `page.css`).
   On phones the Contact section starts from its title right under the header, goes straight
   into the form, and hides the Email / Response / Include block (`.contact-wrap`,
   `.contact-info`).
