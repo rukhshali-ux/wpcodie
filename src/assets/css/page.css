@@ -226,25 +226,68 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
 }
 
 /* LegalFlow demo button and pop-up. PREVIEW: the button only shows on the /preview/ page (and
-   ?preview=mobile) until the owner approves it; to make it live, delete the two rules below the
-   badge and change display:none to inline-flex on .demo-btn. */
+   ?preview=mobile) until the owner approves it; to make it live, delete the badge rule and the
+   html.pv-mobile .demo-row rule, and change display:none to flex on .demo-row. */
 html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
-html.pv-mobile .demo-btn{display:inline-flex}
-.demo-btn{align-self:flex-start;display:none;align-items:center;gap:10px;padding:12px 22px;border:0;border-radius:8px;background:#2451B8;color:#F5F4F0;font:500 15px/1 'Inter',sans-serif;cursor:pointer;transition:transform 200ms,box-shadow 200ms}
+html.pv-mobile .demo-row{display:flex}
+.demo-row{display:none;position:relative;align-self:flex-start}
+.demo-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:0;border-radius:8px;background:#2451B8;color:#F5F4F0;font:500 15px/1 'Inter',sans-serif;cursor:pointer;transition:transform 200ms,box-shadow 200ms}
 .demo-btn:hover,.demo-btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 16px rgba(36,81,184,0.25)}
 .demo-btn-play{width:22px;height:22px;border-radius:50%;background:#F5F4F0;color:#2451B8;display:grid;place-items:center;font-size:9px;padding-left:2px;box-sizing:border-box}
 .demo-modal{position:fixed;inset:0;z-index:60;background:rgba(21,24,31,0.72);backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px;animation:demoIn 200ms ease-out}
 .demo-box{width:min(1200px,100%);background:#15181F;border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.4);display:flex;flex-direction:column}
 .demo-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;color:#D9D6CE;font:600 13px 'Inter',sans-serif}
+.demo-bar-actions{display:flex;align-items:center;gap:8px}
+.demo-fs{height:36px;padding:0 14px;border-radius:999px;border:1px solid #2B2F3A;background:transparent;color:#F5F4F0;font:500 13px 'Inter',sans-serif;cursor:pointer}
 .demo-close{width:36px;height:36px;border-radius:50%;border:1px solid #2B2F3A;background:transparent;color:#F5F4F0;font-size:15px;cursor:pointer}
-.demo-close:hover,.demo-close:focus-visible{background:#2451B8;border-color:#2451B8}
-.demo-frame{position:relative;width:100%;aspect-ratio:16/9;max-height:calc(100vh - 150px);background:#0E1015}
-.demo-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.demo-fs:hover,.demo-fs:focus-visible,.demo-close:hover,.demo-close:focus-visible{background:#2451B8;border-color:#2451B8}
+.demo-stage{position:relative;width:100%;aspect-ratio:16/9;max-height:calc(100vh - 150px);background:#0E1015}
+.demo-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.demo-exit,.demo-close-float{display:none;position:absolute;top:10px;right:10px;z-index:2;border:0;border-radius:999px;background:rgba(21,24,31,0.78);color:#F5F4F0;font:600 13px 'Inter',sans-serif;cursor:pointer}
+.demo-exit{padding:10px 16px}
+.demo-close-float{width:40px;height:40px;font-size:16px}
+.demo-tools{display:none}
 .demo-newtab{align-self:center;padding:10px 0 12px;font-size:13px;color:#8FAAE8}
 @keyframes demoIn{from{opacity:0}to{opacity:1}}
+/* Idea Guy beside the button (DemoDoodle.jsx): points at it, waves and hops now and then. */
+.demo-doodle{position:absolute;left:100%;bottom:-24px;margin-left:6px;height:124px;width:auto;overflow:visible;pointer-events:none;filter:drop-shadow(0 2px 2px rgba(21,24,31,0.18))}
+.dd-hop{animation:ddHop 2.6s cubic-bezier(0.4,0,0.2,1) infinite}
+.dd-marks{animation:ddMarks 2.6s ease-in-out infinite}
+.dd-wave{transform-origin:118px 128px;transform:rotate(-150deg);animation:ddWave 0.9s ease-in-out infinite}
+.dd-point{transform-origin:82px 160px;animation:ddPoint 0.7s ease-in-out infinite}
+.dd-blink{transform-origin:100px 72px;animation:wpEyeBlink 3.4s infinite}
+@keyframes ddHop{0%,40%,100%{transform:translateY(0)}52%{transform:translateY(-12px)}64%{transform:translateY(0)}74%{transform:translateY(-5px)}84%{transform:translateY(0)}}
+@keyframes ddMarks{0%,40%,100%{opacity:0.35}55%,80%{opacity:1}}
+@keyframes ddWave{0%,100%{transform:rotate(-150deg)}50%{transform:rotate(-172deg)}}
+@keyframes ddPoint{0%,100%{transform:translate(0,0)}50%{transform:translate(-2px,-5px)}}
+/* Full screen: the stage takes the whole screen (the browser's real full screen, or this fallback). */
+.demo-stage:fullscreen{width:100vw;height:100vh;max-height:none;aspect-ratio:auto}
+.demo-stage:-webkit-full-screen{width:100vw;height:100vh;max-height:none;aspect-ratio:auto}
+.demo-full .demo-stage{position:fixed;inset:0;z-index:70;width:100vw;height:100vh;height:100dvh;max-height:none;aspect-ratio:auto}
+.demo-full .demo-exit{display:block}
+/* Phones, held upright: the demo in a wide frame in the middle, with a big full-screen button. */
 @media (max-width:959px){
   .demo-modal{padding:0;place-items:stretch}
-  .demo-box{border-radius:0;height:100%}
-  .demo-frame{aspect-ratio:auto;flex:1;max-height:none}
+  .demo-box{border-radius:0;height:100%;justify-content:center}
+  .demo-bar{position:absolute;top:0;left:0;right:0}
+  .demo-fs{display:none}
+  .demo-stage{max-height:none}
+  .demo-tools{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 20px 6px}
+  .demo-fs-big{padding:14px 24px;border:0;border-radius:10px;background:#2451B8;color:#F5F4F0;font:600 16px 'Inter',sans-serif;cursor:pointer}
+  .demo-rotate{font-size:13px;color:#B5B1A8;text-align:center}
+  .demo-newtab{position:absolute;bottom:0;left:0;right:0;text-align:center;padding-bottom:max(14px,env(safe-area-inset-bottom))}
 }
-@media (prefers-reduced-motion:reduce){.demo-modal{animation:none}.demo-btn{transition:none}}
+/* iPhone fallback while still upright: turn the demo sideways to fill the screen. */
+@media (max-width:959px) and (orientation:portrait){
+  .demo-full .demo-stage{inset:auto;top:0;left:0;width:100vh;width:100dvh;height:100vw;transform:rotate(90deg) translateY(-100%);transform-origin:top left}
+}
+/* A phone turned sideways: the demo fills the screen edge to edge. */
+@media (max-height:520px) and (orientation:landscape){
+  .demo-modal{padding:0}
+  .demo-box{width:100%;height:100%;border-radius:0}
+  .demo-bar,.demo-tools,.demo-newtab{display:none}
+  .demo-stage{width:100vw;height:100vh;height:100dvh;aspect-ratio:auto;max-height:none}
+  .demo-close-float{display:block}
+  .demo-full .demo-close-float{display:none}
+}
+@media (prefers-reduced-motion:reduce){.demo-modal{animation:none}.demo-btn{transition:none}.dd-hop,.dd-marks,.dd-wave,.dd-point,.dd-blink{animation:none}}

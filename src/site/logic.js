@@ -126,15 +126,42 @@ class Component extends DCLogic {
   // Esc, the close button or a click outside closes it, and focus returns to the button.
   openDemo = (e) => {
     this.demoOpener = e && e.currentTarget;
-    this.setState({ demoOpen: true });
-    this.onDemoKey = (ev) => { if (ev.key === 'Escape') this.closeDemo(); };
+    this.setState({ demoOpen: true, demoFull: false });
+    this.onDemoKey = (ev) => { if (ev.key === 'Escape') { if (this.state.demoFull) this.exitDemoFull(); else this.closeDemo(); } };
+    this.onDemoFs = () => { if (!(document.fullscreenElement || document.webkitFullscreenElement)) this.setState({ demoFull: false }); };
     window.addEventListener('keydown', this.onDemoKey);
+    document.addEventListener('fullscreenchange', this.onDemoFs);
+    document.addEventListener('webkitfullscreenchange', this.onDemoFs);
     setTimeout(() => { const b = document.querySelector('.demo-close'); if (b) b.focus(); }, 0);
   };
   closeDemo = () => {
+    this.exitDemoFull();
     window.removeEventListener('keydown', this.onDemoKey);
+    document.removeEventListener('fullscreenchange', this.onDemoFs);
+    document.removeEventListener('webkitfullscreenchange', this.onDemoFs);
     this.setState({ demoOpen: false });
     if (this.demoOpener) this.demoOpener.focus();
+  };
+  // Full screen: the browser's real full screen where it exists (Android, desktop, iPad), turned
+  // to landscape where the phone allows it. iPhone Safari has no full screen for this, so there the
+  // demo is rotated on screen instead (.demo-full rules in page.css): the visitor turns the phone.
+  enterDemoFull = () => {
+    const st = document.querySelector('.demo-stage');
+    const req = st && (st.requestFullscreen || st.webkitRequestFullscreen);
+    const iPhone = /iPhone|iPod/.test(navigator.userAgent);
+    const lock = () => { try { const o = screen.orientation; if (o && o.lock) o.lock('landscape').catch(() => {}); } catch (err) { /* not supported */ } };
+    if (req && !iPhone) {
+      Promise.resolve(req.call(st)).then(lock, () => this.setState({ demoFull: true }));
+      this.setState({ demoFull: true });
+    } else {
+      this.setState({ demoFull: true });
+    }
+  };
+  exitDemoFull = () => {
+    const fs = document.fullscreenElement || document.webkitFullscreenElement;
+    if (fs) { const ex = document.exitFullscreen || document.webkitExitFullscreen; if (ex) Promise.resolve(ex.call(document)).catch(() => {}); }
+    try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (err) { /* not supported */ }
+    if (this.state.demoFull) this.setState({ demoFull: false });
   };
   loops = 0;
   tickPose = () => { clearTimeout(this.poseT); const dur = [2000, 1500, 1300, 1700, 1800][this.state.pose] || 1500;
@@ -294,6 +321,7 @@ class Component extends DCLogic {
       nav: links.map(([href,id,label]) => ({ href, label, color: this.state.active === id ? B : '#2B2F3A', bg: this.state.active === id ? '#E3E8F4' : 'transparent' })),
       footNav: links.map(([href,,label]) => ({ href, label })),
       demoOpen: !!this.state.demoOpen, openDemo: this.openDemo, closeDemo: this.closeDemo, stopClick: (e) => e.stopPropagation(),
+      demoFull: !!this.state.demoFull, enterDemoFull: this.enterDemoFull, exitDemoFull: this.exitDemoFull,
       demoSrc: DEMO_EMBED, demoShare: DEMO_SHARE,
             phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
