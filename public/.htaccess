@@ -14,7 +14,14 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://wpcodie.com%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTP_HOST} ^www\.wpcodie\.com$ [NC]
   RewriteRule ^ https://wpcodie.com%{REQUEST_URI} [L,R=301]
+
+  # Pages of the old WordPress theme demo that Google still lists. "Gone" (410) tells search
+  # engines to drop them now, rather than retrying a 404 for weeks; /contact/ goes to the form.
+  RewriteRule ^contact/?$ https://wpcodie.com/#contact [L,R=301,NE]
+  RewriteRule ^(events|select-your-plan|restaurant|room|rooms|blog|sample-page|hello-world|shop|cart|checkout|my-account|category|tag|author|feed|comments/feed)(/.*)?$ - [G,L]
 </IfModule>
+
+AddType application/manifest+json .webmanifest
 
 # Compression.
 <IfModule mod_deflate.c>
@@ -30,7 +37,7 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.(js|css|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-  <FilesMatch "\.(png|svg|ico)$">
+  <FilesMatch "\.(png|svg|ico|webmanifest)$">
     Header set Cache-Control "public, max-age=604800"
   </FilesMatch>
 

@@ -11,7 +11,7 @@ import '../assets/css/styles.css';
 import '../assets/css/page.css';
 import '../assets/css/portfolio.css';
 
-const TITLE = 'Portfolio — WPCodie';
+const TITLE = 'WPCodie Portfolio: Healthcare, Fintech & Marketplace Platforms';
 const DESCRIPTION = 'Case studies from WPCodie: healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe and Twilio integrations.';
 const URL = `${SITE}/portfolio/`;
 const count = (group) => (group === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.groups.includes(group)).length);
@@ -41,8 +41,10 @@ const ld = {
 <meta name="description" content={DESCRIPTION}>
 <link rel="canonical" href={URL}>
 <meta name="theme-color" content="#F5F4F0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin>
 <link rel="preload" href={groteskFont} as="font" type="font/woff2" crossorigin>
 <meta property="og:type" content="website">

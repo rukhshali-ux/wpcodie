@@ -7,9 +7,9 @@ export const NAME = 'WPCodie';
 export const EMAIL = 'service@wpcodie.com';
 export { ADDRESS, ADDRESS_LINES, PHONE, PHONE_DISPLAY } from './business.js';
 import { ADDRESS, PHONE } from './business.js';
-export const TITLE = 'WPCodie — Technology consulting, AI & software';
+export const TITLE = 'AI & Custom Software Development | WPCodie';
 export const DESCRIPTION =
-  'WPCodie helps teams choose the right technology direction, then designs and ships AI products and custom software.';
+  'WPCodie is an AI and custom software development company in Kalispell, MT, building AI apps, web and mobile apps, and technology roadmaps for clients worldwide.';
 export const TAGLINE = 'Clear direction first. Working software next.';
 
 export function pageContent() {
@@ -46,7 +46,7 @@ export function jsonLd() {
           areaServed: 'Worldwide',
         },
         areaServed: 'Worldwide',
-        logo: `${SITE}/apple-touch-icon.png`,
+        logo: `${SITE}/icon-512.png`,
         image: `${SITE}/og.png`,
         description: DESCRIPTION,
         slogan: TAGLINE,
@@ -65,6 +65,7 @@ export function jsonLd() {
         '@id': `${SITE}/#website`,
         url: `${SITE}/`,
         name: NAME,
+        alternateName: ['WPCodie Technologies', 'wpcodie.com'],
         publisher: { '@id': org },
       },
       {

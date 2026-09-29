@@ -75,7 +75,8 @@ to change may differ. Look at the images it writes before calling the change don
 | Design styles and fonts | `src/assets/css/`, `src/assets/fonts/` |
 | Contact form email sender | `public/contact.php` |
 | Server settings (HTTPS, caching, 404) | `public/.htaccess` |
-| robots.txt, favicon, social image | `public/` |
+| robots.txt, icons (`favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, `site.webmanifest`; drawn from the "W" logo, linked in every page's `<head>`), social image | `public/` |
+| Old WordPress demo pages that Google still listed: answered 410 Gone (`/contact/` redirects to `/#contact`) | `public/.htaccess` |
 | 404 page | `src/pages/404.astro` |
 | Portfolio page (wpcodie.com/portfolio/): case studies, stats, filters | content `src/site/portfolio.js`, page `src/pages/portfolio.astro`, styles `src/assets/css/portfolio.css`; header for non-home pages `src/site/SiteHeader.jsx` |
 
