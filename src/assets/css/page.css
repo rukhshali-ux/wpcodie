@@ -312,25 +312,22 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
 }
 @media (prefers-reduced-motion:reduce){.demo-dot::after{animation:none}.demo-modal{animation:none}.demo-btn{transition:none}.dd-hop,.dd-marks,.dd-wave,.dd-point,.dd-blink{animation:none}}
 
-/* PREVIEW: a tighter, even section rhythm. Every regular section gets the same padding above and
-   below its content: 88px on desktop (was 112px), 60px below 960px (was 72px, plus a few pixels
-   of swipe-row shadow room, which the bottom padding now absorbs). To make it live, drop the
-   html.pv-mobile prefix and delete the badge rule. */
-html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
-html.pv-mobile #what>div,html.pv-mobile #work>div,html.pv-mobile #ai>div,html.pv-mobile #applications>div,html.pv-mobile #consulting>div,html.pv-mobile #principles>div,html.pv-mobile #contact>div{padding-top:88px!important;padding-bottom:88px!important}
+/* An even section rhythm: every regular section has the same space above and below its content,
+   88px on desktop and 60px below 960px (the bottom padding absorbs the swipe rows' few pixels of
+   shadow room). These override the export's 112px and the phone rules above. */
+#what>div,#work>div,#ai>div,#applications>div,#consulting>div,#principles>div,#contact>div{padding-top:88px!important;padding-bottom:88px!important}
 @media (max-width:959px){
-  html.pv-mobile #what>div,html.pv-mobile #work>div,html.pv-mobile #ai>div,html.pv-mobile #applications>div,html.pv-mobile #consulting>div,html.pv-mobile #principles>div,html.pv-mobile #contact>div{padding-top:60px!important;padding-bottom:60px!important}
-  html.pv-mobile #what>div{padding-bottom:52px!important}
-  html.pv-mobile #ai>div,html.pv-mobile #applications>div,html.pv-mobile #principles>div{padding-bottom:56px!important}
-  html.pv-mobile #consulting>div{padding-bottom:42px!important}
-  html.pv-mobile .cap-pin{padding:60px 0 60px!important}
+  #what>div,#work>div,#ai>div,#applications>div,#consulting>div,#principles>div,#contact>div{padding-top:60px!important;padding-bottom:60px!important}
+  #what>div{padding-bottom:52px!important}
+  #ai>div,#applications>div,#principles>div{padding-bottom:56px!important}
+  #consulting>div{padding-bottom:42px!important}
+  .cap-pin{padding:60px 0 60px!important}
 }
-/* PREVIEW: on desktop, Idea Guy beside the demo button is as big as in the intro (360px), and the
-   button sits at the height of his pointing hand (62% down the drawing) instead of him standing
-   small beside it. To make it live, drop the html.pv-mobile prefix. */
+/* On desktop, Idea Guy beside the demo button is as big as in the intro (360px), and the button
+   sits at the height of his pointing hand (62% down the drawing). */
 @media (min-width:1200px){
-  html.pv-mobile .demo-side{padding-top:0;margin-bottom:20px}
-  html.pv-mobile .demo-side .demo-row{align-items:flex-start}
-  html.pv-mobile .demo-side .demo-btn{margin-top:200px}
-  html.pv-mobile .demo-side .demo-doodle{position:static;height:360px;margin-left:-14px;filter:drop-shadow(0 3px 3px rgba(21,24,31,0.18))}
+  .demo-side{padding-top:0;margin-bottom:20px}
+  .demo-side .demo-row{align-items:flex-start}
+  .demo-side .demo-btn{margin-top:200px}
+  .demo-side .demo-doodle{position:static;height:360px;margin-left:-14px;filter:drop-shadow(0 3px 3px rgba(21,24,31,0.18))}
 }

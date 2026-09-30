@@ -43,7 +43,7 @@ else:
   On phones the Contact section starts from its title right under the header, goes straight
   into the form, and hides the Email / Response / Include block (`.contact-wrap`,
   `.contact-info`).
-  Phone spacing is one rhythm for every section: 72px above and below, 28-40px between blocks
+  Spacing is one rhythm for every section: 88px above and below on desktop, 60px on phones (rules at the end of `page.css`), 28-40px between blocks on phones
   (Selected work and Consulting are brought into line by `#work>div` / `#consulting>div`
   rules), and menu links land each title 18px under the header (`scroll-margin-top:16px`).
   On phones "02 AI & intelligent applications", "03 Application development" and "06 How
@@ -145,7 +145,7 @@ homepage with `pv-mobile` always on, so the owner can review a preview as its ow
 `pv-mobile` to `<html>` (inline script in `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-In preview now (the rules at the very end of `page.css`): a tighter, even section rhythm (88px above and below each section on desktop, 60px below 960px), and, from 1200px, Idea Guy beside the demo button at the intro's size (360px), with the button at the height of his pointing hand. Live from earlier previews: the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
+Nothing is being previewed right now, so `/preview/` shows the same page as the homepage. Live from earlier previews: an even section rhythm (88px above and below each section on desktop, 60px below 960px; the rules near the end of `page.css`), Idea Guy at the intro's size beside the demo button from 1200px, the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
 "01 What we do" layout, the Capabilities carousel, the swipe rows in sections 02, 03 and 06,
 the clients ticker, the section order and the LegalFlow demo pop-up went live from earlier previews.) A new preview also
 needs the orange badge rule back: `html.pv-mobile body::after{content:'Preview';...}` in
