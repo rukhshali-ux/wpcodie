@@ -332,10 +332,8 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
   .demo-side .demo-doodle{position:static;height:360px;margin-left:-14px;filter:drop-shadow(0 3px 3px rgba(21,24,31,0.18))}
 }
 
-/* PREVIEW: the search phrase as the hero headline's first line, inside the <h1> so search engines
-   read it as part of the headline. Rendered only on /preview/ (the preview prop), never hidden.
-   To make it live, render it unconditionally in Home.jsx and delete the badge rule. */
-html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+/* The search phrase as the hero headline's first line, inside the <h1> (.h1-kicker), and under the
+   logo on the intro screen (.intro-kicker). */
 .h1-kicker{display:block;margin-bottom:28px;font:600 13px/1.4 'Inter',sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#2451B8;text-wrap:pretty}
 .intro-kicker{margin:-10px 0 4px;font:500 15px/1.4 'Inter',sans-serif;letter-spacing:0.01em;color:#B5B1A8}
 @media (max-width:959px){.intro-kicker{font-size:13px}}
