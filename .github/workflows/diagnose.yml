@@ -47,6 +47,15 @@ jobs:
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
+      - name: What Googlebot gets for the sitemaps and robots.txt
+        run: |
+          UA='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+          for u in https://wpcodie.com/robots.txt https://wpcodie.com/sitemap-index.xml https://wpcodie.com/sitemap-0.xml; do
+            echo "== $u (as Googlebot)"
+            curl -sS -D - -o /tmp/body --max-time 20 -A "$UA" -H 'Accept-Encoding: gzip, deflate, br' "$u" | tr -d '\r' || true
+            echo "-- body bytes: $(wc -c < /tmp/body); first bytes (hex):"; head -c 16 /tmp/body | od -An -tx1 || true
+            echo "-- decoded start:"; curl -sS --compressed --max-time 20 -A "$UA" "$u" | head -c 400; echo
+          done
       - name: Can these addresses be embedded in wpcodie.com?
         if: ${{ inputs.urls != '' }}
         run: |
