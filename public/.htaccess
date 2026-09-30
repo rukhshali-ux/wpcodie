@@ -6,6 +6,8 @@ Options -Indexes
 # WordPress install (index.php); listing index.html first is what keeps it out of the way.
 DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
+# "Gone" (below) shows the same friendly page.
+ErrorDocument 410 /404.html
 
 # Always HTTPS, and one hostname: www redirects to the bare domain.
 <IfModule mod_rewrite.c>
@@ -26,6 +28,14 @@ ErrorDocument 404 /404.html
   # to bring WordPress back.
   RewriteRule ^index\.php$ https://wpcodie.com/? [L,R=301]
   RewriteRule ^(wp-[a-z-]+\.php|xmlrpc\.php|readme\.html|license\.txt|default\.php|wp-admin|wp-includes|wp-content|wp-json|\.private|\.tmb)(/.*)?$ - [G,L]
+
+  # Any other address that doesn't exist on this site is also Gone (410), not Not Found (404):
+  # the old WordPress demo left pages in Google (listings, events, plans...) at addresses we can't
+  # all list, and 410 tells search engines to drop them rather than keep retrying for weeks.
+  # Visitors see the normal 404 page either way.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^.+$ - [G,L]
 </IfModule>
 
 AddType application/manifest+json .webmanifest
