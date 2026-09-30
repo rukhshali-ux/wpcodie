@@ -913,7 +913,7 @@ export function template(v) {
             </div>
             {" "}
             <div style={css("position:relative;padding:0 0 56px 0;min-width:0")}>
-              {/* PREVIEW: on wide screens the demo button and Idea Guy sit above the illustration. */}
+              {/* On wide screens the demo button and Idea Guy sit above the illustration (.demo-side). */}
               <div class="demo-side">
                 <div class="demo-row">
                   <button type="button" class="demo-btn" onClick={v.openDemo} aria-haspopup="dialog">
@@ -1633,12 +1633,8 @@ export function template(v) {
                 <a href="mailto:service@wpcodie.com" style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>service@wpcodie.com</a>
               </div>
               {" "}
-              <div class="nap-one" style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
-                <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Phone</span>
-                <a href={v.phoneHref} style={css("color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-size:1.125rem;font-weight:500;text-decoration:underline;text-underline-offset:4px")}>{txt(v.phoneDisplay)}</a>
-              </div>
-              {/* PREVIEW: one phone per office (see the .nap-one / .nap-two rules in page.css). */}
-              <div class="nap-two" style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
+              {/* One phone per office (offices in business.js). */}
+              <div style={css("display:grid;grid-template-columns:110px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(245,244,240,0.35)")}>
                 <span style={css("font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase")}>Phone</span>
                 <div style={css("display:flex;flex-direction:column;gap:8px")}>
                   {each(v.offices).map((o, $index) => (
@@ -1782,12 +1778,8 @@ export function template(v) {
               {" "}
               <span style={css("font-size:14px;color:#B5B1A8")}>AI · Software · Technology consulting</span>
               {/* Address and phone (added for the live site; must match the Google Business Profile). */}
-              <address class="foot-nap nap-one" style={css("font-style:normal;font-size:13px;line-height:1.6;color:#B5B1A8")}>
-                {each(v.addressLines).map((l, $index) => <Fragment key={$index}>{txt(l)}<br /></Fragment>)}
-                <a href={v.phoneHref} style={css("color:#D9D6CE")}>{txt(v.phoneDisplay)}</a>
-              </address>
-              {/* PREVIEW: both offices. */}
-              <div class="nap-two" style={css("display:flex;gap:28px;flex-wrap:wrap")}>
+              {/* Address and phone of each office (added for the live site; must match the Google Business Profiles). */}
+              <div style={css("display:flex;gap:28px;flex-wrap:wrap")}>
                 {each(v.offices).map((o, $index) => (
                   <address key={$index} class="foot-nap" style={css("font-style:normal;font-size:13px;line-height:1.6;color:#B5B1A8")}>
                     <span style={css("display:block;margin-bottom:2px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#8C877D")}>{txt(o.label)}</span>

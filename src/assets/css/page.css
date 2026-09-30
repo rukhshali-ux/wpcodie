@@ -225,17 +225,12 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
   #top>section[id]{scroll-margin-top:16px}
 }
 
-/* PREVIEW: the second (Manchester) office in Contact and the footer. To make it live, delete the
-   .nap-one elements in Home.jsx and portfolio.astro, the badge rule and these two rules. */
-html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
-html:not(.pv-mobile) .nap-two{display:none!important}
-html.pv-mobile .nap-one{display:none!important}
-/* PREVIEW: where the case study sits side by side with its illustration (two columns from about
-   1200px), the demo button and Idea Guy move above the illustration (.demo-side). */
+/* Where the case study sits side by side with its illustration (two columns from about 1200px),
+   the demo button and Idea Guy sit above the illustration (.demo-side) instead of under the text. */
 .demo-side{display:none}
 @media (min-width:1200px){
-  html.pv-mobile .demo-row-main{display:none}
-  html.pv-mobile .demo-side{display:flex;justify-content:center;margin:0 clamp(110px,22%,160px) 48px 0;padding-top:56px}
+  .demo-row.demo-row-main{display:none}
+  .demo-side{display:flex;justify-content:center;margin:0 clamp(110px,22%,160px) 48px 0;padding-top:56px}
 }
 
 /* LegalFlow demo button and pop-up (Home.jsx, openDemo/closeDemo in logic.js). */
@@ -316,3 +311,17 @@ html.pv-mobile .nap-one{display:none!important}
   .demo-full .demo-close-float{display:none}
 }
 @media (prefers-reduced-motion:reduce){.demo-dot::after{animation:none}.demo-modal{animation:none}.demo-btn{transition:none}.dd-hop,.dd-marks,.dd-wave,.dd-point,.dd-blink{animation:none}}
+
+/* PREVIEW: a tighter, even section rhythm. Every regular section gets the same padding above and
+   below its content: 88px on desktop (was 112px), 60px below 960px (was 72px, plus a few pixels
+   of swipe-row shadow room, which the bottom padding now absorbs). To make it live, drop the
+   html.pv-mobile prefix and delete the badge rule. */
+html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+html.pv-mobile #what>div,html.pv-mobile #work>div,html.pv-mobile #ai>div,html.pv-mobile #applications>div,html.pv-mobile #consulting>div,html.pv-mobile #principles>div,html.pv-mobile #contact>div{padding-top:88px!important;padding-bottom:88px!important}
+@media (max-width:959px){
+  html.pv-mobile #what>div,html.pv-mobile #work>div,html.pv-mobile #ai>div,html.pv-mobile #applications>div,html.pv-mobile #consulting>div,html.pv-mobile #principles>div,html.pv-mobile #contact>div{padding-top:60px!important;padding-bottom:60px!important}
+  html.pv-mobile #what>div{padding-bottom:52px!important}
+  html.pv-mobile #ai>div,html.pv-mobile #applications>div,html.pv-mobile #principles>div{padding-bottom:56px!important}
+  html.pv-mobile #consulting>div{padding-bottom:42px!important}
+  html.pv-mobile .cap-pin{padding:60px 0 60px!important}
+}

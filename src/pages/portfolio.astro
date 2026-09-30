@@ -164,8 +164,7 @@ const ld = {
       <div class="pf-footer-brand">
         <a href="/" class="pf-footer-logo"><span>W</span><strong>WPCodie</strong></a>
         <span>AI · Software · Technology consulting</span>
-        <address class="pf-nap nap-one">{ADDRESS_LINES.map((l) => <>{l}<br /></>)}<a href={`tel:${PHONE.replace(/-/g, '')}`}>{PHONE_DISPLAY}</a></address>
-        <div class="pf-offices nap-two">
+        <div class="pf-offices">
           {OFFICES.map((o) => (
             <address class="pf-nap"><span class="pf-office">{o.label}</span>{o.lines.map((l) => <>{l}<br /></>)}<a href={telHref(o.phone)}>{o.phoneDisplay}</a></address>
           ))}
