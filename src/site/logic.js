@@ -24,9 +24,16 @@ class Component extends DCLogic {
     measure(); this.setState({ measured: true }); this.onResizeIntro = measure; window.addEventListener('resize', measure);
     this.tickPose();
     if (this.skip) this.setState({ intro: 'done' }); else document.documentElement.style.overflow = 'hidden';
-    // The laptop screen is a live copy of the page (an iframe). Load it once the page itself
-    // has finished loading, and never when the intro is skipped.
-    if (!this.skip) { const loadFrame = () => this.setState({ frame: true }); if (document.readyState === 'complete') loadFrame(); else window.addEventListener('load', loadFrame, { once: true }); }
+    // The laptop screen is a live copy of the page (an iframe), a second full page. Load it on the
+    // visitor's first sign of life (touch, click, key, scroll or mouse movement), not on page
+    // load: the lid is closed until "Open it" anyway, the page's files are cached by then, and a
+    // phone (or a speed test) that never interacts only ever runs one page. Never when skipped.
+    if (!this.skip) {
+      const evs = ['pointerdown', 'pointermove', 'touchstart', 'keydown', 'wheel', 'scroll'];
+      const loadFrame = () => { evs.forEach((e) => window.removeEventListener(e, loadFrame, true)); if (!this.state.frame) this.setState({ frame: true }); };
+      this.loadFrame = loadFrame;
+      evs.forEach((e) => window.addEventListener(e, loadFrame, { capture: true, passive: true }));
+    }
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || this.props.motion === false;
     let a = 0, last = performance.now();
     const spin = (t) => { const r = this.ringRef.current; if (r && !reduce) { a = (a + (t - last) * 0.006) % 360; r.style.transform = `rotate(${a}deg)`; r.style.setProperty('--r', `${-a}deg`); } last = t; this.raf = requestAnimationFrame(spin); };
@@ -237,6 +244,7 @@ class Component extends DCLogic {
       copyOpacity: ph === 'closed' ? 1 : 0, copyShift: ph === 'closed' ? 'none' : 'translateY(-16px)',
       introOpacity: ph === 'zoom' ? 0 : 1, introPointer: ph === 'zoom' ? 'none' : 'auto',
       openLaptop: () => { if (this.state.intro !== 'closed') return;
+        if (this.loadFrame) this.loadFrame();
         const el = this.lapRef.current; let lift = 0, center = 0;
         if (el) { const r = el.getBoundingClientRect(); const mid = r.top + r.height / 2; lift = Math.round(vh / 2 - H * 0.2 - mid); center = Math.round(vh / 2 - mid); }
         this.setState({ intro: 'opening', lift, center });
@@ -323,6 +331,7 @@ class Component extends DCLogic {
       demoOpen: !!this.state.demoOpen, openDemo: this.openDemo, closeDemo: this.closeDemo, stopClick: (e) => e.stopPropagation(),
       demoFull: !!this.state.demoFull, enterDemoFull: this.enterDemoFull, exitDemoFull: this.exitDemoFull,
       demoSrc: DEMO_EMBED, demoShare: DEMO_SHARE,
+      preview: !!this.props.preview,
             phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
             offices: OFFICES.map((o) => ({ label: o.label, lines: o.lines, phoneDisplay: o.phoneDisplay, phoneHref: telHref(o.phone) })),
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),

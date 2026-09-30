@@ -77,6 +77,7 @@ to change may differ. Look at the images it writes before calling the change don
 | Server settings (HTTPS, caching, 404) | `public/.htaccess` |
 | robots.txt, icons (`favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, `site.webmanifest`; drawn from the "W" logo, linked in every page's `<head>`), social image | `public/` |
 | Old WordPress demo pages that Google still listed: answered 410 Gone (`/contact/` redirects to `/#contact`) | `public/.htaccess` |
+| The old WordPress install (still in the web root) is switched off: its login, admin, REST API, XML-RPC and files answer 410, `index.php` redirects home. Nothing is deleted; the two rules say how to undo | `public/.htaccess` |
 | 404 page | `src/pages/404.astro` |
 | Portfolio page (wpcodie.com/portfolio/): case studies, stats, filters | content `src/site/portfolio.js`, page `src/pages/portfolio.astro`, styles `src/assets/css/portfolio.css`; header for non-home pages `src/site/SiteHeader.jsx` |
 
@@ -145,7 +146,7 @@ homepage with `pv-mobile` always on, so the owner can review a preview as its ow
 `pv-mobile` to `<html>` (inline script in `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Nothing is being previewed right now, so `/preview/` shows the same page as the homepage. Live from earlier previews: an even section rhythm (88px above and below each section on desktop, 60px below 960px; the rules near the end of `page.css`), Idea Guy at the intro's size beside the demo button from 1200px, the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
+In preview now: the search phrase "AI & custom software development company" as the hero headline's first line (`.h1-kicker`, rendered only when `Page` gets the `preview` prop, which only `preview.astro` passes; never hide keyword text on the live page). Live from earlier previews: an even section rhythm (88px above and below each section on desktop, 60px below 960px; the rules near the end of `page.css`), Idea Guy at the intro's size beside the demo button from 1200px, the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
 "01 What we do" layout, the Capabilities carousel, the swipe rows in sections 02, 03 and 06,
 the clients ticker, the section order and the LegalFlow demo pop-up went live from earlier previews.) A new preview also
 needs the orange badge rule back: `html.pv-mobile body::after{content:'Preview';...}` in

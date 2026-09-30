@@ -419,6 +419,8 @@ export function template(v) {
             </div>
             {" "}
             <h1 data-reveal="1" style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.6rem,5.4vw,4.5rem);line-height:1.02;letter-spacing:-0.035em;text-wrap:balance")}>
+              {/* PREVIEW (rendered on /preview/ only): the search phrase as the headline's first line. */}
+              {v.preview ? <span class="h1-kicker">AI &amp; custom software development company</span> : null}
               {"Clear direction first. "}
               <span style={css("color:#2451B8")}>Working software</span>
               {" next."}

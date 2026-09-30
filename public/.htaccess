@@ -19,6 +19,13 @@ ErrorDocument 404 /404.html
   # engines to drop them now, rather than retrying a 404 for weeks; /contact/ goes to the form.
   RewriteRule ^contact/?$ https://wpcodie.com/#contact [L,R=301,NE]
   RewriteRule ^(events|select-your-plan|restaurant|room|rooms|blog|sample-page|hello-world|shop|cart|checkout|my-account|category|tag|author|feed|comments/feed)(/.*)?$ - [G,L]
+
+  # The old WordPress install still sits in this folder, switched off: its login and admin, its
+  # data feeds (REST API, XML-RPC), its files and folders answer 410 Gone, and index.php (its front
+  # door) redirects to the homepage without the query. Nothing is deleted; remove these two rules
+  # to bring WordPress back.
+  RewriteRule ^index\.php$ https://wpcodie.com/? [L,R=301]
+  RewriteRule ^(wp-[a-z-]+\.php|xmlrpc\.php|readme\.html|license\.txt|default\.php|wp-admin|wp-includes|wp-content|wp-json|\.private|\.tmb)(/.*)?$ - [G,L]
 </IfModule>
 
 AddType application/manifest+json .webmanifest
