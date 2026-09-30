@@ -71,7 +71,7 @@ to change may differ. Look at the images it writes before calling the change don
 | Page behaviour: intro, scroll effects, form | `src/site/logic.js` |
 | Title, description, structured data (JSON-LD), llms.txt | `src/site/seo.js`, `src/pages/llms.txt.js` |
 | Offices: address and phone of each (footer, Contact, JSON-LD, llms.txt). Each must match its Google Business Profile exactly | `src/site/business.js` (`OFFICES`; the first is the main one) |
-| `<head>`: meta tags, preloads, CSS order | `src/pages/index.astro` |
+| `<head>`: meta tags, preloads, CSS order. Keep the `google-site-verification` meta tag: it is what keeps Google Search Console verified | `src/pages/index.astro` |
 | Design styles and fonts | `src/assets/css/`, `src/assets/fonts/` |
 | Contact form email sender | `public/contact.php` |
 | Server settings (HTTPS, caching, 404) | `public/.htaccess` |
