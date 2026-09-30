@@ -336,5 +336,6 @@ a.client:hover,a.client:focus-visible{transform:translateY(-2px);box-shadow:0 8p
    read it as part of the headline. Rendered only on /preview/ (the preview prop), never hidden.
    To make it live, render it unconditionally in Home.jsx and delete the badge rule. */
 html.pv-mobile body::after{content:'Preview';position:fixed;top:78px;right:10px;z-index:40;padding:4px 10px;border-radius:999px;background:#F2A33D;color:#15181F;font:600 11px/1.4 'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
-.h1-kicker{display:block;margin-bottom:16px;font:600 17px/1.4 'Inter',sans-serif;letter-spacing:0;color:#4A4740;text-wrap:pretty}
-@media (max-width:959px){.h1-kicker{font-size:15px;margin-bottom:12px}}
+.h1-kicker{display:block;margin-bottom:28px;font:600 13px/1.4 'Inter',sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#2451B8;text-wrap:pretty}
+.intro-kicker{margin:-10px 0 4px;font:500 15px/1.4 'Inter',sans-serif;letter-spacing:0.01em;color:#B5B1A8}
+@media (max-width:959px){.intro-kicker{font-size:13px}}

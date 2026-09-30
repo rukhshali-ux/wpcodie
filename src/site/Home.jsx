@@ -19,6 +19,8 @@ export function template(v) {
               <span style={css("width:28px;height:28px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font:700 14px 'Space Grotesk',sans-serif")}>W</span>
               <span style={css("font:600 17px 'Space Grotesk',sans-serif")}>WPCodie</span>
             </div>
+            {/* PREVIEW (rendered on the test pages only): what WPCodie is, under the logo. */}
+            {v.preview ? <p class="intro-kicker">AI &amp; custom software development company</p> : null}
             {" "}
             <p style={css("margin:0;color:#F5F4F0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.25rem,5.6vw,4.5rem);line-height:1.02;letter-spacing:-0.035em;text-wrap:balance")}>Got a technology problem?</p>
             {" "}
@@ -406,6 +408,8 @@ export function template(v) {
           {" "}
           <div style={css("display:flex;flex-direction:column;gap:28px")}>
             {" "}
+            {/* PREVIEW: on the test pages the keyword line in the <h1> replaces this tagline. */}
+            {v.preview ? null : (
             <div data-reveal="1" style={css("display:flex;gap:10px;align-items:center;font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:#8C877D")}>
               {" "}
               <span style={css("color:#2451B8;font-weight:600")}>Advise</span>
@@ -417,6 +421,7 @@ export function template(v) {
               <span>Software</span>
               {" "}
             </div>
+            )}
             {" "}
             <h1 data-reveal="1" style={css("margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.6rem,5.4vw,4.5rem);line-height:1.02;letter-spacing:-0.035em;text-wrap:balance")}>
               {/* PREVIEW (rendered on /preview/ only): the search phrase as the headline's first line. */}
