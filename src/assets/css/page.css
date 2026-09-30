@@ -325,3 +325,12 @@ html.pv-mobile #what>div,html.pv-mobile #work>div,html.pv-mobile #ai>div,html.pv
   html.pv-mobile #consulting>div{padding-bottom:42px!important}
   html.pv-mobile .cap-pin{padding:60px 0 60px!important}
 }
+/* PREVIEW: on desktop, Idea Guy beside the demo button is as big as in the intro (360px), and the
+   button sits at the height of his pointing hand (62% down the drawing) instead of him standing
+   small beside it. To make it live, drop the html.pv-mobile prefix. */
+@media (min-width:1200px){
+  html.pv-mobile .demo-side{padding-top:0;margin-bottom:20px}
+  html.pv-mobile .demo-side .demo-row{align-items:flex-start}
+  html.pv-mobile .demo-side .demo-btn{margin-top:200px}
+  html.pv-mobile .demo-side .demo-doodle{position:static;height:360px;margin-left:-14px;filter:drop-shadow(0 3px 3px rgba(21,24,31,0.18))}
+}

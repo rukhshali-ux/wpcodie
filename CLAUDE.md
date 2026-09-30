@@ -145,7 +145,7 @@ homepage with `pv-mobile` always on, so the owner can review a preview as its ow
 `pv-mobile` to `<html>` (inline script in `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-In preview now: a tighter, even section rhythm (88px above and below each section on desktop, 60px below 960px; the rules at the very end of `page.css`). Live from earlier previews: the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
+In preview now (the rules at the very end of `page.css`): a tighter, even section rhythm (88px above and below each section on desktop, 60px below 960px), and, from 1200px, Idea Guy beside the demo button at the intro's size (360px), with the button at the height of his pointing hand. Live from earlier previews: the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
 "01 What we do" layout, the Capabilities carousel, the swipe rows in sections 02, 03 and 06,
 the clients ticker, the section order and the LegalFlow demo pop-up went live from earlier previews.) A new preview also
 needs the orange badge rule back: `html.pv-mobile body::after{content:'Preview';...}` in
