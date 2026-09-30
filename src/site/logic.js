@@ -19,6 +19,8 @@ class Component extends DCLogic {
   ringRef = React.createRef(); capRef = React.createRef(); trackRef = React.createRef(); capBarRef = React.createRef();
   flowRef = React.createRef(); flowBarRef = React.createRef();
   componentDidMount() {
+    // wpcodie.com/?preview=mobile shows previews too (the /preview/ page passes the preview prop).
+    if (new URLSearchParams(location.search).get('preview') === 'mobile') this.setState({ pvQuery: true });
     this.skip = new URLSearchParams(location.search).get('intro') === '0' || window.self !== window.top && /intro=0/.test(location.href) || this.props.intro === false;
     const measure = () => this.setState({ vw: window.innerWidth, vh: window.innerHeight });
     measure(); this.setState({ measured: true }); this.onResizeIntro = measure; window.addEventListener('resize', measure);
@@ -331,7 +333,7 @@ class Component extends DCLogic {
       demoOpen: !!this.state.demoOpen, openDemo: this.openDemo, closeDemo: this.closeDemo, stopClick: (e) => e.stopPropagation(),
       demoFull: !!this.state.demoFull, enterDemoFull: this.enterDemoFull, exitDemoFull: this.exitDemoFull,
       demoSrc: DEMO_EMBED, demoShare: DEMO_SHARE,
-      preview: !!this.props.preview,
+      preview: !!this.props.preview || !!this.state.pvQuery,
             phoneDisplay: PHONE_DISPLAY, phoneHref: 'tel:' + PHONE.replace(/-/g, ''), addressLines: ADDRESS_LINES,
             offices: OFFICES.map((o) => ({ label: o.label, lines: o.lines, phoneDisplay: o.phoneDisplay, phoneHref: telHref(o.phone) })),
       orbit: orbitData.map(([title, sub], i) => { const ang = (i / 5) * Math.PI * 2 - Math.PI / 2; return { title, sub, x: (50 + 44 * Math.cos(ang)) + '%', y: (50 + 44 * Math.sin(ang)) + '%' }; }),
