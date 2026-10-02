@@ -47,6 +47,38 @@ jobs:
           echo "== llms.txt (exists only in the new build)"
           curl -sS -o /dev/null -w "%{http_code}\n" --max-time 20 https://wpcodie.com/llms.txt || true
           curl -sS --max-time 20 https://wpcodie.com/llms.txt | head -2 || true
+      - name: Reachability from other countries, certificate, DNS and TLS
+        run: |
+          echo "== DNS A / AAAA"; dig +short wpcodie.com A; echo "AAAA:"; dig +short wpcodie.com AAAA; echo "NS:"; dig +short wpcodie.com NS
+          echo "== certificate (issuer, dates, chain)"
+          echo | openssl s_client -connect wpcodie.com:443 -servername wpcodie.com -showcerts 2>/dev/null | grep -E '^ *[0-9] s:|^ *i:' || true
+          echo | openssl s_client -connect wpcodie.com:443 -servername wpcodie.com 2>/dev/null | openssl x509 -noout -issuer -subject -dates || true
+          for v in tls1 tls1_1 tls1_2 tls1_3; do
+            r=$(echo | timeout 10 openssl s_client -connect wpcodie.com:443 -servername wpcodie.com -$v 2>&1 | grep -E '^ *Protocol|Cipher is' | head -1)
+            echo "TLS $v: ${r:-not accepted}"
+          done
+          echo "== IPv6 reachability"; curl -6 -sS -o /dev/null -w "%{http_code}\n" --max-time 15 https://wpcodie.com/ || echo "(no IPv6 from this runner)"
+          echo "== check-host.net: HTTP check from servers in many countries"
+          id=$(curl -sS --max-time 20 -H 'Accept: application/json' "https://check-host.net/check-http?host=https://wpcodie.com/&max_nodes=40" | python3 -c 'import sys,json; print(json.load(sys.stdin)["request_id"])' 2>/dev/null || true)
+          if [ -n "$id" ]; then
+            sleep 25
+            curl -sS --max-time 20 -H 'Accept: application/json' "https://check-host.net/check-result/$id" > /tmp/r.json || true
+            curl -sS --max-time 20 -H 'Accept: application/json' "https://check-host.net/nodes/hosts" > /tmp/n.json || true
+            python3 - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json')); n=json.load(open('/tmp/n.json')).get('nodes',{})
+          for node,res in sorted(r.items(), key=lambda kv: (n.get(kv[0],{}).get('location',['?'])[1] if n.get(kv[0]) else '?')):
+              loc=n.get(node,{}).get('location',['?','?','?'])
+              where=f"{loc[1]} / {loc[2]}" if len(loc)>2 else str(loc)
+              if res is None: out='(no answer yet)'
+              else:
+                  x=res[0]
+                  out=f"ok={x[0]} time={x[1]:.2f}s {x[2]} {x[3] if len(x)>3 else ''}" if x and x[0] is not None else str(x)
+              print(f"{where:40} {out}")
+          PY
+          else
+            echo "(check-host.net did not answer)"
+          fi
       - name: What Googlebot gets for the sitemaps and robots.txt
         run: |
           UA='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
