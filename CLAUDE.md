@@ -138,6 +138,17 @@ Create `src/pages/<name>.astro`. Import `../assets/css/styles.css` and
 so the new page matches the design. It is added to the sitemap automatically. Give it its
 own `<title>`, meta description and canonical URL.
 
+## Content-Security-Policy
+
+`scripts/csp.mjs` runs after `astro build` (`npm run build`). It hashes every inline script in
+the built pages and writes a policy allowing only wpcodie.com, those hashes, inline styles,
+and frames from Storylane (the demo). It is in preview: a `<meta>` in `/preview/` only (not on
+`?preview=mobile`). Going live: write the same policy as a `Header always set
+Content-Security-Policy` line into `dist/.htaccess` for every page, adding `frame-ancestors
+'self'`. Anything new loaded from another site (a script, font, frame, analytics, a form posting
+elsewhere) must be added to the directives in `csp.mjs`, or browsers will block it.
+`visual-diff` runs `astro build` alone, so its builds carry no policy.
+
 ## Design previews
 
 `wpcodie.com/preview/` (`src/pages/preview.astro`; noindex, not in the sitemap) is the
@@ -146,7 +157,7 @@ homepage with `pv-mobile` always on, so the owner can review a preview as its ow
 `pv-mobile` to `<html>` (inline script in `src/pages/index.astro`). Rules under `html.pv-mobile` at the end of `page.css` are proposals
 the owner can try on a phone before they go live; the normal site ignores them. To make a
 proposal live, drop the `html.pv-mobile` prefix. To discard it, delete the rules.
-Nothing is being previewed right now, so `/preview/` shows the same page as the homepage. Preview-only content can also be rendered with `v.preview` (true on `/preview/` and with `?preview=mobile`); never hide keyword text on the live page with CSS. The keyword line "AI & custom software development company" (`.h1-kicker` in the hero <h1>, where the "Advise · Engineer · AI · Software" tagline was, and `.intro-kicker` under the intro's logo) went live from a preview. Live from earlier previews: an even section rhythm (88px above and below each section on desktop, 60px below 960px; the rules near the end of `page.css`), Idea Guy at the intro's size beside the demo button from 1200px, the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
+Being previewed now: the Content-Security-Policy (see below), which changes nothing visible, so `/preview/` looks the same as the homepage (plus the orange badge). Preview-only content can also be rendered with `v.preview` (true on `/preview/` and with `?preview=mobile`); never hide keyword text on the live page with CSS. The keyword line "AI & custom software development company" (`.h1-kicker` in the hero <h1>, where the "Advise · Engineer · AI · Software" tagline was, and `.intro-kicker` under the intro's logo) went live from a preview. Live from earlier previews: an even section rhythm (88px above and below each section on desktop, 60px below 960px; the rules near the end of `page.css`), Idea Guy at the intro's size beside the demo button from 1200px, the Manchester office beside Kalispell in Contact and the footers, and, from 1200px, the demo button and Idea Guy above the LegalFlow illustration (`.demo-side`; `.demo-row-main` below 1200px). (The
 "01 What we do" layout, the Capabilities carousel, the swipe rows in sections 02, 03 and 06,
 the clients ticker, the section order and the LegalFlow demo pop-up went live from earlier previews.) A new preview also
 needs the orange badge rule back: `html.pv-mobile body::after{content:'Preview';...}` in

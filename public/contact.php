@@ -77,9 +77,16 @@ if (field($in, 'website', 200) !== '') {
     reply(200, ['ok' => true]);
 }
 
-$name = str_replace(["\r", "\n"], ' ', field($in, 'name', 200));
+// One-line fields: every control character (line breaks, tabs, NUL, Unicode line separators)
+// becomes a space, so nothing typed here can add a line to the email or its subject.
+function line(string $value): string
+{
+    return trim((string) preg_replace('/[\x00-\x1F\x7F\x{85}\x{2028}\x{2029}]+/u', ' ', $value));
+}
+
+$name = line(field($in, 'name', 200));
 $email = field($in, 'email', 254);
-$company = str_replace(["\r", "\n"], ' ', field($in, 'company', 200));
+$company = line(field($in, 'company', 200));
 $message = field($in, 'msg', 5000);
 $needs = array_values(array_intersect(NEEDS, is_array($in['needs'] ?? null) ? $in['needs'] : []));
 
