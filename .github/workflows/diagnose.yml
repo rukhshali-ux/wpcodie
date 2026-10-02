@@ -54,7 +54,7 @@ jobs:
           echo "MX:"; dig +short wpcodie.com MX
           echo "SPF / TXT:"; dig +short wpcodie.com TXT
           echo "DMARC:"; dig +short _dmarc.wpcodie.com TXT
-          for sel in hostingermail1 hostingermail2 hostingermail3 default google selector1 selector2 dkim; do r=$(dig +short ${sel}._domainkey.wpcodie.com TXT); [ -n "$r" ] && echo "DKIM $sel: $(echo $r | cut -c1-80)..."; done; true
+          found=; for sel in hostingermail-a hostingermail-b hostingermail-c hostingermail1 hostingermail2 hostingermail3 default google selector1 selector2 dkim; do r=$(dig +short ${sel}._domainkey.wpcodie.com TXT | tr -d '\n'); [ -n "$r" ] && { found=1; echo "DKIM $sel: $(echo $r | cut -c1-90)..."; }; done; [ -n "$found" ] || echo "DKIM: none found under the usual selector names"
           echo "CAA (who may issue certificates):"; dig +short wpcodie.com CAA
           echo "== certificate (issuer, dates, chain)"
           echo | openssl s_client -connect wpcodie.com:443 -servername wpcodie.com -showcerts 2>/dev/null | grep -E '^ *[0-9] s:|^ *i:' || true
@@ -70,7 +70,7 @@ jobs:
             sleep 25
             curl -sS --max-time 20 -H 'Accept: application/json' "https://check-host.net/check-result/$id" > /tmp/r.json || true
             curl -sS --max-time 20 -H 'Accept: application/json' "https://check-host.net/nodes/hosts" > /tmp/n.json || true
-            python3 - <<'PY'
+            python3 - <<'PY' || echo "(check-host.net gave no usable answer)"
           import json
           r=json.load(open('/tmp/r.json')); n=json.load(open('/tmp/n.json')).get('nodes',{})
           for node,res in sorted(r.items(), key=lambda kv: (n.get(kv[0],{}).get('location',['?'])[1] if n.get(kv[0]) else '?')):
