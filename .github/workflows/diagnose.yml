@@ -50,6 +50,12 @@ jobs:
       - name: Reachability from other countries, certificate, DNS and TLS
         run: |
           echo "== DNS A / AAAA"; dig +short wpcodie.com A; echo "AAAA:"; dig +short wpcodie.com AAAA; echo "NS:"; dig +short wpcodie.com NS
+          echo "== email security (stops others sending mail as @wpcodie.com)"
+          echo "MX:"; dig +short wpcodie.com MX
+          echo "SPF / TXT:"; dig +short wpcodie.com TXT
+          echo "DMARC:"; dig +short _dmarc.wpcodie.com TXT
+          for sel in hostingermail1 hostingermail2 hostingermail3 default google selector1 selector2 dkim; do r=$(dig +short ${sel}._domainkey.wpcodie.com TXT); [ -n "$r" ] && echo "DKIM $sel: $(echo $r | cut -c1-80)..."; done; true
+          echo "CAA (who may issue certificates):"; dig +short wpcodie.com CAA
           echo "== certificate (issuer, dates, chain)"
           echo | openssl s_client -connect wpcodie.com:443 -servername wpcodie.com -showcerts 2>/dev/null | grep -E '^ *[0-9] s:|^ *i:' || true
           echo | openssl s_client -connect wpcodie.com:443 -servername wpcodie.com 2>/dev/null | openssl x509 -noout -issuer -subject -dates || true
