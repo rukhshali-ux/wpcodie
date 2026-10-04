@@ -463,7 +463,7 @@ export function template(v) {
               {" "}
             </div>
             {" "}
-            <div style={css("position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-0.02em;box-shadow:0 16px 32px rgba(36,81,184,0.25)")}>{v.preview ? <LogoMark tile={false} size="56%" /> : "WP"}</div>
+            <div style={css("position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-0.02em;box-shadow:0 16px 32px rgba(36,81,184,0.25)")}><LogoMark tile={false} size="56%" /></div>
             {" "}
           </div>
           {" "}
