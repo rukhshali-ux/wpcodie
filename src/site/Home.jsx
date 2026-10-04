@@ -4,6 +4,7 @@ import { Fragment } from 'preact';
 import { css, txt, each } from './dc.js';
 import { Button, Input } from './ds.jsx';
 import DemoDoodle from './DemoDoodle.jsx';
+import LogoMark from './LogoMark.jsx';
 
 export function template(v) {
   return (
@@ -16,7 +17,7 @@ export function template(v) {
           <div style={css(`position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;padding:0 24px;opacity:${v.copyOpacity ?? ""};transform:${v.copyShift ?? ""};transition:all 600ms cubic-bezier(0.4,0,0.2,1)`)}>
             {" "}
             <div style={css("display:flex;align-items:center;gap:10px;color:#F5F4F0")}>
-              <span style={css("width:28px;height:28px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font:700 14px 'Space Grotesk',sans-serif")}>W</span>
+              {v.preview ? <LogoMark size={28} /> : <span style={css("width:28px;height:28px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font:700 14px 'Space Grotesk',sans-serif")}>W</span>}
               <span style={css("font:600 17px 'Space Grotesk',sans-serif")}>WPCodie</span>
             </div>
             {/* What WPCodie is, under the logo (added for the live site). */}
@@ -362,7 +363,7 @@ export function template(v) {
           {" "}
           <a href="#top" style={css("display:flex;align-items:center;gap:10px;color:#15181F")}>
             {" "}
-            <span style={css("width:30px;height:30px;border-radius:8px;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px")}>W</span>
+            {v.preview ? <LogoMark size={30} /> : <span style={css("width:30px;height:30px;border-radius:8px;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px")}>W</span>}
             {" "}
             <span style={css("font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em")}>WPCodie</span>
             {" "}
@@ -1766,7 +1767,7 @@ export function template(v) {
             <div style={css("display:flex;flex-direction:column;gap:10px")}>
               {" "}
               <a href="#top" style={css("display:flex;align-items:center;gap:10px;color:#F5F4F0")}>
-                <span style={css("width:30px;height:30px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px")}>W</span>
+                {v.preview ? <LogoMark size={30} /> : <span style={css("width:30px;height:30px;border-radius:8px;background:#2451B8;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px")}>W</span>}
                 <span style={css("font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px")}>WPCodie</span>
               </a>
               {" "}
