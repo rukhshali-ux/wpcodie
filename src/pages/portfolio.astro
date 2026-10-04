@@ -3,6 +3,7 @@
 // type and footer). Content is in src/site/portfolio.js, styles in src/assets/css/portfolio.css.
 // Linked from the homepage nav and its Selected work section; listed in the sitemap and llms.txt.
 import SiteHeader, { LINKS } from '../site/SiteHeader.jsx';
+import LogoMark from '../site/LogoMark.jsx';
 import { FILTERS, PROJECTS, STACK, STATS } from '../site/portfolio.js';
 import { ADDRESS_LINES, NAME, PHONE, PHONE_DISPLAY, SITE } from '../site/seo.js';
 import { OFFICES, telHref } from '../site/business.js';
@@ -162,7 +163,7 @@ const ld = {
   <div class="pf-wrap pf-footer-inner">
     <div class="pf-footer-top">
       <div class="pf-footer-brand">
-        <a href="/" class="pf-footer-logo"><span>W</span><strong>WPCodie</strong></a>
+        <a href="/" class="pf-footer-logo"><LogoMark size={30} /><strong>WPCodie</strong></a>
         <span>AI · Software · Technology consulting</span>
         <div class="pf-offices">
           {OFFICES.map((o) => (

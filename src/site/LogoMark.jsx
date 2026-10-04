@@ -1,6 +1,7 @@
 // The WPCodie mark: a W with an amber dot above it (the idea), on a brand-blue rounded tile.
 // The owner's design (wpcodie-mark-a.svg) in the site's colors: tile #2451B8, W #F5F4F0,
 // dot #F2C94C (Idea Guy's lightbulb). Reads on both the cream header and the ink intro/footer.
+// The favicons, app icons and og.png in public/ are drawn from the same design (scripts/icons.mjs).
 export default function LogoMark({ size = 30 }) {
   return (
     <svg class="logo-mark" viewBox="0 0 96 96" width={size} height={size} aria-hidden="true" focusable="false" style="flex:none;display:block">

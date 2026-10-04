@@ -1,5 +1,6 @@
 ---
 // Served by .htaccess (ErrorDocument 404) for any address that does not exist.
+import LogoMark from '../site/LogoMark.jsx';
 import '../assets/css/styles.css';
 import '../assets/css/page.css';
 ---
@@ -18,7 +19,7 @@ import '../assets/css/page.css';
 <body>
 <main style="min-height:100vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:20px;max-width:1280px;margin:0 auto;padding:32px">
   <a href="/" style="display:flex;align-items:center;gap:10px;color:#15181F">
-    <span style="width:30px;height:30px;border-radius:8px;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font:700 15px 'Space Grotesk',sans-serif">W</span>
+    <LogoMark size={30} />
     <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em">WPCodie</span>
   </a>
   <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.25rem,5vw,3.5rem);line-height:1.05;letter-spacing:-0.03em">This page doesn't exist.</h1>

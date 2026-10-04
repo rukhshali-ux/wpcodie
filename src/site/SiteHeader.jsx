@@ -3,6 +3,7 @@
 // homepage sections. `current` is the href to highlight.
 import { useState } from 'preact/hooks';
 import { Button } from './ds.jsx';
+import LogoMark from './LogoMark.jsx';
 
 export const LINKS = [
   ['/#capabilities', 'Capabilities'],
@@ -20,7 +21,7 @@ export default function SiteHeader({ current = '' }) {
     <header style="position:sticky;top:0;z-index:30;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #E2DFD7">
       <div class="hdr" style="max-width:1280px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
         <a href="/" style="display:flex;align-items:center;gap:10px;color:#15181F">
-          <span style="width:30px;height:30px;border-radius:8px;background:#2451B8;color:#F5F4F0;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px">W</span>
+          <LogoMark size={30} />
           <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em">WPCodie</span>
         </a>
         <nav class="hdr-nav" style="display:flex;gap:4px;flex-wrap:wrap">
