@@ -29,7 +29,7 @@ export function GET() {
     '',
     `Selected case studies: ${SITE}/portfolio/`,
     '',
-    ...PROJECTS.map((p) => `- **${p.name}**${p.url ? ` (${p.url})` : ''}: ${p.subtitle}. ${p.summary}`),
+    ...PROJECTS.filter((p) => !p.preview).map((p) => `- **${p.name}**${p.url ? ` (${p.url})` : ''}: ${p.subtitle}. ${p.summary}`),
     '',
     '## Contact',
     '',

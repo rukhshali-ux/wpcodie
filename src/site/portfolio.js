@@ -5,9 +5,12 @@
 //
 // groups: the filters a project appears under (FILTERS below). scale: the size line on the card.
 // featured: a double-width card. metrics: headline numbers shown on the card. flows: step chains.
+// preview: shown only on the test copy at /preview/portfolio/ (and left out of llms.txt and the
+// page's structured data) until the owner approves it; remove the flag to take it live.
 
 export const FILTERS = [
   ['all', 'All projects'],
+  ['crm', 'CRM & SaaS'],
   ['healthcare', 'Healthcare'],
   ['marketplace', 'Marketplaces'],
   ['booking', 'Booking platforms'],
@@ -24,6 +27,38 @@ export const STATS = [
 export const STACK = ['Stripe', 'PayU', 'PesaPal', 'Twilio', 'HubSpot CRM', 'Google Maps & Places', 'WooCommerce', 'WordPress', 'CSV / XML data pipelines'];
 
 export const PROJECTS = [
+  {
+    slug: 'fitnatic',
+    name: 'Fitnatic',
+    subtitle: 'Coaching CRM & member app for gyms (Pakistan)',
+    sector: 'Fitness',
+    groups: ['crm'],
+    scale: 'Our own SaaS product · CRM + Android app',
+    url: 'fitness-crm.wpcodie.com',
+    logo: '/clients/fitnatic.svg',
+    featured: true,
+    preview: true,
+    metrics: [['4', 'roles (owner, admin, trainer, member), each seeing only its own gym'], ['15 days', 'free trial, ready in a minute with sample data']],
+    summary: 'Fitnatic is our own coaching CRM and member app for gyms in Pakistan. Trainers build each member’s workout and diet plan, members follow it on the gym’s Android app and track their progress, and owners see who has paid and who is slipping away before they quit. One platform serves many gyms, and no gym can ever see another’s data.',
+    delivered: [
+      'A multi-gym CRM for owners, admins and trainers, with database-level access rules (row-level security) tested for every role across two gyms',
+      'Member onboarding by the gym, including bulk import of existing members from CSV or Excel; sign-in by emailed code, or by mobile number with a one-time invite link sent over WhatsApp or SMS',
+      'Fee tracking built for how gyms are actually paid: members pay the gym directly and upload the proof, staff verify it in a queue, receipt numbers are issued, and overdue members are locked out of the app after a grace period',
+      'A weekly workout-plan builder with the gym’s own video library (YouTube, Vimeo or uploads), supersets, templates and assign-to-many',
+      'Diet plans with a calorie target, timed meals and a Pakistani food library, showing the running total against the target',
+      'An Android member app: today’s workout, the weekly view, diet with meal ticks, water, weight and progress photos, membership and proof upload, and an offline cache',
+      'Member-to-trainer chat with images and documents and read receipts, plus push notifications and daily reminders',
+      'Trainer and owner dashboards: who is paid, overdue or due soon, and which members are going off track',
+      'A public landing page and a self-serve 15-day free trial that creates a gym filled with sample data, locks itself when the trial ends and cleans up afterwards',
+    ],
+    flows: [
+      ['How a fee gets paid', ['Member pays the gym directly', 'Uploads the proof in the app', 'Staff verify it in the queue', 'Receipt number issued', 'App stays unlocked']],
+      ['A member’s week', ['Trainer assigns workout & diet plans', 'Member follows them in the app', 'Logs meals, water, weight & photos', 'Trainer sees who is slipping', 'A chat or reminder brings them back']],
+    ],
+    role: 'Everything, end to end: product strategy and specification, UX and the design system, the CRM, the Android app, the database and its security, and the free-trial funnel. Fitnatic is a WPCodie product.',
+    why: 'Gyms lose members quietly: a missed week becomes a cancelled membership. Fitnatic puts a coach’s plan in every member’s pocket and shows owners who is drifting while there is still time to win them back. It also fits how gyms in Pakistan are paid, with proof of a direct payment, so the product never has to take a card.',
+    tags: ['Multi-gym SaaS', 'Supabase & row-level security', 'React CRM', 'Android app (Expo)', 'Push notifications'],
+  },
   {
     slug: 'find-healthcare',
     name: 'Find Healthcare',
