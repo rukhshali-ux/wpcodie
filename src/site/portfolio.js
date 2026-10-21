@@ -37,7 +37,6 @@ export const PROJECTS = [
     url: 'fitness-crm.wpcodie.com',
     logo: '/clients/fitnatic.svg',
     featured: true,
-    preview: true,
     metrics: [['4', 'roles (owner, admin, trainer, member), each seeing only its own gym'], ['15 days', 'free trial, ready in a minute with sample data']],
     summary: 'Fitnatic is our own coaching CRM and member app for gyms in Pakistan. Trainers build each member’s workout and diet plan, members follow it on the gym’s Android app and track their progress, and owners see who has paid and who is slipping away before they quit. One platform serves many gyms, and no gym can ever see another’s data.',
     delivered: [

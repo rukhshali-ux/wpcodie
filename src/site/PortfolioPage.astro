@@ -17,8 +17,8 @@ import '../assets/css/portfolio.css';
 
 const { preview = false } = Astro.props;
 const PROJECTS = ALL_PROJECTS.filter((p) => preview || !p.preview);
-const TITLE = 'WPCodie Portfolio: Healthcare, Fintech & Marketplace Platforms';
-const DESCRIPTION = 'Case studies from WPCodie: healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe and Twilio integrations.';
+const TITLE = 'WPCodie Portfolio: CRMs, Healthcare, Fintech & Marketplaces';
+const DESCRIPTION = 'Case studies from WPCodie: Fitnatic, a coaching CRM and member app for gyms, plus healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe and Twilio integrations.';
 const URL = `${SITE}/portfolio/`;
 const count = (group) => (group === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.groups.includes(group)).length);
 const ld = {
@@ -71,7 +71,7 @@ const ld = {
     <div class="pf-wrap pf-hero-inner">
       <span class="pf-eyebrow">Portfolio</span>
       <h1>Platforms we have planned, built and shipped.</h1>
-      <p class="pf-lead">Marketplaces, booking systems, directories and the integrations behind them, for clients in the US, UK, France, Greece, Poland, Morocco and Ireland. Each project below started with a business problem; the case studies say what we built and why it mattered.</p>
+      <p class="pf-lead">CRMs, marketplaces, booking systems, directories and the integrations behind them, for clients in the US, UK, France, Greece, Poland, Morocco and Ireland. Each project below started with a business problem; the case studies say what we built and why it mattered.</p>
       <dl class="pf-stats">
         {STATS.map(([n, label]) => (
           <div><dt>{label}</dt><dd>{n}</dd></div>
