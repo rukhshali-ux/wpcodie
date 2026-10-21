@@ -1,0 +1,53 @@
+---
+// One case-study card on the portfolio (src/site/PortfolioPage.astro). `p` is a project from
+// src/site/portfolio.js.
+const { p } = Astro.props;
+---
+<article class={p.featured ? 'pf-card pf-card-featured' : 'pf-card'} id={p.slug} data-group={p.groups.join(' ')}>
+  <div class="pf-card-top">
+    <span class="pf-sector">{p.sector}</span>
+    <span class="pf-scale">{p.scale}</span>
+  </div>
+  {p.logo && <img class="pf-logo" src={p.logo} alt="" height="32" loading="lazy" decoding="async" />}
+  <h3>{p.name}</h3>
+  <p class="pf-sub">{p.subtitle}</p>
+  {p.url && <a class="pf-url" href={`https://${p.url}`} target="_blank" rel="noopener">{p.url} <span aria-hidden="true">↗</span></a>}
+  {p.metrics && (
+    <dl class="pf-metrics">
+      {p.metrics.map(([n, label]) => <div><dt>{label}</dt><dd>{n}</dd></div>)}
+    </dl>
+  )}
+  <p class="pf-summary">{p.summary}</p>
+  <ul class="pf-tags" aria-label="Highlights">
+    {p.tags.map((t) => <li>{t}</li>)}
+  </ul>
+  {p.pending ? (
+    <p class="pf-pending">Full case study coming soon.</p>
+  ) : (
+    <details class="pf-more">
+      <summary>Read the case study</summary>
+      <h4>What we delivered</h4>
+      <ul class="pf-list">
+        {p.delivered.map((d) => <li>{d}</li>)}
+      </ul>
+      {p.flows && p.flows.map(([title, steps]) => (
+        <>
+          <h4>{title}</h4>
+          <ol class="pf-flow">
+            {steps.map((st) => <li>{st}</li>)}
+          </ol>
+        </>
+      ))}
+      {p.role && (
+        <>
+          <h4>Our role</h4>
+          <p class="pf-role">{p.role}</p>
+        </>
+      )}
+      <div class="pf-why">
+        <span>Why it mattered</span>
+        <p>{p.why}</p>
+      </div>
+    </details>
+  )}
+</article>

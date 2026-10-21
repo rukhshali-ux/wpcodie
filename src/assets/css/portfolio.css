@@ -66,6 +66,14 @@
 .pf-role{margin:0;font-size:14px;line-height:1.6;color:#2B2F3A}
 /* The featured project spans two columns where there is room. */
 @media (min-width:900px){.pf-card-featured{grid-column:span 2}}
+/* Two projects side by side (`pair` in portfolio.js): same width, same height, and the
+   "Read the case study" line level across both. Opening one does not stretch the other. The
+   row disappears when a filter hides both. */
+.pf-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:20px;align-items:stretch;margin-bottom:20px}
+.pf-pair .pf-card-featured{grid-column:auto}
+.pf-pair .pf-more{margin-top:auto}
+.pf-pair:has(.pf-more[open]){align-items:start}
+.pf-pair:not(:has(.pf-card:not([hidden]))){display:none}
 
 /* Integrations */
 .pf-stack-band{padding:56px 0;border-top:1px solid #E2DFD7}

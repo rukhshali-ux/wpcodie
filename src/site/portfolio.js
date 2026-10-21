@@ -7,6 +7,7 @@
 // featured: a double-width card. metrics: headline numbers shown on the card. flows: step chains.
 // preview: shown only on the test copy at /preview/portfolio/ (and left out of llms.txt and the
 // page's structured data) until the owner approves it; remove the flag to take it live.
+// pair: shown side by side, same size, in a row of their own above the grid.
 // previewEdits: replacement text for a live project, shown only on the test copy; to take it live,
 // copy the fields over the originals and delete previewEdits.
 
@@ -60,6 +61,7 @@ export const PROJECTS = [
     why: 'Gyms lose members quietly: a missed week becomes a cancelled membership. Fitnatic puts a coach’s plan in every member’s pocket and shows owners who is drifting while there is still time to win them back. It also fits how gyms in Pakistan are paid, with proof of a direct payment, so the product never has to take a card.',
     tags: ['Multi-gym SaaS', 'Supabase & row-level security', 'React CRM', 'Android app (Expo)', 'Push notifications'],
     previewEdits: {
+      pair: true,
       subtitle: 'Coaching CRM & member app for gyms',
       summary: 'Fitnatic is our own coaching CRM and member app for gyms. Trainers build each member’s workout and diet plan, members follow it on the gym’s Android app and track their progress, and owners see who has paid and who is slipping away before they quit. One platform serves many gyms, and no gym can ever see another’s data.',
       delivered: [
@@ -84,8 +86,8 @@ export const PROJECTS = [
     groups: ['crm'],
     scale: 'Our own SaaS product · staff CRM + client app',
     url: 'legal-crm.wpcodie.com',
-    // Not featured: a single-width card fills the column beside Fitnatic (two featured cards
-    // in a row leave the third column empty).
+    logo: '/clients/legalflow.svg',
+    pair: true,
     preview: true,
     metrics: [['6', 'staff roles, from intake coordinator to supervising partner'], ['1', 'platform for the whole journey, from first inquiry to paid invoice']],
     summary: 'LegalFlow is our own CRM and client portal for law firms. It follows a matter from first inquiry through conflict check, signed engagement letter, documents and work to invoice and payment, and gives clients an app to follow their own case and act on it. The firm stops chasing clients, and clients stop chasing the firm. Many firms share one platform, and no firm can ever see another’s data.',

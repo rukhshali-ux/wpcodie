@@ -6,6 +6,7 @@
 // carries the orange badge and is hidden from search engines.
 import SiteHeader, { LINKS } from './SiteHeader.jsx';
 import LogoMark from './LogoMark.jsx';
+import PortfolioCard from './PortfolioCard.astro';
 import { FILTERS, PROJECTS as ALL_PROJECTS, STACK, STATS } from './portfolio.js';
 import { ADDRESS_LINES, NAME, PHONE, PHONE_DISPLAY, SITE } from './seo.js';
 import { OFFICES, telHref } from './business.js';
@@ -17,6 +18,9 @@ import '../assets/css/portfolio.css';
 
 const { preview = false } = Astro.props;
 const PROJECTS = ALL_PROJECTS.filter((p) => preview || !p.preview).map((p) => (preview && p.previewEdits ? { ...p, ...p.previewEdits } : p));
+// Projects flagged `pair` sit side by side in a row of their own above the grid.
+const PAIR = PROJECTS.filter((p) => p.pair);
+const REST = PROJECTS.filter((p) => !p.pair);
 const TITLE = 'WPCodie Portfolio: CRMs, Healthcare, Fintech & Marketplaces';
 const DESCRIPTION = 'Case studies from WPCodie: Fitnatic, a coaching CRM and member app for gyms, plus healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe and Twilio integrations.';
 const URL = `${SITE}/portfolio/`;
@@ -90,57 +94,13 @@ const ld = {
           ))}
         </div>
       </div>
+      {PAIR.length > 0 && (
+        <div class="pf-pair">
+          {PAIR.map((p) => <PortfolioCard p={p} />)}
+        </div>
+      )}
       <div class="pf-grid">
-        {PROJECTS.map((p) => (
-          <article class={p.featured ? 'pf-card pf-card-featured' : 'pf-card'} id={p.slug} data-group={p.groups.join(' ')}>
-            <div class="pf-card-top">
-              <span class="pf-sector">{p.sector}</span>
-              <span class="pf-scale">{p.scale}</span>
-            </div>
-            {p.logo && <img class="pf-logo" src={p.logo} alt="" height="32" loading="lazy" decoding="async" />}
-            <h3>{p.name}</h3>
-            <p class="pf-sub">{p.subtitle}</p>
-            {p.url && <a class="pf-url" href={`https://${p.url}`} target="_blank" rel="noopener">{p.url} <span aria-hidden="true">↗</span></a>}
-            {p.metrics && (
-              <dl class="pf-metrics">
-                {p.metrics.map(([n, label]) => <div><dt>{label}</dt><dd>{n}</dd></div>)}
-              </dl>
-            )}
-            <p class="pf-summary">{p.summary}</p>
-            <ul class="pf-tags" aria-label="Highlights">
-              {p.tags.map((t) => <li>{t}</li>)}
-            </ul>
-            {p.pending ? (
-              <p class="pf-pending">Full case study coming soon.</p>
-            ) : (
-              <details class="pf-more">
-                <summary>Read the case study</summary>
-                <h4>What we delivered</h4>
-                <ul class="pf-list">
-                  {p.delivered.map((d) => <li>{d}</li>)}
-                </ul>
-                {p.flows && p.flows.map(([title, steps]) => (
-                  <>
-                    <h4>{title}</h4>
-                    <ol class="pf-flow">
-                      {steps.map((st) => <li>{st}</li>)}
-                    </ol>
-                  </>
-                ))}
-                {p.role && (
-                  <>
-                    <h4>Our role</h4>
-                    <p class="pf-role">{p.role}</p>
-                  </>
-                )}
-                <div class="pf-why">
-                  <span>Why it mattered</span>
-                  <p>{p.why}</p>
-                </div>
-              </details>
-            )}
-          </article>
-        ))}
+        {REST.map((p) => <PortfolioCard p={p} />)}
       </div>
       <p class="pf-empty" hidden>No projects in this group yet.</p>
     </div>

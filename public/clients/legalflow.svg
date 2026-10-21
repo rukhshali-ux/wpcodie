@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="LegalFlow">
+  <rect width="96" height="96" rx="22" fill="#15181F"/>
+  <g fill="#F5F4F0">
+    <rect x="18" y="24" width="12" height="48" rx="3"/>
+    <rect x="18" y="60" width="28" height="12" rx="3"/>
+    <rect x="52" y="24" width="12" height="48" rx="3"/>
+    <rect x="52" y="24" width="28" height="12" rx="3"/>
+    <rect x="52" y="44" width="22" height="11" rx="3"/>
+  </g>
+</svg>
