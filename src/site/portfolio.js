@@ -7,6 +7,8 @@
 // featured: a double-width card. metrics: headline numbers shown on the card. flows: step chains.
 // preview: shown only on the test copy at /preview/portfolio/ (and left out of llms.txt and the
 // page's structured data) until the owner approves it; remove the flag to take it live.
+// previewEdits: replacement text for a live project, shown only on the test copy; to take it live,
+// copy the fields over the originals and delete previewEdits.
 
 export const FILTERS = [
   ['all', 'All projects'],
@@ -57,6 +59,52 @@ export const PROJECTS = [
     role: 'Everything, end to end: product strategy and specification, UX and the design system, the CRM, the Android app, the database and its security, and the free-trial funnel. Fitnatic is a WPCodie product.',
     why: 'Gyms lose members quietly: a missed week becomes a cancelled membership. Fitnatic puts a coach’s plan in every member’s pocket and shows owners who is drifting while there is still time to win them back. It also fits how gyms in Pakistan are paid, with proof of a direct payment, so the product never has to take a card.',
     tags: ['Multi-gym SaaS', 'Supabase & row-level security', 'React CRM', 'Android app (Expo)', 'Push notifications'],
+    previewEdits: {
+      subtitle: 'Coaching CRM & member app for gyms',
+      summary: 'Fitnatic is our own coaching CRM and member app for gyms. Trainers build each member’s workout and diet plan, members follow it on the gym’s Android app and track their progress, and owners see who has paid and who is slipping away before they quit. One platform serves many gyms, and no gym can ever see another’s data.',
+      delivered: [
+        'A multi-gym CRM for owners, admins and trainers, with database-level access rules (row-level security) tested for every role across two gyms',
+        'Member onboarding by the gym, including bulk import of existing members from CSV or Excel; sign-in by emailed code, or by mobile number with a one-time invite link sent over WhatsApp or SMS',
+        'Fee tracking built for how gyms are actually paid: members pay the gym directly and upload the proof, staff verify it in a queue, receipt numbers are issued, and overdue members are locked out of the app after a grace period',
+        'A weekly workout-plan builder with the gym’s own video library (YouTube, Vimeo or uploads), supersets, templates and assign-to-many',
+        'Diet plans with a calorie target, timed meals and a built-in food library of local dishes, showing the running total against the target',
+        'An Android member app: today’s workout, the weekly view, diet with meal ticks, water, weight and progress photos, membership and proof upload, and an offline cache',
+        'Member-to-trainer chat with images and documents and read receipts, plus push notifications and daily reminders',
+        'Trainer and owner dashboards: who is paid, overdue or due soon, and which members are going off track',
+        'A public landing page and a self-serve 15-day free trial that creates a gym filled with sample data, locks itself when the trial ends and cleans up afterwards',
+      ],
+      why: 'Gyms lose members quietly: a missed week becomes a cancelled membership. Fitnatic puts a coach’s plan in every member’s pocket and shows owners who is drifting while there is still time to win them back. It also fits how many gyms are actually paid, with proof of a direct payment, so the product never has to take a card.',
+    },
+  },
+  {
+    slug: 'legalflow',
+    name: 'LegalFlow CRM',
+    subtitle: 'CRM & client portal for law firms',
+    sector: 'Legal',
+    groups: ['crm'],
+    scale: 'Our own SaaS product · staff CRM + client app',
+    url: 'legal-crm.wpcodie.com',
+    // Not featured: a single-width card fills the column beside Fitnatic (two featured cards
+    // in a row leave the third column empty).
+    preview: true,
+    metrics: [['6', 'staff roles, from intake coordinator to supervising partner'], ['1', 'platform for the whole journey, from first inquiry to paid invoice']],
+    summary: 'LegalFlow is our own CRM and client portal for law firms. It follows a matter from first inquiry through conflict check, signed engagement letter, documents and work to invoice and payment, and gives clients an app to follow their own case and act on it. The firm stops chasing clients, and clients stop chasing the firm. Many firms share one platform, and no firm can ever see another’s data.',
+    delivered: [
+      'Lead capture, qualification and conversion into a client and matter, with a conflict check before anything is opened',
+      'Engagement letters with e-signature links that clients sign from their phone',
+      'Matters with workflows and stage gates, team assignment, tasks and critical dates',
+      'Document requests with virus scanning and quarantine before a file reaches the firm',
+      'Conversations on each matter, with notifications in the app and by email through each firm’s own Gmail',
+      'Invoices with proof of payment uploaded by the client and verified by the firm',
+      'A client app on the web and Android: documents to send, messages, payments and the progress of their matter',
+      'A full audit trail: who did what, when, on whose authority, and what the client was told',
+    ],
+    flows: [
+      ['A matter’s journey', ['Inquiry', 'Conflict check', 'Engagement letter signed', 'Client & matter opened', 'Documents collected', 'Work & updates', 'Invoice & payment']],
+    ],
+    role: 'Everything, end to end: product specification, the staff CRM, the client app, the backend and its security model, and deployment. LegalFlow is a WPCodie product; an interactive demo is on our homepage.',
+    why: 'Law firms lose hours to chasing in both directions: clients ringing for updates, and staff chasing clients for documents and payment. LegalFlow puts every update and request in the client’s pocket while keeping the professional record a firm must be able to produce later, and internal notes and reasoning never reach the client.',
+    tags: ['Multi-firm SaaS', 'Client portal', 'E-signature', 'Document scanning', 'Django & React', 'Flutter app'],
   },
   {
     slug: 'find-healthcare',

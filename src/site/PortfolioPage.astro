@@ -16,7 +16,7 @@ import '../assets/css/page.css';
 import '../assets/css/portfolio.css';
 
 const { preview = false } = Astro.props;
-const PROJECTS = ALL_PROJECTS.filter((p) => preview || !p.preview);
+const PROJECTS = ALL_PROJECTS.filter((p) => preview || !p.preview).map((p) => (preview && p.previewEdits ? { ...p, ...p.previewEdits } : p));
 const TITLE = 'WPCodie Portfolio: CRMs, Healthcare, Fintech & Marketplaces';
 const DESCRIPTION = 'Case studies from WPCodie: Fitnatic, a coaching CRM and member app for gyms, plus healthcare and fintech platforms, marketplaces, booking systems and directories, with Salesforce, Stripe and Twilio integrations.';
 const URL = `${SITE}/portfolio/`;
